@@ -1,0 +1,46 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+      "tslint:recommended",
+      "tslint-config-prettier"
+  ],
+  "linterOptions": {
+      "exclude": [
+        "node_modules/**"
+      ]
+  },
+  "rules": {
+      /** enforces use of T[] for all types T. */
+      "array-type": [true, "array"],
+      /** allows banned types like String (for prisma generation for instance) */
+      "ban-types": false,
+      /** forbids any unnecessary curly braces. */
+      "curly": [ true, "as-needed" ], 
+      /** requires interface names to not have an “I” prefix. */
+      "interface-name": [true, "never-prefix"],
+      /** forbids public accessibility to be specified, because this is the default. */
+      "member-access": [true, "no-public"],
+      /** allows members unordered (for stylers property for instance). */
+      "member-ordering": false,
+      /** allows console. */
+      "no-console": false,
+      /** allows empty block. */
+      "no-empty": false,
+      /** allows empty interfaces. */
+      "no-empty-interface": false,
+      /** allows shadowed variables. */
+      "no-shadowed-variable": false,
+      /** allows string literals. */
+      "no-string-literal": false,
+      /** allow unordered keys. */
+      "object-literal-sort-keys": false,
+      /** allow non arrow functions */
+      "only-arrow-functions": false,
+      /** "check-format": allows only lowerCamelCased or UPPER_CASED variable names
+          "allow-leading-underscore" allows underscores at the beginning.
+          "allow-pascal-case" allows PascalCase in addition to lowerCamelCase.
+          "ban-keywords": disallows the use of certain TypeScript keywords as variable or parameter names. */
+      // "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
+      "variable-name": false
+  }
+}
