@@ -8,6 +8,10 @@
     "playground/*",
     "projects/*"
   ],
+  "scripts": {
+    "docs:build": "vuepress build docs",
+    "docs:dev": "vuepress dev docs"
+  },
   "dependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "@nestjs/common": "^6.2.4",
@@ -72,6 +76,7 @@
     "vue-class-component": "^7.1.0",
     "vue-i18n": "^8.11.2",
     "vue-property-decorator": "^8.1.1",
+    "vuepress": "^1.0.2",
     "yaml-loader": "^0.5.0"
   }
 }
