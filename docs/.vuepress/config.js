@@ -1,6 +1,7 @@
 module.exports = {
   title: 'níama',
   description: 'Wanderings of a coder...',
+  host: 'localhost',
   port: '7000',
   themeConfig: {
     nav: [

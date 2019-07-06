@@ -1,11 +1,57 @@
 # Quasar
 
-## Main
+## Skeleton
 
-- In the appropriate folder, use Quasar CLI to initialize your project:
+In the appropriate folder, use **Quasar CLI** to initialize your project :
 
 ```bash
-quasar create <folder_name> -b dev
+quasar create <folder_name>
+```
+
+## Prettier
+
+Install **prettier** package :
+
+```bash
+yarn add -D prettier
+```
+
+Add `.prettierrc` to your project folder:
+
+```json
+{
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "parser": "typescript",
+  "printWidth": 140,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5"
+}
+```
+
+## Pug
+
+Install **Niama Quasar Extension** for **Pug** :
+
+```bash
+quasar ext add @niama/pug
+```
+
+## Typescript
+
+Install **Niama Quasar Extension** for **Typescript** :
+
+```bash
+quasar ext add @niama/ts
+```
+
+## Environment files
+
+- Install **dotenv** :
+
+```bash
+yarn add -D dotenv
 ```
 
 - Create two folders: `config` and `src/modules`.
@@ -32,7 +78,7 @@ PRISMA_SECRET=prismaSecret
 
 ```
 
-- Add `scripts` to `package.json`:
+- Add `scripts` to `package.json` :
 
 ```json
 {
@@ -43,213 +89,6 @@ PRISMA_SECRET=prismaSecret
     ...
   }
   ...
-}
-```
-
-## Prettier
-
-Install prettier package:
-
-```bash
-npm i -D prettier
-```
-
-Add `.prettierrc` to your project folder:
-
-```json
-{
-  "arrowParens": "always",
-  "bracketSpacing": true,
-  "parser": "typescript",
-  "printWidth": 140,
-  "semi": true,
-  "singleQuote": true,
-  "trailingComma": "es5"
-}
-```
-
-## Aliases
-
-Add aliases to `quasar.conf.js`:
-
-```js
-...
-const path = require('path');
-
-const alias = (cfg) => {
-  cfg.resolve.alias = {
-    ...cfg.resolve.alias,
-    '~': __dirname,
-    '@': path.resolve(__dirname, 'src'),
-  };
-}
-...
-module.exports = function (ctx) {
-...
-  build: {
-    ...
-    extendWebpack (cfg) {
-      ...
-      alias(cfg);
-      ...
-    }
-    ...
-  },
-...
-}
-```
-
-## Pug
-
-Install pug and its loader as dev dependencies:
-
-```bash
-npm i -D pug pug-plain-loader
-```
-
-Add pug to `quasar.conf.js`:
-
-```js
-...
-const pug = (cfg) => {
-  cfg.module.rules.push({
-    test: /\.pug$/,
-    loader: 'pug-plain-loader'
-  });
-}
-...
-module.exports = function (ctx) {
-...
-  build: {
-    ...
-    extendWebpack (cfg) {
-      ...
-      pug(cfg);
-      ...
-    }
-    ...
-  },
-...
-}
-```
-
-## Typescript
-
-- Install Quasar Extension for Typescript:
-
-```bash
-quasar ext add @quasar/typescript
-```
-
-- Install other required dev dependencies:
-
-```bash
-npm i -D tslint-config-prettier vue-class-component vue-property-decorator
-```
-
-- Replace the content of `tsconfig.json` with:
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "lib": ["es2017", "dom"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["src/*"]
-    },
-    "sourceMap": true,
-    "strict": true,
-    "target": "es6",
-    "typeRoots": [
-      "node_modules/@types",
-      "./src/@types"
-    ]
-  },
-  "include": [
-    "./src/**/*"
-  ]
-}
-```
-
-- Replace the content of `tslint.json` with:
-
-```json
-{
-  "defaultSeverity": "warning",
-  "extends": [
-      "tslint:recommended",
-      "tslint-config-prettier"
-  ],
-  "linterOptions": {
-      "exclude": [
-        "node_modules/**"
-      ]
-  },
-  "rules": {
-      /** enforces use of T[] for all types T. */
-      "array-type": [true, "array"],
-      /** allows banned types like String (for prisma generation for instance) */
-      "ban-types": false,
-      /** forbids any unnecessary curly braces. */
-      "curly": [ true, "as-needed" ], 
-      /** requires interface names to not have an “I” prefix. */
-      "interface-name": [true, "never-prefix"],
-      /** forbids public accessibility to be specified, because this is the default. */
-      "member-access": [true, "no-public"],
-      /** allows members unordered (for stylers property for instance). */
-      "member-ordering": false,
-      /** allows console. */
-      "no-console": false,
-      /** allows empty block. */
-      "no-empty": false,
-      /** allows empty interfaces. */
-      "no-empty-interface": false,
-      /** allows shadowed variables. */
-      "no-shadowed-variable": false,
-      /** allows string literals. */
-      "no-string-literal": false,
-      /** allow unordered keys. */
-      "object-literal-sort-keys": false,
-      /** "check-format": allows only lowerCamelCased or UPPER_CASED variable names
-          "allow-leading-underscore" allows underscores at the beginning.
-          "allow-pascal-case" allows PascalCase in addition to lowerCamelCase.
-          "ban-keywords": disallows the use of certain TypeScript keywords as variable or parameter names. */
-      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
-  }
-}
-```
-
-- Create `src/@types` and move each `.d.ts` file to it.
-- Replace the content of `src/@types/env.d.ts` with:
-
-```ts
-declare namespace NodeJS {
-  interface ProcessEnv {
-    AUTH_AUDIENCE: string;
-    AUTH_COOKIE_ACCESS: string;
-    AUTH_COOKIE_ID: string;
-    AUTH_ISSUER: string;
-    AUTH_SECRET: string;
-    MYSQL_PASSWORD: string;
-    MYSQL_PORT: number;
-    NEST_HOST: string;
-    NEST_PORT: number;
-    NODE_ENV: 'development' | 'production';
-    PRISMA_HOST: string;
-    PRISMA_MANAGEMENT_API_SECRET: string;
-    PRISMA_PORT: number;
-    PRISMA_SECRET: string;
-    QUASAR_HOST: string;
-    QUASAR_PORT: number;
-    VUE_ROUTER_MODE: 'hash' | 'history' | 'abstract' | undefined;
-    VUE_ROUTER_BASE: string | undefined;
-  }
 }
 ```
 
@@ -434,7 +273,7 @@ npm i -D @types/dotenv dotenv nodemon ts-node@7 tsconfig-paths
 
 ```
 
-### Scripts to add to package.json 
+### Scripts to add to package.json
 
 ```json
 {
