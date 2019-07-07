@@ -17,7 +17,7 @@ export const toNumber = (v: string): number => +v;
 
 // OBJECT ==================================================================================================================================
 
-export function omit<T extends object, K extends keyof T>(obj: T, keys: K[]): N.Omit<T, K> {
+export function omit<T extends object, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
   const res: any = { ...obj };
   for (const key of keys) delete res[key];
   return res;

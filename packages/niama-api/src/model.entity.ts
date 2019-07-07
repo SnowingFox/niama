@@ -1,14 +1,16 @@
-import { fill, omit } from '@niama/core';
+import { fill, Map, omit } from '@niama/core';
 import { struct } from 'superstruct';
 
-export class ApiE<R extends N.ApiR> {
+import { ApiR } from './types';
+
+export class ApiEntity<R extends ApiR> {
   // STATIC ================================================================================================================================
 
-  static schema: N.Map<N.ApiR> = {
+  static schema: Map<ApiR> = {
     ...fill('string', '__typename', 'id'),
   };
 
-  static defaults: Partial<N.ApiR> = {};
+  static defaults: Partial<ApiR> = {};
 
   // VARIABLES =============================================================================================================================
 
@@ -16,7 +18,7 @@ export class ApiE<R extends N.ApiR> {
 
   // LIFECYCLE =============================================================================================================================
 
-  constructor(dto: Partial<R>, schema = ApiE.schema, defaults = ApiE.defaults) {
+  constructor(dto: Partial<R>, schema = ApiEntity.schema, defaults = ApiEntity.defaults) {
     const resource: R = struct(schema, defaults)(dto);
     Object.assign(this, omit(resource, ['__typename']));
   }

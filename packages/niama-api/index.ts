@@ -1,1 +1,2 @@
-export { ApiE } from './src/universal/u.api.model.entity';
+export * from './src/model.entity';
+export * from './src/types';

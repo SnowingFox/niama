@@ -1,6 +1,7 @@
-import { struct } from 'superstruct';
+import { Kind, struct } from 'superstruct';
 
-import { endsWith, intersection, zipObject } from './u.core.service.helper.lodash';
+import { endsWith, intersection, zipObject } from './helper.lodash';
+import { I18n } from './types';
 
 // EXTRA ===================================================================================================================================
 
@@ -19,16 +20,16 @@ export function hasIntersection<T>(arr1: T[], arr2: T[]): boolean {
   return intersection(arr1, arr2).length > 0;
 }
 
-export function i18nizeLabel<T extends string>(labels: N.I18n<T>, value: T): string {
+export function i18nizeLabel<T extends string>(labels: I18n<T>, value: T): string {
   return labels[value] || value;
 }
 
-export function i18nizeLabels<T extends string>(labels: N.I18n<T>, values: T[], defaultValue = ''): string {
+export function i18nizeLabels<T extends string>(labels: I18n<T>, values: T[], defaultValue = ''): string {
   return values && values.length > 0 ? values.map((v) => i18nizeLabel(labels, v)).join(', ') : defaultValue;
 }
 
 // STRUCT ==================================================================================================================================
 
-export function maybe<T>(value: T): N.Kind {
+export function maybe<T>(value: T): Kind {
   return struct.union([value, 'null']);
 }

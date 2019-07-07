@@ -1,12 +1,13 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { makePrismaSchema } from 'nexus-prisma';
+import { DatamodelInfo, PrismaClientInput } from 'nexus-prisma/dist/types';
 
-import { ApiS } from './b.api.service';
+import { ApiS } from './service';
 
 const gqlFactory = (
-  client: N.PrismaClientInput,
-  datamodelInfo: N.DatamodelInfo,
+  client: PrismaClientInput,
+  datamodelInfo: DatamodelInfo,
   types: any[],
   schema: string,
   typegen: string
@@ -25,7 +26,7 @@ const gqlFactory = (
 @Global()
 @Module({})
 export class ApiMD {
-  static forRoot(prisma: N.PrismaClientInput, nexus: N.DatamodelInfo, types: any[], schema: string, typegen: string): DynamicModule {
+  static forRoot(prisma: PrismaClientInput, nexus: DatamodelInfo, types: any[], schema: string, typegen: string): DynamicModule {
     const apiS = { provide: 'ApiS', useFactory: () => new ApiS(prisma) };
 
     return {
