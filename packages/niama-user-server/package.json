@@ -1,9 +1,8 @@
 {
-  "name": "@niama/api",
-  "version": "1.0.1",
+  "name": "@niama/user-server",
+  "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
-  "sideEffects": false,
   "prettier": {
     "arrowParens": "always",
     "bracketSpacing": true,

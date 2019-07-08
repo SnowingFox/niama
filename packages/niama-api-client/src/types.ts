@@ -1,12 +1,17 @@
 import { Dict, Maybe } from '@niama/core';
 import { ApolloQueryResult, Resolvers } from 'apollo-client';
 
+// FRONT CONFIG ============================================================================================================================
+
+export interface ApiConfig<F extends ApiF, L, R> {
+  fields: F;
+  labels: L;
+  requests: R;
+}
+
 // FIELDS ==================================================================================================================================
 
 export type ApiF = string[] | { _: string[]; [id: string]: ApiF };
-export type ApiIdFNames = 'id';
-export type ApiTypeFNames = '__typename';
-export type ApiRFNames = ApiIdFNames | ApiTypeFNames;
 
 // REQUESTS ================================================================================================================================
 

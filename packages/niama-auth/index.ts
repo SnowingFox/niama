@@ -1,3 +1,4 @@
+export * from './src/entity.token';
 export {
   capFromGrant as authCapFromGrant,
   capsFromGrants as authCapsFromGrants,
@@ -7,5 +8,5 @@ export {
   signupDI as authSignupDI,
   statuses as authStatuses,
   statusesI18n as authStatusesI18n,
-} from './src/universal/u.auth.helper';
-export { AuthToken } from './src/universal/u.auth-token.model.entity';
+} from './src/helper';
+export * from './src/types';

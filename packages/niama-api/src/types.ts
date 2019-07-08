@@ -1,3 +1,11 @@
+// PROPS ===================================================================================================================================
+
+export type ApiIdNames = 'id';
+export type ApiTypeNames = '__typename';
+export type ApiRNames = ApiIdNames | ApiTypeNames;
+
+// OBJECTS =================================================================================================================================
+
 export interface ApiE {
   id: string;
 }

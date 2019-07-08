@@ -1,8 +1,11 @@
 {
-  "name": "@niama/api",
-  "version": "1.0.1",
+  "name": "@niama/auth-client",
+  "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
+  "scripts": {
+    "prisma": "prisma generate"
+  },
   "sideEffects": false,
   "prettier": {
     "arrowParens": "always",

@@ -1,6 +1,6 @@
 {
-  "name": "@niama/api",
-  "version": "1.0.1",
+  "name": "@niama/nav-client",
+  "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
   "sideEffects": false,

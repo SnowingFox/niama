@@ -1,9 +1,10 @@
+import { ApiIdNames, ApiRNames, ApiTypeNames } from '@niama/api';
 import { Dict, isEmpty, map } from '@niama/core';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 
 import errors from './content.json';
-import { ApiF, ApiIdFNames, ApiRequestO, ApiRequestType, ApiRFNames, ApiTypeFNames } from './types';
+import { ApiF, ApiRequestO, ApiRequestType } from './types';
 
 const DEBUG = false;
 
@@ -21,9 +22,9 @@ const fieldsForGQL = (fields: ApiF): string =>
 
 // FIELDS ==================================================================================================================================
 
-export const idF: ApiIdFNames[] = ['id'];
-export const typeF: ApiTypeFNames[] = ['__typename'];
-export const resourceF: ApiRFNames[] = [...idF, ...typeF];
+export const idF: ApiIdNames[] = ['id'];
+export const typeF: ApiTypeNames[] = ['__typename'];
+export const resourceF: ApiRNames[] = [...idF, ...typeF];
 
 // REQUESTS ================================================================================================================================
 

@@ -1,2 +1,3 @@
-export { getLabels } from './src/universal/u.orm.helper';
-export { OrmE } from './src/universal/u.orm.model.entity';
+export * from './src/entity';
+export * from './src/helper';
+export * from './src/types';
