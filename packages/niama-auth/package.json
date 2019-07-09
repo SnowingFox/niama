@@ -15,5 +15,9 @@
     "semi": true,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "peerDependencies": {
+    "@niama/api": "^1.0.0",
+    "@niama/core": "^1.0.0"
   }
 }
