@@ -12,5 +12,17 @@
     "semi": true,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "peerDependencies": {
+    "@niama/api-client": "^1.0.0",
+    "@niama/core": "^1.0.0",
+    "@niama/orm": "^1.0.0",
+    "graphql": "^14.4.2",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.1"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.2.2"
   }
 }
