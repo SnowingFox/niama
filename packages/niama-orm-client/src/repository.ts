@@ -1,4 +1,3 @@
-
 import { ApiQR } from '@niama/api-client';
 import { Maybe, pick, Type } from '@niama/core';
 import { OrmReadManyArgs } from '@niama/orm';
@@ -13,12 +12,13 @@ export class OrmRP<RPO extends OrmRPO> extends Vue {
   // VARIABLES =============================================================================================================================
 
   @Prop({ type: Object }) args!: OrmReadManyArgs<RPO['Where'], RPO['OrderBy']>;
-  @Prop({ default: false, type: Boolean }) manual!: boolean;
-  @Prop({ default: false, type: Boolean }) fetchAll!: boolean;
+  @Prop({ type: Function, default: (e: RPO['Entity']) => e }) entityToItem!: (entity: RPO['Entity']) => RPO['Item'];
+  @Prop({ type: Boolean, default: false }) manual!: boolean;
+  @Prop({ type: Boolean, default: false }) fetchAll!: boolean;
 
-  allItems: Maybe<RPO['Entity'][]> = null;
-  currentItems: RPO['Entity'][] = [];
-  item: Maybe<RPO['Entity']> = null;
+  allItems: Maybe<RPO['Item'][]> = null;
+  currentItems: RPO['Item'][] = [];
+  item: Maybe<RPO['Item']> = null;
   loading: boolean = false;
   total: Maybe<number> = null;
 
@@ -26,7 +26,7 @@ export class OrmRP<RPO extends OrmRPO> extends Vue {
     return !!this.allItems;
   }
 
-  get items(): RPO['Entity'][] {
+  get items(): RPO['Item'][] {
     return this.allItems ? this.allItems : this.currentItems;
   }
 
@@ -74,30 +74,30 @@ export class OrmRP<RPO extends OrmRPO> extends Vue {
   }
 
   async fetch(args = this.args) {
-    const result: RPO['Entity'][] = await this.readMany(args);
+    const result: RPO['Item'][] = await this.readMany(args);
     if (!args) this.allItems = result;
     else this.currentItems = result;
     if (this.fetchAll && !this.allItems) this.allItems = await this.readMany();
   }
 
-  async read(id: string): Promise<RPO['Entity']> {
+  async read(id: string): Promise<RPO['Item']> {
     this.loading = true;
     const { data }: ApiQR<RPO['Resource']> = await this.$apollo.query({
       query: this.api.requests.read(),
       variables: { where: { id } },
     });
-    const result: RPO['Entity'] = data ? new this.entityClass(data[this.api.labels.READ]) : null;
+    const result: RPO['Item'] = data ? this.entityToItem(new this.entityClass(data[this.api.labels.READ])) : null;
     this.loading = false;
     return result;
   }
 
-  async readMany(args?: OrmReadManyArgs<RPO['Where'], RPO['OrderBy']>): Promise<RPO['Entity'][]> {
+  async readMany(args?: OrmReadManyArgs<RPO['Where'], RPO['OrderBy']>): Promise<RPO['Item'][]> {
     this.loading = true;
     const { data }: ApiQR<RPO['Resource'][]> = await this.$apollo.query({
       query: args ? this.api.requests.readMany(this.api.fields) : this.api.requests.readAll(this.api.fields),
       variables: args,
     });
-    const result: RPO['Entity'][] = data ? data[this.api.labels.READ_MANY].map((dto) => new this.entityClass(dto)) : [];
+    const result: RPO['Item'][] = data ? data[this.api.labels.READ_MANY].map((dto) => this.entityToItem(new this.entityClass(dto))) : [];
     this.loading = false;
     return result;
   }

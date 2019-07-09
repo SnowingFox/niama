@@ -4,9 +4,10 @@ import { DocumentNode } from 'graphql';
 
 // ORM MAIN ================================================================================================================================
 
-export interface OrmRPO<R = any, E extends OrmE = any, F extends ApiF = any, W = any, OB = any> {
+export interface OrmRPO<R = any, E extends OrmE = any, F extends ApiF = any, W = any, OB = any, I = E> {
   Entity: E;
   Fields: F;
+  Item: I;
   OrderBy: OB;
   Resource: R;
   Where: W;
