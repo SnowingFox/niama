@@ -1,7 +1,7 @@
+import { InMemoryCache } from '@niama/api-client';
 import { AuthToken } from '@niama/auth';
 import { Maybe } from '@niama/core';
 import { NavMenu, NavR, navResourcesFromMenus } from '@niama/nav';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { api } from './helper';
 
