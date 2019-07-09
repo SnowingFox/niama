@@ -1,6 +1,12 @@
 import { Dict, Maybe } from '@niama/core';
 import { ApolloQueryResult, Resolvers } from 'apollo-client';
 
+// EXTERNALS ===============================================================================================================================
+
+export { InMemoryCache } from 'apollo-cache-inmemory';
+export { Resolvers } from 'apollo-client';
+export { DocumentNode } from 'graphql';
+
 // FRONT CONFIG ============================================================================================================================
 
 export interface ApiConfig<F extends ApiF, L, R> {

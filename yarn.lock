@@ -2040,7 +2040,7 @@ apollo-cache-control@0.7.4:
     apollo-server-env "2.4.0"
     graphql-extensions "0.7.4"
 
-apollo-cache-inmemory@^1.5.1, apollo-cache-inmemory@^1.6.0:
+apollo-cache-inmemory@^1.5.1, apollo-cache-inmemory@^1.6.0, apollo-cache-inmemory@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.6.2.tgz#bbf2e4e1eacdf82b2d526f5c2f3b37e5acee3c5e"
   integrity sha512-AyCl3PGFv5Qv1w4N9vlg63GBPHXgMCekZy5mhlS042ji0GW84uTySX+r3F61ZX3+KM1vA4m9hQyctrEGiv5XjQ==
@@ -2059,7 +2059,7 @@ apollo-cache@1.3.2, apollo-cache@^1.3.2:
     apollo-utilities "^1.3.2"
     tslib "^1.9.3"
 
-apollo-client@^2.5.1, apollo-client@^2.6.0:
+apollo-client@^2.5.1, apollo-client@^2.6.0, apollo-client@^2.6.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.6.3.tgz#9bb2d42fb59f1572e51417f341c5f743798d22db"
   integrity sha512-DS8pmF5CGiiJ658dG+mDn8pmCMMQIljKJSTeMNHnFuDLV0uAPZoeaAwVFiAmB408Ujqt92oIZ/8yJJAwSIhd4A==
@@ -8618,7 +8618,7 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-quasar@^1.0.0, quasar@^1.0.0-rc.2:
+quasar@^1.0.0, quasar@^1.0.0-rc.2, quasar@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.0.3.tgz#f702be35f7f60a55f5c1fc0c69e862a6bb3a78ae"
   integrity sha512-aFBP0NIGJ55b+k8KRFZwglJmcp6IwNtmgIXwqt0xrsUqwqQ5WkLijup+yu3ikRIQkpoWYXqEmZX62SciJ+JC+g==
