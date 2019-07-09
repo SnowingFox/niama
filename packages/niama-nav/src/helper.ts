@@ -2,7 +2,7 @@ import { getAuthCapsD } from '@niama/auth';
 import { upperFirst } from '@niama/core';
 import { getLabels, OrmLabels } from '@niama/orm';
 
-import { Nav } from './model.entity';
+import { Nav } from './entity';
 import { NavMenu, NavMenuItem, NavR } from './types';
 
 // API =====================================================================================================================================

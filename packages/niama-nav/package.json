@@ -12,5 +12,10 @@
     "semi": true,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "peerDependencies": {
+    "@niama/auth": "^1.0.0",
+    "@niama/core": "^1.0.1",
+    "@niama/orm": "^1.0.0"
   }
 }
