@@ -1,6 +1,6 @@
 {
   "name": "@niama/nav-client",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.ts",
   "license": "MIT",
   "sideEffects": false,
@@ -13,11 +13,11 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "peerDependencies": {
-    "@niama/auth": "^1.0.0",
-    "@niama/core": "^1.0.0",
-    "@niama/nav": "^1.0.0",
-    "@niama/orm-client": "^1.0.0",
+  "dependencies": {
+    "@niama/auth": "^1.1.0",
+    "@niama/core": "^1.1.0",
+    "@niama/nav": "^1.1.0",
+    "@niama/orm-client": "^1.1.0",
     "vue-class-component": "^7.1.0"
   }
 }
