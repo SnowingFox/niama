@@ -1,4 +1,4 @@
-import { authStatuses } from '@niama/auth';
+import { AuthStatus, authStatuses } from '@niama/auth';
 import { fill, Map, maybe, Maybe, omit } from '@niama/core';
 import { struct } from 'superstruct';
 
@@ -25,7 +25,7 @@ export class OrmEntity<R extends OrmR, Role extends string = string> implements 
   createdAt!: Maybe<Date>;
   id!: string;
   label!: Maybe<string>;
-  status!: NPri.AuthStatus;
+  status!: AuthStatus;
   updatedAt!: Maybe<Date>;
 
   // LIFECYCLE =============================================================================================================================

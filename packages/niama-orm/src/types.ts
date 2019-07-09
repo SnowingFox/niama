@@ -1,5 +1,5 @@
 import { ApiE, ApiR, ApiRNames } from '@niama/api';
-import { AuthCaps, AuthGrantNames } from '@niama/auth';
+import { AuthCaps, AuthGrantNames, AuthStatus } from '@niama/auth';
 import { Maybe } from '@niama/core';
 
 // ORM PROPS ==============================================================================================================================
@@ -14,14 +14,14 @@ export type OrmNames = ApiRNames | OrmLabelNames | OrmStatusNames | OrmTimeNames
 export interface OrmE<Role extends string = string> extends ApiE, AuthCaps<Role> {
   createdAt: Maybe<Date>;
   label: Maybe<string>;
-  status: NPri.AuthStatus;
+  status: AuthStatus;
   updatedAt: Maybe<Date>;
 }
 
 export interface OrmR<Role extends string = string> extends ApiR, Omit<OrmE<Role>, OrmTimeNames> {
   createdAt: Maybe<string>;
   label: Maybe<string>;
-  status: NPri.AuthStatus;
+  status: AuthStatus;
   updatedAt: Maybe<string>;
 }
 
