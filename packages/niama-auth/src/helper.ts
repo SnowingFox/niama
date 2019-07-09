@@ -1,7 +1,7 @@
 import { I18n, mapValues } from '@niama/core';
 
 import statusDtos from './content.statuses.json';
-import { AuthCaps, AuthGrant, AuthGrants, AuthLabels, AuthSigninI, AuthSignupI } from './types';
+import { AuthCaps, AuthGrant, AuthGrants, AuthLabels, AuthSigninI, AuthSignupI, AuthStatus } from './types';
 
 // API =====================================================================================================================================
 
@@ -16,11 +16,11 @@ export const labels: AuthLabels = {
 
 // ENUMS ===================================================================================================================================
 
-export const statuses: NPri.AuthStatus[] = Object.keys(statusDtos) as NPri.AuthStatus[];
+export const statuses: AuthStatus[] = Object.keys(statusDtos) as AuthStatus[];
 
 // I18N ====================================================================================================================================
 
-export const statusesI18n: I18n<NPri.AuthStatus> = statusDtos;
+export const statusesI18n: I18n<AuthStatus> = statusDtos;
 
 // DEFAULTS ================================================================================================================================
 

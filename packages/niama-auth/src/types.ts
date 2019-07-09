@@ -6,6 +6,8 @@ export type AuthTokenNames = ApiRNames | 'aud' | 'exp' | 'iat' | 'iss' | 'roles'
 
 // RESOURCES / ENTITIES ====================================================================================================================
 
+export type AuthStatus = 'BLOCKED' | 'INCORRECT' | 'OK' | 'PENDING';
+
 export interface AuthTokenE<Role extends string = string> extends ApiE {
   aud: string;
   exp: number;
