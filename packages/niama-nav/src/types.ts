@@ -5,7 +5,7 @@ import { OrmE, OrmNames, OrmR, OrmTimeNames } from '@niama/orm';
 
 export type NavNames = OrmNames | 'exact' | 'icon' | 'order' | 'parent' | 'to';
 
-// NAV OBJECTS =============================================================================================================================
+// OBJECTS =================================================================================================================================
 
 export interface NavE<Role extends string = string> extends OrmE<Role> {
   exact: boolean;
@@ -34,7 +34,7 @@ export interface NavMenuItem<Role extends string = string> {
 export type NavMenuFragments = Record<string, string>;
 export type NavMenuLabels = Record<string, string>;
 
-// NAV REQUESTS ============================================================================================================================
+// REQUESTS ================================================================================================================================
 
 export type NavOB = any;
 export interface NavW { parent: string };

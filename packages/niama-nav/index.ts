@@ -1,4 +1,4 @@
-export * from './src/entity';
+export * from './src/model';
 export {
   labels as navLabels,
   manyFromMenu as navsFromMenu,
