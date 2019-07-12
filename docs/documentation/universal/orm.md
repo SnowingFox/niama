@@ -1,9 +1,4 @@
----
-prev: ./api
-next: false
----
-
-# CRUD
+# NIAMA ORM
 
 ## Backend Resource : CrudBR
 

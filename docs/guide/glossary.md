@@ -1,4 +1,4 @@
-# Conventions
+# Glossary
 
 ## Boot
 

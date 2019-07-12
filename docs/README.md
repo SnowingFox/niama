@@ -2,13 +2,13 @@
 home: true
 heroImage: /logo.png
 actionText: Get started →
-actionLink: /environments/
+actionLink: /guide/
 features:
-- title: Environments
-  details: A way to initialize various environments.
+- title: Guide
+  details: Spirit about Niama projects
 - title: Documentation
-  details: Structure and Components for Niama projects.
+  details: Body structure of Niama products
 - title: Thoughts
-  details: Things to consider for future projects.
+  details: Mind behind Niama development
 footer: MIT Licensed | Copyright © 2018-present Gregory BOUTEILLER
 ---

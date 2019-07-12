@@ -1,4 +1,4 @@
-# General
+# Ecosystem
 
 Here are the technologies used on our projects.
 

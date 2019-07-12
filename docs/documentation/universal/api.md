@@ -1,9 +1,4 @@
----
-prev: false
-next: ./crud
----
-
-# API
+# NIAMA API
 
 ## Backend Resource : BR
 
