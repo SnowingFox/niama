@@ -1,1 +1,1 @@
-# NIAMA API CLIENT
+# @niama/api-client

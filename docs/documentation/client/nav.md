@@ -1,1 +1,1 @@
-# NIAMA NAV CLIENT
+# @niama/nav-client

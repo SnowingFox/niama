@@ -1,1 +1,1 @@
-# NIAMA AUTH
+# @niama/auth

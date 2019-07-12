@@ -1,1 +1,1 @@
-# NIAMA ORM CLIENT
+# @niama/orm-client

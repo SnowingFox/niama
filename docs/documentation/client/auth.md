@@ -1,1 +1,1 @@
-# NIAMA AUTH CLIENT
+# @niama/auth-client

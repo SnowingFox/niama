@@ -1,1 +1,1 @@
-# NIAMA CORE
+# @niama/core
