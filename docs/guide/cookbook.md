@@ -1,14 +1,16 @@
 # Cookbook
 
-## Create a Module
+## orm-local
 
-In the `src/modules` directory, create a `module-name` directory :
+### Module : Post
 
-```bash
-src
-└─ modules
-   └─ module-name
-      ├─ back
-      ├─ front
-      └─ universal
-```
+- Create a module `post` inside `src/modules`.
+- Create a file for the module types `post.types.ts`.
+- Create a file for the module entity `post.entity.ts`.
+
+### Page : list of Posts
+
+### Page : single Post
+
+### Router : Post routes
+

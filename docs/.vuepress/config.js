@@ -52,7 +52,7 @@ module.exports = {
           ],
         },
       ],
-      '/guide/': ['', 'installation', 'style-guide', 'cookbook', 'glossary', 'ecosystem'],
+      '/guide/': ['', 'installation', 'modules', 'style-guide', 'cookbook', 'glossary', 'ecosystem'],
     },
   },
 };
