@@ -10,5 +10,5 @@ export class NavRP extends mixins<OrmRP<NavRPO>>(OrmRP) {
   // VARIABLES =============================================================================================================================
 
   protected api = api;
-  protected entityClass = Nav;
+  protected modelClass = Nav;
 }
