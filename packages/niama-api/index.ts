@@ -1,2 +1,2 @@
-export * from './src/entity';
+export * from './src/model';
 export * from './src/types';
