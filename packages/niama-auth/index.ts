@@ -1,4 +1,4 @@
-export * from './src/entity.token';
+export * from './src/model.token';
 export {
   capFromGrant as authCapFromGrant,
   capsFromGrants as authCapsFromGrants,

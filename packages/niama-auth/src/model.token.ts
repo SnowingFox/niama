@@ -1,9 +1,9 @@
-import { ApiEntity } from '@niama/api';
+import { ApiModel } from '@niama/api';
 import { fill, Map } from '@niama/core';
 
 import { AuthTokenE, AuthTokenR } from './types';
 
-export class AuthToken<Role extends string> extends ApiEntity<AuthTokenR> implements AuthTokenE {
+export class AuthToken<Role extends string> extends ApiModel<AuthTokenR> implements AuthTokenE {
   // STATIC ================================================================================================================================
 
   static schema: Map<AuthTokenR> = {
