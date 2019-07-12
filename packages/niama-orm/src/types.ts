@@ -2,14 +2,14 @@ import { ApiE, ApiR, ApiRNames } from '@niama/api';
 import { AuthCaps, AuthGrantNames, AuthStatus } from '@niama/auth';
 import { Maybe } from '@niama/core';
 
-// ORM PROPS ==============================================================================================================================
+// PROPS ===================================================================================================================================
 
 export type OrmLabelNames = 'label';
 export type OrmStatusNames = 'status';
 export type OrmTimeNames = 'createdAt' | 'updatedAt';
 export type OrmNames = ApiRNames | OrmLabelNames | OrmStatusNames | OrmTimeNames | AuthGrantNames;
 
-// ORM OBJECTS =============================================================================================================================
+// OBJECTS =================================================================================================================================
 
 export interface OrmE<Role extends string = string> extends ApiE, AuthCaps<Role> {
   createdAt: Maybe<Date>;
@@ -36,7 +36,7 @@ export interface OrmActions {
   update: () => Promise<any>;
 }
 
-// ORM LABELS ==============================================================================================================================
+// LABELS ==================================================================================================================================
 
 export type OrmMainLabelNames = 'PLURAL' | 'SINGULAR';
 export type OrmInputLabelNames = 'CI' | 'UI' | 'WI' | 'WUI';
@@ -54,7 +54,7 @@ export type OrmRequestLabelNames =
 export type OrmLabelsStrict = Record<OrmMainLabelNames | OrmInputLabelNames | OrmRequestLabelNames, string>;
 export type OrmLabels<T extends string = string> = OrmLabelsStrict | OrmLabelsStrict & Record<T, string>;
 
-// ORM ARGS ================================================================================================================================
+// ARGS ====================================================================================================================================
 
 export interface OrmReadManyArgs<Where, OrderBy> {
   where?: Where;

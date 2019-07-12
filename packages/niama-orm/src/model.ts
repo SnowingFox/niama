@@ -4,7 +4,7 @@ import { struct } from 'superstruct';
 
 import { OrmE, OrmR } from './types';
 
-export class OrmEntity<R extends OrmR, Role extends string = string> implements OrmE {
+export class OrmModel<R extends OrmR, Role extends string = string> implements OrmE {
   // STATIC ================================================================================================================================
 
   static schema: Map<OrmR> = {
@@ -30,7 +30,7 @@ export class OrmEntity<R extends OrmR, Role extends string = string> implements 
 
   // LIFECYCLE =============================================================================================================================
 
-  constructor(dto: Partial<R>, schema = OrmEntity.schema, defaults = OrmEntity.defaults) {
+  constructor(dto: Partial<R>, schema = OrmModel.schema, defaults = OrmModel.defaults) {
     const resource: R = struct(schema, defaults)(dto);
     Object.assign(this, omit(resource, ['__typename', 'createdAt', 'updatedAt']));
   }
