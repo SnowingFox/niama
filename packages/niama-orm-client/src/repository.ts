@@ -12,7 +12,7 @@ export class OrmRP<RPO extends OrmRPO> extends Vue {
   // VARIABLES =============================================================================================================================
 
   @Prop({ type: Object }) args!: OrmReadManyArgs<RPO['Where'], RPO['OrderBy']>;
-  @Prop({ type: Function, default: (e: RPO['Entity']) => e }) entityToItem!: (entity: RPO['Entity']) => RPO['Item'];
+  @Prop({ type: Function, default: (model: RPO['Model']) => model }) modelToItem!: (model: RPO['Model']) => RPO['Item'];
   @Prop({ type: Boolean, default: false }) manual!: boolean;
   @Prop({ type: Boolean, default: false }) fetchAll!: boolean;
 
@@ -31,7 +31,7 @@ export class OrmRP<RPO extends OrmRPO> extends Vue {
   }
 
   protected api!: OrmConfig<RPO['Fields']>;
-  protected entityClass!: Type<RPO['Entity']>;
+  protected modelClass!: Type<RPO['Model']>;
 
   // LIFECYCLE =============================================================================================================================
 
@@ -86,7 +86,7 @@ export class OrmRP<RPO extends OrmRPO> extends Vue {
       query: this.api.requests.read(),
       variables: { where: { id } },
     });
-    const result: RPO['Item'] = data ? this.entityToItem(new this.entityClass(data[this.api.labels.READ])) : null;
+    const result: RPO['Item'] = data ? this.modelToItem(new this.modelClass(data[this.api.labels.READ])) : null;
     this.loading = false;
     return result;
   }
@@ -97,7 +97,7 @@ export class OrmRP<RPO extends OrmRPO> extends Vue {
       query: args ? this.api.requests.readMany(this.api.fields) : this.api.requests.readAll(this.api.fields),
       variables: args,
     });
-    const result: RPO['Item'][] = data ? data[this.api.labels.READ_MANY].map((dto) => this.entityToItem(new this.entityClass(dto))) : [];
+    const result: RPO['Item'][] = data ? data[this.api.labels.READ_MANY].map((dto) => this.modelToItem(new this.modelClass(dto))) : [];
     this.loading = false;
     return result;
   }
