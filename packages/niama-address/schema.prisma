@@ -1,0 +1,12 @@
+generator photon {
+  provider = "photonjs"
+  output   = "./@generated/photon"
+}
+
+model Address {
+  label String
+  lat Number
+  lng Number
+  placeId String
+  types String[]
+}

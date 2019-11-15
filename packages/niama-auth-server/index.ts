@@ -1,5 +1,6 @@
-export { Me } from './src/back/b.auth.decorator.me';
-export { addCapsF, api as authApi, AuthCapsT, QueryT } from './src/back/b.auth.helper';
-export { AuthMD } from './src/back/b.auth.module';
-export { AuthCookieS } from './src/back/b.auth.service.cookie';
-export { AuthJwtG } from './src/back/b.auth.service.guard.jwt';
+/* export * from './src/decorator.me';
+export * from './src/helper';*/
+export * from './src/module';
+/*export * from './src/service.cookie';
+export * from './src/service.guard.jwt';
+ */

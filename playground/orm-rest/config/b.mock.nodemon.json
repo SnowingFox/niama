@@ -1,0 +1,4 @@
+{
+  "ext": "ts",
+  "exec": "ts-node -P config/b.mock.ts.json -r dotenv/config -r tsconfig-paths/register src/assets/data/b.mock.ts dotenv_config_path=.env.dev"
+}

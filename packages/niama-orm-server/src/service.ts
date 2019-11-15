@@ -1,6 +1,8 @@
 import { ApiS } from '@niama/api-server';
-import { getAuthCapsD } from '@niama/auth';
+import { getCapsD } from '@niama/auth';
 import { User as UserB } from '@niama/user';
+
+import * as T from './types';
 
 // import { OrmBR as OrmBaseBR } from './b.orm.model.read';
 
@@ -8,12 +10,12 @@ export abstract class OrmS<
   // OrmBR extends OrmBaseBR,
   User extends UserB<Role>,
   Role extends string,
-  Prisma extends N.ApiPrisma,
-  C extends N.Orm
+  Prisma extends T.Api.Prisma,
+  C extends T.Orm
 > {
   // LIFECYCLE =============================================================================================================================
 
-  constructor(protected apiS: ApiS<Prisma>, protected labels: N.OrmLabels) {} //, protected OrmBR: N.RType<OrmBR>) {}
+  constructor(protected apiS: ApiS<Prisma>, protected labels: T.Labels) {} //, protected OrmBR: N.RType<OrmBR>) {}
 
   // METHODS ===============================================================================================================================
 
@@ -43,8 +45,8 @@ export abstract class OrmS<
     return await this.dbExists(where);
   }*/
 
-  async grants(me: N.Maybe<User>): Promise<N.AuthGrants<C['Nexus']['Read'], Role>> {
-    return getAuthCapsD();
+  async grants(me: T.Maybe<User>): Promise<T.Auth.Grants<C['Nexus']['Read'], Role>> {
+    return getCapsD();
   }
 
   /*async read(where: C['Prisma']['WhereUnique']): Promise<N.Maybe<OrmBR>> {
@@ -70,11 +72,11 @@ export abstract class OrmS<
   }
 
   async created(where: C['Prisma']['SubscriptionWhere']): Promise<C['Prisma']['Subscription']> {
-    return this.apiS.prisma.$subscribe[this.labels.READ]({ ...where, mutation_in: ['CREATED'] });
+    return this.apiS.prisma.$subscribe[this.labels.READ_ONE]({ ...where, mutation_in: ['CREATED'] });
   }
 
   async delete(where: C['Prisma']['WhereUnique']): Promise<C['Prisma']['Read']> {
-    return this.apiS.prisma[this.labels.DELETE](where);
+    return this.apiS.prisma[this.labels.DELETE_ONE](where);
   }
 
   async deleteMany(where: C['Prisma']['Where']): Promise<{ count: string }> {
@@ -82,7 +84,7 @@ export abstract class OrmS<
   }
 
   async deleted(where: C['Prisma']['SubscriptionWhere']): Promise<C['Prisma']['Subscription']> {
-    return this.apiS.prisma.$subscribe[this.labels.READ]({ ...where, mutation_in: ['DELETED'] });
+    return this.apiS.prisma.$subscribe[this.labels.READ_ONE]({ ...where, mutation_in: ['DELETED'] });
   }
 
   async exists(where: C['Prisma']['Where']): Promise<boolean> {
@@ -90,10 +92,10 @@ export abstract class OrmS<
   }
 
   async read(where: C['Prisma']['WhereUnique']): Promise<C['Prisma']['Read']> {
-    return this.apiS.prisma[this.labels.READ](where);
+    return this.apiS.prisma[this.labels.READ_ONE](where);
   }
 
-  async readMany(args: N.OrmReadManyArgs<C['Prisma']['Where'], C['Prisma']['OrderBy']>): Promise<C['Prisma']['Read'][]> {
+  async readMany(args: T.ReadManyArgs<C['Prisma']['Where'], C['Prisma']['OrderBy']>): Promise<C['Prisma']['Read'][]> {
     return this.apiS.prisma[this.labels.READ_MANY](args);
   }
 
@@ -101,9 +103,7 @@ export abstract class OrmS<
     return this.apiS.prisma[this.labels.UPDATE]({ data, where });
   }
 
-  async upsert(
-    args: N.OrmUpsertArgs<C['Prisma']['Create'], C['Prisma']['Update'], C['Prisma']['WhereUnique']>
-  ): Promise<C['Prisma']['Read']> {
+  async upsert(args: T.UpsertArgs<C['Prisma']['Create'], C['Prisma']['Update'], C['Prisma']['WhereUnique']>): Promise<C['Prisma']['Read']> {
     return this.apiS.prisma[this.labels.UPSERT](args);
   }
 }

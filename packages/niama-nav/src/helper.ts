@@ -1,37 +1,35 @@
-import { getAuthCapsD } from '@niama/auth';
-import { upperFirst } from '@niama/core';
-import { getLabels, OrmLabels } from '@niama/orm';
+import { hasIntersection, upperFirst } from '@niama/core';
+import { getDtoD } from '@niama/orm';
 
-import { Nav } from './model';
-import { NavMenu, NavMenuItem, NavR } from './types';
+import * as T from './types';
 
-// API =====================================================================================================================================
+export function dtosFromMenuItem<Role extends string>({ item, order, parent, roles }: T.DtosFromMenuItemP<Role>): T.Dto<Role>[] {
+  roles = { all: ['PUBLIC'], current: ['PUBLIC'], ...roles } as T.RoleO<Role>;
+  const canRead: Role[] = item.canRead || parent.canRead || roles.all || [];
+  if (!hasIntersection(canRead, roles.current)) return [];
 
-export const labels: OrmLabels = getLabels('nav');
-
-// UTILS ===================================================================================================================================
-
-export function manyFromMenu<Role extends string>(menu: NavMenu<Role>): Nav<Role>[] {
-  return menu.children.flatMap((child, i) => manyFromMenuItem<Role>(child, menu.id, menu.to, i));
+  const id = `${parent.id}${upperFirst(item.id)}`;
+  const to = `${parent.to}${item.to}`;
+  const { children = [], exact = false, group = null, icon = null } = item;
+  return [
+    { ...getDtoD(), __typename: 'Nav', canRead, exact, group, icon, id, order, to, parent: parent.id },
+    ...children.flatMap((child, order) => dtosFromMenuItem({ order, roles, item: child, parent: { canRead, id, to } })),
+  ];
 }
 
-export function manyFromMenuItem<Role extends string>(
-  menuItem: NavMenuItem<Role>,
-  parent: string,
-  parentTo: string,
-  order: number
-): Nav<Role>[] {
-  const { authenticated, authorized, children, exact, icon } = menuItem;
-  const id: string = `${parent}${upperFirst(menuItem.id)}`;
-  const to: string = `${parentTo}${menuItem.to}`;
-  const descendants: Nav<Role>[] = (children || []).flatMap((child, i) => manyFromMenuItem(child, id, to, i));
-  return [new Nav({ id, order, parent, to, exact: !!exact, icon: icon || null, ...getAuthCapsD() }), ...descendants];
+export function dtosFromMenu<Role extends string>({ menu: { canRead, children, id, to }, roles }: T.DtosFromMenuP<Role>): T.Dto<Role>[] {
+  return children.flatMap((item, order) => dtosFromMenuItem<Role>({ item, order, roles, parent: { canRead, id, to } }));
 }
 
-export function manyFromMenus<Role extends string>(menus: NavMenu<Role>[]): Nav<Role>[] {
-  return menus.flatMap(manyFromMenu);
+export function dtosFromMenus<Role extends string>({ menus, roles }: T.DtosFromMenusP<Role>): T.Dto<Role>[] {
+  return menus.flatMap((menu) => dtosFromMenu({ menu, roles }));
 }
 
-export function resourcesFromMenus<Role extends string>(menus: NavMenu<Role>[]): NavR<Role>[] {
-  return manyFromMenus(menus).map((nav) => nav.toResource());
+export function manyFromGroup<Vo extends Pick<T.Dto, 'group'>>({ group, items = [] }: T.ManyFromGroupP<Vo>): Vo[] {
+  return items.filter((item) => item.group === group);
+}
+
+export function manyByGroup<Vo extends Pick<T.Dto, 'group'>, Group extends string>(p: T.ManyByGroupP<Vo, Group>): Record<Group, Vo[]> {
+  const { groups = [], items = [] } = p;
+  return groups.reduce((r, group) => ({ ...r, [group]: manyFromGroup({ group, items }) }), {}) as Record<Group, Vo[]>;
 }

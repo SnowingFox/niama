@@ -26,19 +26,12 @@ module.exports = {
         {
           title: 'Client',
           collapsable: false,
-          children: [
-            ['client/api', 'api'],
-            ['client/auth', 'auth'],
-            ['client/nav', 'nav'],
-            ['client/orm', 'orm'],
-          ],
+          children: [['client/api', 'api'], ['client/auth', 'auth'], ['client/nav', 'nav'], ['client/orm', 'orm']],
         },
         {
           title: 'Server',
           collapsable: false,
-          children: [
-
-          ],
+          children: [],
         },
         {
           title: 'Quasar extensions',
@@ -52,7 +45,20 @@ module.exports = {
           ],
         },
       ],
-      '/guide/': ['', 'installation', 'modules', 'style-guide', 'cookbook', 'glossary', 'ecosystem'],
+      '/guide/': [
+        '',
+        'installation',
+        'modules',
+        'api',
+        'orm',
+        'auth',
+        'static-website',
+        'svelte',
+        'style-guide',
+        'cookbook',
+        'glossary',
+        'ecosystem',
+      ],
     },
   },
 };

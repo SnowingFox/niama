@@ -18,8 +18,12 @@ cd <folder_name>
 - Install **Niama Starter** extension :
 
 ```bash
-quasar add ext @niama/starter
+quasar ext add @niama/starter
 ```
+
+## Server: Prisma 2 (optional)
+
+
 
 ## Server: Prisma (optional)
 

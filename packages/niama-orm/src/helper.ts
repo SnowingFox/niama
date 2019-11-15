@@ -1,30 +1,25 @@
-import { pluralize, upperFirst } from '@niama/core';
+import { defer } from 'rxjs';
 
-import { OrmLabels } from './types';
+import * as T from './types';
 
-// LABELS ==================================================================================================================================
+export const updateItem = async ({ $niama, data, id, rp }) =>
+  await $niama.api.mutate({
+    mutation: rp.ops.update,
+    variables: { data, where: { id } },
+  });
 
-export function getLabels<T extends string>(singular: string, other?: Record<T, string>): OrmLabels<T> {
-  const Singular = upperFirst(singular);
-  const plural = pluralize(singular);
-  const Plural = upperFirst(plural);
-  return {
-    PLURAL: plural,
-    SINGULAR: singular,
-    CI: `${Singular}CreateInput!`,
-    UI: `${Singular}UpdateInput!`,
-    WI: `${Singular}WhereInput`,
-    WUI: `${Singular}WhereUniqueInput!`,
-    COUNT: `${plural}Count`,
-    CREATE: `create${Singular}`,
-    DELETE: `delete${Singular}`,
-    DELETE_MANY: `deleteMany${Plural}`,
-    EXISTS: `${singular}Exists`,
-    READ: singular,
-    READ_ALL: plural,
-    READ_MANY: plural,
-    UPDATE: `update${Singular}`,
-    UPSERT: `upsert${Singular}`,
-    ...(other ? other : {}),
-  };
+export function update$<C extends T.Config>({ $niama, data, id, rp }: UpdateP<C>): T.Observable {
+  return defer(() =>
+    $niama.api.mutate({
+      mutation: rp.ops.update,
+      variables: { data, where: { id } },
+    })
+  );
+}
+
+export interface UpdateP<C extends T.Config> {
+  $niama: Pick<T.NiamaProvider, 'api'>;
+  data: Partial<C['Dto']>;
+  id: string;
+  rp: T.RP<C>;
 }

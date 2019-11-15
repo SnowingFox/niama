@@ -1,10 +1,10 @@
-export * from './src/model';
+export * from './src/api';
+export * from './src/helper';
+export { fields as navF, getInitialData as getNavInitialData, getRS as getNavRS, rp as navRp, useMany as useNavs } from './src/api';
 export {
-  labels as navLabels,
-  manyFromMenu as navsFromMenu,
-  manyFromMenus as navsFromMenus,
-  manyFromMenuItem as navsFromMenuItem,
-  resourcesFromMenus as navResourcesFromMenus,
+  dtosFromMenu as navDtosFromMenu,
+  dtosFromMenuItem as navDtosFromMenuItem,
+  dtosFromMenus as navDtosFromMenus,
+  manyByGroup as navsByGroup,
+  manyFromGroup as navsFromGroup,
 } from './src/helper';
-
-export * from './src/types';

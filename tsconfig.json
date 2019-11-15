@@ -12,9 +12,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": false,
-    "paths": {
-      "@/*": ["./projects/gestiut/src/*", "./projects/rest/src/*"],
-      "~/*": ["./projects/gestiut/*", "./projects/rest/*"]
+    "paths": { 
+      "@/catch-front/*": ["./projects/catch-front/src/*"], 
+      "@/gestiut/*": ["./projects/gestiut/src/*"],
+      "@/photo-bonheur/*": ["./projects/photo-bonheur/src/*"] 
     },
     "resolveJsonModule": true,
     "sourceMap": true,
