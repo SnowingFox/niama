@@ -1,7 +1,17 @@
 import * as T from '../types';
-import { endsWith, intersection, zipObject } from './lodash';
+import { endsWith, intersection, upperCase, zipObject } from './lodash';
+import { getProvider } from './provider';
 
-export function fill<V, O extends { [i: string]: any }, K extends keyof O>(value: V, ...keys: K[]): Record<K, V> {
+export const getError = (p: T.GetErrorP | string): Error => {
+  const { id, type = 'core' } = isGetErrorP(p) ? p : { id: p };
+  const i18n = getProvider('i18n');
+  const error = new Error(i18n ? (i18n.t(`${type}.${id}`) as string) : `${type}.${id}`);
+  error.name = `NIAMA ${upperCase(type)} ERROR`;
+  return error;
+};
+export const isGetErrorP = (p: T.GetErrorP | string): p is T.GetErrorP => (p as T.GetErrorP).id !== undefined;
+
+export function fill<V, O extends { [i: string]: unknown }, K extends keyof O>(value: V, ...keys: K[]): Record<K, V> {
   return zipObject<V>(keys, Array(keys.length).fill(value)) as Record<K, V>;
 }
 

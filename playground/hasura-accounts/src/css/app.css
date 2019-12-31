@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+
+.q-notification--done { @apply tw-bg-positive }
+.q-notification--fail { @apply tw-bg-negative }
+.u-page { @apply tw-mx-auto tw-py-4 tw-max-w-6xl }
+.u-title {@apply tw-mb-4 tw-bg-primary tw-text-white }
+
+@tailwind utilities;

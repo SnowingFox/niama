@@ -1,16 +1,15 @@
-import { useApi } from '@niama/api';
+
 import { ref } from '@vue/composition-api';
 
 import * as T from './types';
 
 export function useCount<C extends T.Config>(p: T.UseCountP<C>): T.UseCountR {
   const { debug = false, rp, where } = p;
-  const { addSmartQuery } = useApi();
 
   const count: T.Ref<T.Maybe<number>> = ref(null);
   const loading = ref(true);
 
-  addSmartQuery('count', {
+  /*addSmartQuery('count', {
     query: rp.ops.count,
     variables: () => ({ where }),
     result: (r) => {
@@ -20,7 +19,7 @@ export function useCount<C extends T.Config>(p: T.UseCountP<C>): T.UseCountR {
       loading.value = r.loading;
     },
     manual: true,
-  });
+  });*/
 
   return { count, loading };
 }

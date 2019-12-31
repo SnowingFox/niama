@@ -1,32 +1,61 @@
+import { fill, setProvider } from '@niama/core';
+import { DefaultApolloClient } from '@vue/apollo-composable';
+import { provide } from '@vue/composition-api';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { ApolloLink, split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
-import VueApollo from 'vue-apollo';
+import { defer } from 'rxjs';
 
 import * as T from './types';
 
-function getUri(type: 'http' | 'ws', secured = false): string {
+export const boot = async (p: T.BootP) => {
+  const opts: T.BootO = { ...fill(false, 'debug', 'http', 'rest', 'secured', 'ws'), resolvers: [], seeds: [], ...p };
+
+  const cache: T.InMemoryCache = new InMemoryCache();
+  const data = await processSeeds(opts.seeds);
+  if (opts.debug) console.log('NIAMA API (boot) - initial data :', data);
+  cache.writeData({ data });
+
+  const clientO = { cache, link: await getLink(opts), resolvers: opts.resolvers, typeDefs: [] };
+
+  const provider: T.Provider = new ApolloClient(clientO) as T.Provider;
+  provider.seeds = opts.seeds;
+  provider.addSeed = async (seed: T.Actioner) => {
+    provider.seeds.push(seed);
+    cache.writeData({ data: await seed() });
+  };
+  provider.onResetStore(async () => cache.writeData({ data: await processSeeds(provider.seeds) }));
+  provider.resetStore$ = defer(() => provider.resetStore());
+
+  setProvider({ provider, id: 'api', onInit: () => provide(DefaultApolloClient, provider) });
+};
+
+const getUri = (type: 'http' | 'ws', secured = false): string => {
   const { NIAMA_API_HOST: HOST, NIAMA_API_PATH: PATH, NIAMA_API_PORT: PORT } = process.env;
   return `${type}${secured ? 's' : ''}://${HOST || 'localhost'}${PORT ? ':' + PORT : ''}${PATH ? '/' + PATH : ''}`;
-}
+};
 
-async function getLink<D>({ http, secured, ws, rest }: T.BootO<D>): Promise<T.ApolloLink> {
-  let httpLink!: T.HttpLink;
-  let wsLink!: T.WebSocketLink;
-
+const getLink = async ({ debug, http, prelink, secured, ws, rest }: T.BootO): Promise<T.ApolloLink> => {
   if (rest) {
     const { RestLink } = await import('apollo-link-rest');
-    return new RestLink({
+    const opts: T.RestLinkO = {
       uri: getUri('http', secured),
       responseTransformer: async (r) => (r.url.endsWith('_limit=0') ? +r.headers.get('x-total-count') : await r.json()),
       ...(typeof rest === 'boolean' ? {} : rest),
-    });
+    };
+    const link = new RestLink(opts);
+    return prelink ? prelink.concat(link) : link;
   }
+
+  let httpLink!: T.HttpLink;
+  let wsLink!: T.WebSocketLink;
 
   if (http) {
     const { HttpLink } = await import('apollo-link-http');
-    httpLink = new HttpLink({ credentials: 'include', uri: getUri('http', secured) });
+    const opts: T.HttpLinkO = { credentials: 'include', uri: getUri('http', secured), ...(typeof http === 'boolean' ? {} : http) };
+    if (debug) console.log('NIAMA API (boot) - HTTP Link :', opts);
+    httpLink = new HttpLink(opts);
   }
 
   if (ws) {
@@ -39,18 +68,9 @@ async function getLink<D>({ http, secured, ws, rest }: T.BootO<D>): Promise<T.Ap
     return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
   };
 
-  return httpLink && wsLink ? split(splitter, wsLink, httpLink) : httpLink || wsLink || new ApolloLink();
-}
+  const link = httpLink && wsLink ? split(splitter, wsLink, httpLink) : httpLink || wsLink || new ApolloLink();
+  return prelink ? prelink.concat(link) : link;
+};
 
-export async function bootApi<D = any>({ Vue, app, ...rest }: T.BootP<D>) {
-  const opts: T.BootO<D> = { initial: () => ({} as D), http: false, rest: false, resolvers: [], secured: false, ws: false, ...rest };
-
-  const cache: T.InMemoryCache = new InMemoryCache();
-  cache.writeData({ data: await opts.initial() });
-
-  const defaultClient: T.ApolloClient = new ApolloClient({ cache, link: await getLink(opts), resolvers: opts.resolvers, typeDefs: [] });
-  defaultClient.onResetStore(async () => await cache.writeData({ data: await opts.initial() }));
-
-  Vue.use(VueApollo);
-  app.apolloProvider = new VueApollo({ defaultClient });
-}
+const processSeeds = async (seeds: T.Actioner[]) =>
+  (await Promise.all(seeds.map((seed) => seed()))).reduce((acc: any, data: any) => ({ ...acc, ...data }), {});

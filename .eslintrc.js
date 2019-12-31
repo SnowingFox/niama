@@ -24,6 +24,9 @@ module.exports = {
     es6: true,
   },
   rules: {
+    '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions'] }],
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',

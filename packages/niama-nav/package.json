@@ -1,6 +1,6 @@
 {
   "name": "@niama/nav",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "main": "index.ts",
   "license": "MIT",
   "sideEffects": false,
@@ -14,6 +14,6 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "@niama/orm": "^1.1.5"
+    "@niama/orm": "^1.1.8"
   }
 }

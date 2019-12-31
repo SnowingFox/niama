@@ -1,0 +1,19 @@
+- args:
+    role: MEMBER
+    table:
+      name: post
+      schema: public
+  type: drop_select_permission
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - content
+      - title
+      computed_fields: []
+      filter: {}
+    role: MEMBER
+    table:
+      name: post
+      schema: public
+  type: create_select_permission

@@ -1,69 +1,53 @@
 <template lang="pug">
 .q-map(:class="{ 'is-readonly': readonly, 'tw-relative': true }")
   .q-map__map(ref="mapRef", class="tw-w-full tw-h-full")
-  div(v-if="!readonly")
-    q-autocomplete.q-map__search(outlined, bg-color="white", v-model="value", collapsible, class="tw-absolute tw-top-0 tw-left-0 tw-mt-2 tw-ml-2")
-    q-btn.q-map__submit(icon="fa fa-check", size="lg", @click="submit$.next()", :loading="loading", round, class="tw-absolute tw-top-0 tw-right-0 tw-mt-2 tw-mr-2 tw-bg-white tw-text-green")
-  q-inner-loading(:showing="initializing")
+  //-q-inner-loading(:showing="initializing")
 </template>
 
 <script lang="ts">
 import { computed, createComponent, ref, watch } from '@vue/composition-api';
 
-import QAutocomplete from './component.autocomplete.quasar-vee.vue';
-import { useMap } from './use-map';
+// import { useMap } from './use-map';
 import * as T from './types';
-import { useGeocoder } from './use-geocoder';
-import { getSourcable, fill } from '@niama/core';
 
-import { map as map$, switchMap, tap } from 'rxjs/operators';
-import { fromResult } from './helper';
+import { fill } from '@niama/core';
 
 // COMPONENT ===============================================================================================================================
 
 export default createComponent({
-  components: { QAutocomplete },
   props: {
+    info: { type: String },
     lat: { type: Number },
     lng: { type: Number },
     readonly: { type: Boolean, default: false },
-    value: { type: Object, default: () => null },
     zoom: { type: Number, default: 12 },
   },
-  setup(p: Props, { emit }: T.SetupContext) {
-    const { initializing, map, mapRef, marker } = useInit({ p });
+  setup(p: Props) {
+    /*const { initializing, mapRef } = useInit({ p });
 
-    const { loading, source$: submit$ } = useUpdateValue({ emit, map, marker, p });
-    return { initializing, loading, mapRef, submit$ };
+    return { initializing, mapRef };*/
   },
 });
 
 // USES ====================================================================================================================================
 
-const useInit = ({ p }) => {
+/*const useInit = ({ p }) => {
   const { service$ } = useMap();
 
   const map: T.Ref<T.Maybe<T.Map>> = ref(null);
   const marker: T.Ref<T.Maybe<T.Marker>> = ref(null);
+  const info: T.Ref<T.Maybe<T.InfoWindow>> = ref(null);
   const initializing = ref(true);
   const mapRef = ref(undefined);
 
-  const mapO = computed(() => ({ disableDefaultUI: p.readonly, gestureHandling: p.readonly ? 'none' : 'auto' }));
-  const isMarkerDraggable = computed(() => !p.readonly);
-  const markerIcon = computed(() =>
-    p.readonly
-      ? {
-          path: google.maps.SymbolPath.CIRCLE,
-          scale: 30,
-          fillColor: '#adce5b',
-          fillOpacity: 0.5,
-          strokeWeight: 0,
-        }
-      : null
-  );
+  const mapO = computed(() => ({
+    disableDefaultUI: p.readonly,
+    gestureHandling: p.readonly ? 'none' : 'auto',
+    zoomControl: true,
+  }));
 
-  service$.subscribe(({ Map, Marker }) => {
-    const center = { lat: (p.value && p.value.lat) || p.lat || 0, lng: (p.value && p.value.lng) || p.lng || 0 };
+  service$.subscribe(({ InfoWindow, Map, Marker }) => {
+    const center = { lat: p.lat || 0, lng: p.lng || 0 };
 
     map.value = new Map(mapRef.value!, {
       center,
@@ -72,13 +56,13 @@ const useInit = ({ p }) => {
       ...(mapO.value as any),
     });
 
-    marker.value = new Marker({
-      map: map.value,
-      icon: markerIcon.value || undefined,
-      animation: google.maps.Animation.DROP,
-      position: center,
-      draggable: isMarkerDraggable.value,
-    });
+    marker.value = new Marker({ map: map.value, animation: google.maps.Animation.DROP, position: center });
+    
+    if (p.info) {
+      info.value = new InfoWindow({ content: p.info, maxWidth: '16rem' });
+      marker.value.addListener('mouseover', () => info.value!.open(map.value!, marker.value!));
+      marker.value.addListener('mouseout', () => info.value!.close());
+    }
 
     initializing.value = false;
   });
@@ -87,38 +71,19 @@ const useInit = ({ p }) => {
     () => p.readonly,
     () => {
       if (map.value) map.value.setOptions(mapO.value as any);
-      if (marker.value) {
-        marker.value.setDraggable(isMarkerDraggable.value);
-        marker.value.setIcon(markerIcon.value);
-      }
     }
   );
 
-  return { initializing, map, mapRef, marker };
-};
-
-const useUpdateValue = ({ emit, map, marker, p }) => {
-  const { geocode$ } = useGeocoder();
-
-  return getSourcable(() =>
-    geocode$.pipe(
-      switchMap((geocode) => geocode({ location: marker.value.getPosition() })),
-      map$((results) => (results.length ? fromResult(results[0] as any) : null)),
-      tap((address: T.Maybe<T.Vo>) =>
-        map.value!.setCenter({ lat: (address && address.lat) || p.lat || 0, lng: (address && address.lng) || p.lng || 0 })
-      ),
-      tap((address) => emit('input', address))
-    )
-  );
-};
+  return { initializing, mapRef };
+};*/
 
 // TYPES ===================================================================================================================================
 
 export interface Props {
+  info?: string;
   lat: number;
   lng: number;
   readonly: boolean;
-  value: T.Vo;
   zoom: number;
 }
 </script>

@@ -2,6 +2,7 @@ import camelCase from 'lodash/camelCase';
 import defaultsDeep from 'lodash/defaultsDeep';
 import defaultTo from 'lodash/defaultTo';
 import isEqual from 'lodash/isEqual';
+import isFunction from 'lodash/isFunction';
 import isPlainObject from 'lodash/isPlainObject';
 import merge from 'lodash/merge';
 import mergeWith from 'lodash/mergeWith';
@@ -11,7 +12,7 @@ import zipObject from 'lodash/zipObject';
 
 import * as T from '../types';
 
-export { camelCase, defaultsDeep, defaultTo, isEqual, isPlainObject, merge, mergeWith, orderBy, union, zipObject };
+export { camelCase, defaultsDeep, defaultTo, isEqual, isFunction, isPlainObject, merge, mergeWith, orderBy, union, zipObject };
 
 // LANG ====================================================================================================================================
 

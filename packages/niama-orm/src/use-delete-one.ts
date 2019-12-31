@@ -1,15 +1,14 @@
-import { useApi } from '@niama/api';
-import { getLoadable, getSourcable, notifyError$, request$, useI18n } from '@niama/core';
+import { notifyFail$, saga$, useLoadable, useSourcable } from '@niama/core';
+import { useMutation } from '@vue/apollo-composable';
 
 import * as T from './types';
 
-export function useDeleteOne<C extends T.Config>({ debug, id, rp, source$, ...opts }: T.UseDeleteOneP<C>): T.UseDeleteOneR {
-  const $niama = { api: useApi(), i18n: useI18n() };
+export function useDeleteOne<C extends T.Config>({ debug, id, rp, src$, ...opts }: T.UseDeleteOneP<C>): T.UseDeleteOneR {
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = notifyFail$;
 
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  const { mutate } = useMutation(rp.ops.deleteOne);
 
-  const switcher = () =>
-    request$({ request: () => $niama.api.mutate({ mutation: rp.ops.deleteOne, variables: { where: { id } } }), ...opts });
+  const switcher = () => saga$({ saga: () => mutate({ where: { id } }, {}), ...opts });
 
-  return { ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
 }

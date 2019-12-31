@@ -1,4 +1,6 @@
-import * as Api from '@niama/api/types';
+import { AsyncSubject } from 'rxjs';
+
+import * as S from './service';
 
 // BOOT ====================================================================================================================================
 
@@ -11,26 +13,12 @@ export type Ui = 'quasar';
 
 // PROVIDER ================================================================================================================================
 
-export interface Provider<Service = any> {
-  service: Service;
+export interface Provider<Service = any> extends ProviderO {
+  loading: boolean;
+  service$: AsyncSubject<Service>;
 }
 
-// OBJECTS =================================================================================================================================
-
-export interface Dto extends Api.Dto, Vo {}
-
-export interface Suggestion {
-  placeId: string;
-  label: string;
-  types: string[];
-}
-
-export interface Vo extends Api.Vo {
-  country: string;
-  label: string;
-  lat: number;
-  lng: number;
-  route: string;
-  streetNumber: string;
-  zipcode: string;
+export interface ProviderO {
+  fromValue$?: (p: S.FromValueP) => S.FromValueR;
+  suggestionsFromInput$?: (p: S.SuggestionsFromInputP) => S.SuggestionsFromInputR;
 }

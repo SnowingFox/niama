@@ -1,9 +1,15 @@
-import { map, mergeWith } from '@niama/core';
+import { getError as baseGetError, map, mergeWith, pick } from '@niama/core';
 import gql from 'graphql-tag';
 
 import * as T from './types';
 
 const DEBUG = false;
+
+// OPTIONS ===================================================================================================================================
+
+export function pickUseMutationO<Done, Src>(opts: any): T.UseMutationO<Done, Src> {
+  return pick(opts, ['errorPolicy', 'fetchPolicy']);
+}
 
 // LOCAL ===================================================================================================================================
 
@@ -42,7 +48,9 @@ const getOp = ({ alias, name, fields, local, rest, selector, type, varTypes }: T
   const itemFields = fields ? ' { ' + fieldsForGQL(fields) + ' }' : '';
   const itemLocal = local ? ' @client' : '';
   const itemAlias = alias ? ` @connection(key:"${alias.id}"${alias.args ? `filter:[${alias.args.map((f) => `"${f}"`).join()}]` : ''})` : '';
-  const itemRest = rest ? ` @rest(type: "${rest.type}", path: "${rest.path}", method: "${rest.method || 'GET'}")` : '';
+  const itemRest = rest
+    ? ` @rest(type: "${rest.type}", path: "${rest.path}", method: "${rest.method || 'GET'}", bodyKey: "${rest.bodyKey || 'input'}")`
+    : '';
   const result = `${type} ${requestName}${allArgs} { ${selector + itemArgs + itemAlias + itemLocal + itemRest + itemFields} }`;
   if (DEBUG) console.log(result);
   return gql`
@@ -53,3 +61,7 @@ const getOp = ({ alias, name, fields, local, rest, selector, type, varTypes }: T
 export const getMutation = (p: T.GetTypedOpP): T.DocumentNode => getOp({ ...p, type: 'mutation' });
 export const getQuery = (p: T.GetTypedOpP): T.DocumentNode => getOp({ ...p, type: 'query' });
 export const getSubscription = (p: T.GetTypedOpP): T.DocumentNode => getOp({ ...p, type: 'subscription' });
+
+// ERROR ===================================================================================================================================
+
+export const getError = (id: string): Error => baseGetError({ id, type: 'api' });

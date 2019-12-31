@@ -1,132 +1,132 @@
-import { useApi } from '@niama/api';
-import { getLoadable, getSourcable, notifyError$, omit, useI18n, useRouter } from '@niama/core';
-import { reactive } from '@vue/composition-api';
+import { useSagaReturns } from '@niama/core';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
-import { useAuth } from './provider';
 import * as T from './types';
 
-export function useChangePassword({ input, source$, ...opts }: T.UseChangePasswordP): T.UseChangePasswordR {
-  const $niama = { auth: useAuth(), i18n: useI18n() };
+/*export function useChangePassword({ input, src$, ...opts }: T.UseChangePasswordP): T.UseChangePasswordR {
+  const $niama = useNiama();
 
   if (!$niama.auth.changePassword$) throw new Error('auth.errors.ChangePasswordUnknown');
   if (!input) input = reactive({ confirmation: '', newValue: '', oldValue: '' });
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = (error) => notifyFail$({ $niama, error });
 
   const switcher = () => $niama.auth.changePassword$!({ $niama, data: omit(input!, ['confirmation']) });
 
-  return { input, ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { input, ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
 }
 
-export function useConfirmSignup({ input, source$, ...opts }: T.UseConfirmSignupP = {}): T.UseConfirmSignupR {
-  const $niama = { api: useApi(), auth: useAuth(), i18n: useI18n(), router: useRouter() };
+export function useConfirmSignup({ input, src$, ...opts }: T.UseConfirmSignupP = {}): T.UseConfirmSignupR {
+  const $niama = useNiama();
 
   if (!$niama.auth.confirmSignup$) throw new Error('auth.errors.ConfirmSignupUnknown');
   if (!input) input = reactive({ code: '', password: '', username: '' });
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = (error) => notifyFail$({ $niama, error });
 
   const switcher = () => $niama.auth.confirmSignup$!({ $niama, data: input!, ...opts });
 
-  return { input, ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { input, ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
 }
 
-export function useDeleteCurrent({ source$, ...opts }: T.UseDeleteCurrentP = {}): T.UseDeleteCurrentR {
-  const $niama = { api: useApi(), auth: useAuth(), i18n: useI18n(), router: useRouter() };
+export function useDeleteCurrent({ src$, ...opts }: T.UseDeleteCurrentP = {}): T.UseDeleteCurrentR {
+  const $niama = useNiama();
 
   if (!$niama.auth.deleteCurrent$) throw new Error('auth.errors.DeleteCurrentUnknown');
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = (error) => notifyFail$({ $niama, error });
 
   const switcher = () => $niama.auth.deleteCurrent$!({ $niama, ...opts });
 
-  return { ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
 }
 
-export function useResetPassword({ input, source$, ...opts }: T.UseResetPasswordP = {}): T.UseResetPasswordR {
-  const $niama = { api: useApi(), auth: useAuth(), i18n: useI18n(), router: useRouter() };
+export function useResetPassword({ input, src$, ...opts }: T.UseResetPasswordP = {}): T.UseResetPasswordR {
+  const $niama = useNiama();
 
   if (!$niama.auth.resetPassword$) throw new Error('auth.errors.ResetPasswordUnknown');
   if (!input) input = reactive({ code: '', password: '', username: '' });
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = (error) => notifyFail$({ $niama, error });
 
   const switcher = () => $niama.auth.resetPassword$!({ $niama, data: input!, ...opts });
 
-  return { input, ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { input, ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
 }
 
-export function useSendEmailResetCode({ source$, ...opts }: T.UseSendEmailResetCodeP = {}): T.UseSendEmailResetCodeR {
-  const $niama = { auth: useAuth(), i18n: useI18n() };
+export function useSendEmailResetCode({ src$, ...opts }: T.UseSendEmailResetCodeP = {}): T.UseSendEmailResetCodeR {
+  const $niama = useNiama();
 
   if (!$niama.auth.sendEmailResetCode$) throw new Error('auth.errors.SendEmailResetCodeUnknown');
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = (error) => notifyFail$({ $niama, error });
 
   const switcher = () => $niama.auth.sendEmailResetCode$!({ $niama, ...opts });
 
-  return { ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
 }
 
-export function useSendPasswordResetCode({ input, source$, ...opts }: T.UseSendPasswordResetCodeP = {}): T.UseSendPasswordResetCodeR {
-  const $niama = { auth: useAuth(), i18n: useI18n() };
+export function useSendPasswordResetCode({ input, src$, ...opts }: T.UseSendPasswordResetCodeP = {}): T.UseSendPasswordResetCodeR {
+  const $niama = useNiama();
 
   if (!$niama.auth.sendPasswordResetCode$) throw new Error('auth.errors.PasswordResetCodeUnknown');
   if (!input) input = reactive({ username: '' });
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = (error) => notifyFail$({ $niama, error });
 
   const switcher = () => $niama.auth.sendPasswordResetCode$!({ $niama, data: input!, ...opts });
 
-  return { input, ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { input, ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
 }
 
-export function useSendSignupCode({ input, source$, ...opts }: T.UseSendSignupCodeP = {}): T.UseSendSignupCodeR {
-  const $niama = { api: useApi(), auth: useAuth(), i18n: useI18n() };
+export function useSendSignupCode({ input, src$, ...opts }: T.UseSendSignupCodeP = {}): T.UseSendSignupCodeR {
+  const $niama = useNiama();
 
   if (!$niama.auth.signup$) throw new Error('auth.errors.ResendSignupUnknown');
   if (!input) input = reactive({ username: '' });
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = (error) => notifyFail$({ $niama, error });
 
   const switcher = () => $niama.auth.sendSignupCode$!({ $niama, data: input!, ...opts });
 
-  return { input, ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { input, ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
+}*/
+
+export function useGetCurrent<Done, Fail = null>(p: T.UseGetCurrentP<Done, Fail> = {}): T.UseGetCurrentR<Done, Fail | null> {
+  const { $niama, done$, fail$ } = useSagaReturns({ notifyId: 'auth.GET_CURRENT_DONE', ...p });
+  return () => $niama.auth.getCurrent$({ done$, fail$ });
 }
 
-export function useSignin({ input, source$, ...opts }: T.UseSigninP = {}): T.UseSigninR {
-  const $niama = { api: useApi(), auth: useAuth(), i18n: useI18n(), router: useRouter() };
-
-  if (!input) input = reactive({ password: '', username: '' });
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
-
-  const switcher = () => $niama.auth.signin$({ $niama, data: input!, ...opts });
-
-  return { input, ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+export function useIsAuthenticated<Done, Fail = null>(p: any = {}): any {
+  const { $niama, done$, fail$ } = useSagaReturns({ notifyId: 'auth.IS_AUTHENTICATED_DONE', ...p });
+  return () =>
+    $niama.auth.getRefreshedTokens$({}).pipe(
+      map((tokens) => !!tokens),
+      switchMap(done$),
+      catchError(fail$)
+    );
 }
 
-export function useSignout({ source$, ...opts }: T.UseSignoutP = {}): T.UseSignoutR {
-  const $niama = { api: useApi(), auth: useAuth(), i18n: useI18n(), router: useRouter() };
-
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
-
-  const switcher = () => $niama.auth.signout$({ $niama, ...opts });
-
-  return { ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+export function useSignin<Done = T.Signin, Fail = null>(p: T.UseSigninP<Done, Fail> = {}): T.UseSigninR<Done, Fail | null> {
+  const { $niama, done$, fail$ } = useSagaReturns({ notifyId: 'auth.SIGNIN_DONE', ...p });
+  return (input) => $niama.auth.signin$({ done$, fail$, input });
 }
 
-export function useSignup({ input, source$, ...opts }: T.UseSignupP = {}): T.UseSignupR {
-  const $niama = { api: useApi(), auth: useAuth(), i18n: useI18n() };
-
-  if (!$niama.auth.signup$) throw new Error('auth.errors.SignupUnknown');
-  if (!input) input = reactive({ password: '', username: '' });
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
-
-  const switcher = () => $niama.auth.signup$!({ $niama, data: input!, ...opts });
-
-  return { input, ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+export function useSignout<Done, Fail = null>(p: T.UseSignoutP<Done, Fail> = {}): T.UseSignoutR<Done, Fail | null> {
+  const { $niama, done$, fail$ } = useSagaReturns({ notifyId: 'auth.SIGNOUT_DONE', ...p });
+  return () => $niama.auth.signout$({ done$, fail$ });
 }
 
-/*export function useUpdateCurrent({ source$, ...opts }: T.UseUpdateCurrentP = {}): T.UseUpdateCurrent {
+export function useSignup<Done = T.Signup, Fail = null>(p: T.UseSignupP<Done, Fail> = {}): T.UseSignupR<Done, Fail | null> {
+  const { $niama, done$, fail$ } = useSagaReturns({ notifyId: 'auth.SIGNUP_DONE', ...p });
+  return (input) => $niama.auth.signup$({ done$, fail$, input });
+}
+
+export function useVerifyEmail<Done = string, Fail = null>(p: T.UseVerifyEmailP<Done, Fail> = {}): T.UseVerifyEmailR<Done, Fail | null> {
+  const { $niama, done$, fail$ } = useSagaReturns({ notifyId: 'auth.VERIFY_EMAIL_DONE', ...p });
+  return (input) => $niama.auth.verifyEmail$({ done$, fail$, input });
+}
+
+/*export function useUpdateCurrent({ src$, ...opts }: T.UseUpdateCurrentP = {}): T.UseUpdateCurrent {
   const $niama = { api: useApi(), auth: useAuth(), i18n: useI18n(), router: useRouter() };
 
   if (!$niama.auth.updateCurrent$) throw new Error('auth.errors.DeleteCurrentUnknown');
-  if (!opts.error$ && !opts.complete$ && !opts.onComplete) opts.error$ = (error) => notifyError$({ $niama, error });
+  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = (error) => notifyFail$({ $niama, error });
 
   const switcher = () => $niama.auth.updateCurrent$!({ $niama, ...opts });
 
-  return { ...(source$ ? getLoadable({ source$, switcher }) : getSourcable(switcher)) };
+  return { ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
 }*/

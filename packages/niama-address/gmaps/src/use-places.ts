@@ -8,10 +8,10 @@ import * as T from './types';
 export const usePlaces = ({ countries, fields, type = 'address' }: T.PlacesUseP = {}) => {
   const { service$ } = useAddress();
 
-  const autocomplete$ = service$.pipe(map(({ places: { AutocompleteService } }) => new AutocompleteService()));
+  const autoalways$ = service$.pipe(map(({ places: { AutocompleteService } }) => new AutocompleteService()));
   const places$ = service$.pipe(map(({ places: { PlacesService } }) => new PlacesService(document.createElement('div'))));
 
-  const getFromInput$ = autocomplete$.pipe(
+  const getFromInput$ = autoalways$.pipe(
     map((autocomplete) => (p: T.PlacesAutocompletionRequest) => {
       const res: Subject<T.Suggestion[]> = new Subject();
       p = { types: [type], ...(countries && { componentRestrictions: { country: countries } }), ...p };

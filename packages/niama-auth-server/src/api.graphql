@@ -1,6 +1,0 @@
-enum AuthStatus {
-  BLOCKED
-  INCORRECT
-  OK
-  PENDING
-}

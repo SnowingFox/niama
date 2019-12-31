@@ -1,0 +1,2 @@
+admin_secret: niama_api_secret
+endpoint: http://192.168.99.101:9101

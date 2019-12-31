@@ -1,7 +1,6 @@
 import { Maybe } from '@niama/core/types';
 
-import { NiamaProvider } from './externals';
-import { Vo } from './main';
+import { Dto, NiamaProvider } from './externals';
 
 // REQUESTS ================================================================================================================================
 
@@ -29,7 +28,7 @@ export declare class PlacesS {
 
 // USES ====================================================================================================================================
 
-export type PlacesGetDetails = (p: PlacesDetailsRequest) => Promise<Maybe<Vo>>;
+export type PlacesGetDetails = (p: PlacesDetailsRequest) => Promise<Maybe<Dto>>;
 // export type PlacesGetFromInput = (p: PlacesAutocompletionRequest) => Promise<Vo[]>;
 
 export interface PlacesUseP {
@@ -45,11 +44,16 @@ export type PlacesType = 'address' | 'establishment' | 'geocode' | '(cities)' | 
 // SHORTNAMES ==============================================================================================================================
 
 export type PlacesAutocompletionRequest = google.maps.places.AutocompletionRequest;
+export type PlacesComponentRestrictions = google.maps.places.ComponentRestrictions;
 export type PlacesDetailsRequest = google.maps.places.PlaceDetailsRequest;
 export type PlacesFromPhoneNumberRequest = google.maps.places.FindPlaceFromPhoneNumberRequest;
 export type PlacesFromQueryRequest = google.maps.places.FindPlaceFromQueryRequest;
 export type PlacesPagination = google.maps.places.PlaceSearchPagination;
-export type PlacesPrediction = google.maps.places.AutocompletePrediction;
+
+export interface PlacesPrediction extends google.maps.places.AutocompletePrediction {
+  id: string;
+}
+
 export type PlacesQueryAutocompletionRequest = google.maps.places.QueryAutocompletionRequest;
 export type PlacesQueryPrediction = google.maps.places.QueryAutocompletePrediction;
 export type PlacesResult = google.maps.places.PlaceResult;

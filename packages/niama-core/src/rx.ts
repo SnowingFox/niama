@@ -3,57 +3,12 @@ import { defer, of, Subject, Subscription, throwError } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
 import * as T from '../types';
-import { notifyError } from './ui';
+import { notifyFail } from './ui';
 
-export function rxFrom<R, S>(asyncOrSync?: (s: S) => R | Promise<R>): T.Maybe<T.Observabler<R, S>> {
+// UTILS ===================================================================================================================================
+
+export function observabler<R, S>(asyncOrSync?: (s: S) => R | Promise<R>): T.Maybe<T.Observabler<R, S>> {
   return asyncOrSync ? (s: S) => defer(async () => await asyncOrSync(s)) : null;
-}
-
-export function getLoadable<R, S>({ autosubscribe = true, source$, switcher }: T.GetLoadableP<R, S>): T.Loadable<R> {
-  const loading: T.Ref<boolean> = ref(false);
-  const result$: T.Observable = source$.pipe(
-    tap(() => (loading.value = true)),
-    switchMap(switcher),
-    tap(() => (loading.value = false))
-  );
-  if (autosubscribe) {
-    const subscription = result$.subscribe();
-    onBeforeUnmount(() => subscription.unsubscribe());
-  }
-  return { loading, result$ };
-}
-
-export function notifyError$({ $niama, error, messageId, prefix }: T.NotifyErrorP): T.Observable<null> {
-  if (process.env.DEV) console.error(error);
-  notifyError({ $niama, messageId: messageId ? messageId : prefix ? `${prefix}.${error.name}` : error.message });
-  return of(null);
-}
-
-export function requestError$<R, S>({ complete$, error$, onComplete }: T.RequestO<R, S>): T.Observabler<R, Error> {
-  return error$ || complete$ || rxFrom(onComplete) || ((e) => throwError(e));
-}
-
-export function requestSuccess$<R, S>({ complete$, onComplete, onSuccess, success$ }: T.RequestO<R, S>): T.Observabler<R, S> {
-  return success$ || rxFrom(onSuccess) || complete$ || rxFrom(onComplete) || ((s) => of(s as any));
-}
-
-export function request$<R, S>(p: T.Promiser<S> | T.RequestP<R, S>): T.Observable<R> {
-  const { request, ...opts }: T.RequestP<R, S> = isRequestP(p) ? p : { request: p };
-  return defer(request).pipe(
-    switchMap(requestSuccess$(opts)),
-    catchError(requestError$(opts))
-  );
-}
-export function isRequestP<R, S>(p: T.Promiser<S> | T.RequestP<R, S>): p is T.RequestP<R, S> {
-  return (p as T.RequestP<R, S>).request !== undefined;
-}
-
-export function getSourcable<R, S>(p: T.Observabler<R, S> | T.GetSourcableP<R, S>): T.Sourcable<R, S> {
-  const source$: T.Subject<S> = new Subject();
-  return { source$, ...getLoadable({ ...(isGetSourcableP(p) ? p : { switcher: p }), source$ }) };
-}
-export function isGetSourcableP<R, S>(p: T.Observabler<R, S> | T.GetSourcableP<R, S>): p is T.GetSourcableP<R, S> {
-  return (p as T.GetSourcableP<R, S>).switcher !== undefined;
 }
 
 export const subscribeMany = (observables: T.Observable[]) => {
@@ -61,3 +16,64 @@ export const subscribeMany = (observables: T.Observable[]) => {
   observables.forEach((observable) => subscription.add(observable.subscribe()));
   onBeforeUnmount(() => subscription.unsubscribe());
 };
+
+// SAGA ====================================================================================================================================
+
+export function isSaga$P<D, S, F>(p: T.Asyncer<S> | T.Saga$P<D, S, F>): p is T.Saga$P<D, S, F> {
+  return (p as T.Saga$P<D, S, F>).saga !== undefined;
+}
+
+export function saga$<D, S, F>(p: T.Asyncer<S> | T.Saga$P<D, S, F>): T.Observable<D | F> {
+  const { saga, mapError = (e) => e, ...opts }: T.Saga$P<D, S, F> = isSaga$P(p) ? p : { saga: p };
+  return defer(saga).pipe(
+    switchMap(sagaDone$(opts)),
+    catchError((err) => sagaFail$(opts)(mapError(err)))
+  );
+}
+
+export function sagaDone$<D, S, F>({ always$, done$, onAlways, onDone }: T.SagaO<D, S, F> = {}): T.Observabler<D, S> {
+  return done$ || observabler(onDone) || always$ || observabler(onAlways) || ((s) => of((s as unknown) as D));
+}
+
+export function sagaFail$<D, S, F>({ always$, fail$, onAlways }: T.SagaO<D, S, F> = {}): T.Observabler<D | F, Error> {
+  return fail$ || always$ || observabler(onAlways) || ((e) => throwError(e));
+}
+
+// LOADABLE ================================================================================================================================
+
+export function useLoadable<R, S, SR>(p: T.UseLoadableP<R, S, SR>): T.Loadable<R> {
+  const { autosubscribe = true, next = () => {}, selector = (_s: S, sr: SR) => (sr as unknown) as R, src$, switcher } = p;
+  const loading: T.Ref<boolean> = ref(false);
+  const res$: T.Observable<R> = src$.pipe(
+    tap(() => (loading.value = true)),
+    switchMap(switcher, selector),
+    tap(() => (loading.value = false))
+  );
+  if (autosubscribe) {
+    const subscription = res$.subscribe({ next });
+    onBeforeUnmount(() => subscription.unsubscribe());
+  }
+  return { loading, res$ };
+}
+
+// SOURCABLE ===============================================================================================================================
+
+export function isUseSourcableP<R, S, SR>(p: T.Observabler<SR, S> | T.UseSourcableP<R, S, SR>): p is T.UseSourcableP<R, S, SR> {
+  return (p as T.UseSourcableP<R, S, SR>).switcher !== undefined;
+}
+
+export function useSourcable<R, S, SR>(p: T.Observabler<SR, S> | T.UseSourcableP<R, S, SR>): T.Sourcable<R, S> {
+  const src$: T.Subject<S> = new Subject();
+  return { src$, ...useLoadable({ ...(isUseSourcableP(p) ? p : { switcher: p }), src$ }) };
+}
+
+// NOTIFY ==================================================================================================================================
+
+export function notifyFail$<F>(p: T.NotifyFail$P<F> | Error): T.Observable<F> {
+  const { value = undefined, ...rest } = isNotifyFail$P(p) ? p : { error: p };
+  notifyFail(rest);
+  return of(value as F);
+}
+export function isNotifyFail$P<F>(p: T.NotifyFail$P<F> | Error): p is T.NotifyFail$P<F> {
+  return (p as T.NotifyFail$P<F>).error !== undefined;
+}

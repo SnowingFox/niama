@@ -1,36 +1,8 @@
 import { apiDtoF, getMutation, getQuery } from '@niama/api';
 import { getCapsD } from '@niama/auth';
-import { fill, mapValues, pluralize, upperFirst, zipObject } from '@niama/core';
+import { fill, mapValues, zipObject } from '@niama/core';
 
 import * as T from './types';
-
-// LABELS ==================================================================================================================================
-
-export function getLabels<O extends string>({ singular, other }: T.GetLabelsP<O>): T.Labels<O> {
-  const Singular = upperFirst(singular);
-  const plural = pluralize(singular);
-  const Plural = upperFirst(plural);
-  return {
-    PLURAL: plural,
-    SINGULAR: singular,
-    TYPE: Singular,
-    CI: `${Singular}CreateInput!`,
-    UI: `${Singular}UpdateInput!`,
-    WI: `Query${Plural}WhereInput`,
-    WUI: `${Singular}WhereUniqueInput!`,
-    COUNT: `${plural}Count`,
-    CREATE: `create${Singular}`,
-    DELETE_MANY: `deleteMany${Plural}`,
-    DELETE_ONE: `delete${Singular}`,
-    EXISTS: `${singular}Exists`,
-    OB: `Query${Plural}OrderByInput`,
-    READ_MANY: plural,
-    READ_ONE: singular,
-    UPDATE: `update${Singular}`,
-    UPSERT: `upsert${Singular}`,
-    ...(other ? other : {}),
-  };
-}
 
 // FIELDS ==================================================================================================================================
 
@@ -58,7 +30,16 @@ export function getOps<F extends T.Api.F, E extends string = string>(p: T.GetOps
   const { extra = {}, fields: f, labels, local = false, rest = false } = p;
   const { CI, COUNT, CREATE, DELETE_ONE, DELETE_MANY, EXISTS, OB, READ_MANY, READ_ONE, TYPE, UI, UPDATE, UPSERT, WI, WUI } = labels;
 
-  const getRest = ({ fragment = '', method = 'GET' }: { fragment?: string; method?: T.Api.OpRestType }): T.Api.OpRest => ({
+  const getRest = ({
+    bodyKey = 'data',
+    fragment = '',
+    method = 'GET',
+  }: {
+    bodyKey?: string;
+    fragment?: string;
+    method?: T.Api.OpRestType;
+  }): T.Api.OpRest => ({
+    bodyKey,
     type: TYPE,
     path: `/${READ_MANY}${fragment}`,
     method,

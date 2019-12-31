@@ -1,14 +1,12 @@
-import { AsyncSubject } from 'rxjs';
-
+import { boot as baseBoot } from '../../src/boot';
 import * as T from '../types';
-import QvAutocomplete from './component.autocomplete.quasar-vee.vue';
-import QMap from './component.map.quasar.vue';
+import AddressMapSelect from './component.map-select.quasar.vue';
+import AddressMap from './component.map.quasar.vue';
 
-export function bootAddress({ Vue, ui = 'quasar', ...rest }: T.BootP) {
-  const address: T.Provider = { service$: new AsyncSubject(), ...rest };
-  Vue.prototype.$address = address;
+export const boot = ({ Vue, ui = 'quasar', ...rest }: T.BootP) => {
+  baseBoot({ Vue, ui, ...rest });
   if (ui === 'quasar') {
-    Vue.component('QvAutocomplete', QvAutocomplete);
-    Vue.component('QMap', QMap);
+    Vue.component('AddressMap', AddressMap);
+    Vue.component('AddressMapSelect', AddressMapSelect);
   }
-}
+};

@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
-  "scripts": {
-    "prisma": "prisma generate"
-  },
   "sideEffects": false,
   "prettier": {
     "arrowParens": "always",

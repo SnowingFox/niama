@@ -1,52 +1,26 @@
-import { camelCase, maybe, omit, pick } from '@niama/core';
-import { struct } from 'superstruct';
+import { camelCase } from '@niama/core';
 
 import * as T from './types';
 
-// ENUMS ===================================================================================================================================
+// SUGGESTION TRANSFORMERS =================================================================================================================
 
-export const fragments: T.FragmentType[] = [
-  ...['administrativeAreaLevel1', 'administrativeAreaLevel2', 'administrativeAreaLevel3', 'administrativeAreaLevel4'],
-  ...['administrativeAreaLevel5', 'airport', 'country', 'establishment', 'floor', 'intersection', 'locality', 'naturalFeature'],
-  ...['neighborhood', 'park', 'parking', 'pointOfInterest', 'political', 'postBox', 'postalCode', 'postalCodeSuffix', 'postalTown'],
-  ...['premise', 'room', 'route', 'streetNumber', 'sublocality', 'sublocalityLevel1', 'sublocalityLevel2', 'sublocalityLevel3'],
-  ...['sublocalityLevel4', 'sublocalityLevel5', 'subpremise'],
-] as T.FragmentType[];
-
-// OPTION TRANSFORMERS =====================================================================================================================
-
-export const suggestionFromPrediction = (p: T.PlacesPrediction): T.Suggestion => ({
-  placeId: p.place_id,
-  label: p.description,
-  types: p.types,
-});
+export const suggestionFromPrediction = ({ id, description: label, place_id: value, types }: T.PlacesPrediction): T.Suggestion => {
+  return { __typename: 'AddressSuggestion', id, label, types, value };
+};
 export const suggestionsFromPredictions = (p: T.Maybe<T.PlacesPrediction[]>): T.Suggestion[] => (p || []).map(suggestionFromPrediction);
 
 // DTO TRANSFORMERS ========================================================================================================================
 
-export function dtoFromResult({ formatted_address: label, place_id: placeId, types, ...r }: T.PlacesResult): T.Dto {
-  const resource = { __typename: 'Address', label, placeId, types, lat: r.geometry!.location.lat(), lng: r.geometry!.location.lng() };
+export function fromResult({ formatted_address: label, place_id: id, types, ...r }: T.PlacesResult): T.Dto {
+  let resource = { __typename: 'Address', id, label, types, lat: r.geometry!.location.lat(), lng: r.geometry!.location.lng() };
   const components = [...r.address_components!];
   while (components.length > 0) {
     const { long_name, short_name, types } = components.shift() as T.GeocoderAddressComponent;
-    resource[camelCase(types.shift())] = { __typename: 'AddressFragment', long: long_name, short: short_name };
+    const key = camelCase(types.shift());
+    resource = { ...resource, [key]: long_name, [`${key}SV`]: short_name };
   }
   return resource as T.Dto;
 }
-
-// VO TRANSFORMERS =========================================================================================================================
-
-export function fromDto(resource: T.Dto): T.Vo {
-  const entity = { ...omit(resource, ['__typename', ...fragments]) };
-  fragments.forEach((f) => (entity[f] = resource[f] ? pick(resource[f]!, ['long', 'short']) : null));
-  return entity as T.Vo;
-}
-
-export const fromResult = (result: T.PlacesResult): T.Vo => fromDto(dtoFromResult(result));
-
-// VALIDATIONS =============================================================================================================================
-
-export const addressFragment = maybe({ __typename: struct.literal('AddressFragment'), long: 'string', short: 'string' });
 
 // URLS ====================================================================================================================================
 
@@ -71,4 +45,5 @@ export const getPlaceDetailsUrl = ({ $niama, placeId }: T.GetPlaceDetailsUrlP): 
 
 // UTILS ===================================================================================================================================
 
-export const getLocation = (addr: T.Vo): string => `${addr.postalCode!.long}(${addr.administrativeAreaLevel1!.short})`
+export const getLocation = (addr: T.Dto): string =>
+  `${addr.postalCode} (${addr.administrativeAreaLevel1SV || addr.administrativeAreaLevel1})`;

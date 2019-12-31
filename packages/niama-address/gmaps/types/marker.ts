@@ -37,5 +37,13 @@ export declare class Marker {
     handler: (this: Marker, event: MouseEvent) => void
   ): google.maps.MapsEventListener;
   /** @deprecated */
-  addListener(eventName: string, handler: (this: Marker, ...args: any[]) => void): google.maps.MapsEventListener;
+  //addListener(eventName: string, handler: (this: Marker, ...args: any[]) => void): google.maps.MapsEventListener;
+  bindTo(key: string, target: google.maps.MVCObject, targetKey?: string, noNotify?: boolean): void;
+  changed(key: string): void;
+  get(key: string): any;
+  notify(key: string): void;
+  set(key: string, value: any): void;
+  setValues(values: any): void;
+  unbind(key: string): void;
+  unbindAll(): void;
 }

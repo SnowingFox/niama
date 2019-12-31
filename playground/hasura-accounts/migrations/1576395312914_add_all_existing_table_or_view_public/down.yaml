@@ -1,0 +1,20 @@
+- args:
+    table:
+      name: user
+      schema: public
+  type: untrack_table
+- args:
+    table:
+      name: user_email
+      schema: public
+  type: untrack_table
+- args:
+    table:
+      name: user_service
+      schema: public
+  type: untrack_table
+- args:
+    table:
+      name: user_session
+      schema: public
+  type: untrack_table

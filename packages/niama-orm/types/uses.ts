@@ -1,4 +1,4 @@
-import { Loadable, Maybe, Observable, Ref, RequestO, Subject } from '@niama/core/types';
+import { Loadable, Maybe, Observable, Ref, SagaO, Subject } from '@niama/core/types';
 
 import { Config, RP } from './main';
 
@@ -12,7 +12,6 @@ export interface OpO<C extends Config> {
 
 export interface UseO {
   debug?: boolean;
-  manual?: boolean;
 }
 
 export interface UseR {
@@ -20,9 +19,10 @@ export interface UseR {
 }
 
 export interface UseReadO<C extends Config, Vo, Dto extends object = C['Dto']> extends UseO {
+  fetchPolicy?: 'cache-and-network' | 'cache-first' | 'network-only' | 'cache-only' | 'no-cache' | 'standby';
   fields?: C['Fields'];
   update?: (dto: Dto) => Vo;
-  validation?: any;
+  validation?: unknown;
 }
 
 // ONE =====================================================================================================================================
@@ -74,13 +74,24 @@ export interface UseCountR extends UseR {
 
 // BASE ====================================================================================================================================
 
-export interface UseRequestR<Result = any, Source = any> extends Loadable<Result> {
-  source$?: Subject<Source>;
+export interface UseRequestP<Res = unknown, Src = unknown> extends SagaO<Res, Src> {
+  src$?: Observable<Src>;
 }
 
-export interface UseRequestP<Result = any, Source = any> extends RequestO<Result, Source> {
-  source$?: Observable<Source>;
+export interface UseRequestR<Res = unknown, Src = unknown> extends Loadable<Res> {
+  src$?: Subject<Src>;
 }
+
+// CREATE ==================================================================================================================================
+
+export interface UseCreateO<Dto = unknown> extends UseO {
+  getData: () => Dto;
+}
+
+export interface UseCreateP<C extends Config, Dto = unknown, R = unknown, S = unknown> extends OpO<C>, UseRequestP<R, S>, UseCreateO<Dto> {}
+export interface UseCreateTypedP<Dto = unknown, Res = unknown, Src = unknown> extends UseRequestP<Res, Src>, UseCreateO<Dto> {}
+
+export type UseCreateR<Res = unknown, Src = unknown> = UseRequestR<Res, Src>;
 
 // DELETE ONE ==============================================================================================================================
 
@@ -88,7 +99,7 @@ export interface UseDeleteOneO extends UseO {
   id: string;
 }
 
-export interface UseDeleteOneP<C extends Config, Result = any, Source = any> extends OpO<C>, UseRequestP<Result, Source>, UseDeleteOneO {}
-export interface UseDeleteOneTypedP<Result = any, Source = any> extends UseRequestP<Result, Source>, UseDeleteOneO {}
+export interface UseDeleteOneP<C extends Config, Res = unknown, Src = unknown> extends OpO<C>, UseRequestP<Res, Src>, UseDeleteOneO {}
+export interface UseDeleteOneTypedP<Res = unknown, Src = unknown> extends UseRequestP<Res, Src>, UseDeleteOneO {}
 
-export type UseDeleteOneR<Result = any, Source = any> = UseRequestR<Result, Source>;
+export type UseDeleteOneR<Res = unknown, Src = unknown> = UseRequestR<Res, Src>;

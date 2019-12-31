@@ -1,0 +1,14 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - createdAt
+      - id
+      - title
+      computed_fields: []
+      filter: {}
+    role: public
+    table:
+      name: post
+      schema: public
+  type: create_select_permission

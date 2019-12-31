@@ -1,3 +1,4 @@
+import { getError as baseGetError } from '@niama/core';
 import { defer } from 'rxjs';
 
 import * as T from './types';
@@ -18,8 +19,12 @@ export function update$<C extends T.Config>({ $niama, data, id, rp }: UpdateP<C>
 }
 
 export interface UpdateP<C extends T.Config> {
-  $niama: Pick<T.NiamaProvider, 'api'>;
+  $niama: Pick<T.Niama, 'api'>;
   data: Partial<C['Dto']>;
   id: string;
   rp: T.RP<C>;
 }
+
+// ERROR ===================================================================================================================================
+
+export const getError = (id: string): Error => baseGetError({ id, type: 'orm' });
