@@ -10,21 +10,20 @@ export interface User extends BaseUser {
 
 export const patch = (srv: AccountsServer) => {
   srv.loginWithUser = async function(this, user: User, infos: ConnectionInformations): Promise<LoginResult> {
-    const { ip, userAgent } = infos;
     const token = await (this.options.tokenCreator ? this.options.tokenCreator.createToken(user) : generateRandomToken());
-    const sessionId = await this.options.db!.createSession(user.id, token, { ip, userAgent });
+    const sessionId = await this.options.db!.createSession(user.id, token, infos);
     const { accessToken, refreshToken } = createTokens({ opts: this.getOptions(), token, user });
     return { sessionId, tokens: { refreshToken, accessToken } };
   };
 
-  srv.refreshTokens = async function(this, accessToken: string, refreshToken: string, ip: string, userAgent: string): Promise<LoginResult> {
+  srv.refreshTokens = async function(this, accessToken: string, refreshToken: string, infos: ConnectionInformations): Promise<LoginResult> {
     try {
       if (!isString(accessToken) || !isString(refreshToken)) throw new Error('An accessToken and refreshToken are required');
 
       let sessionToken: string;
       try {
-        jwt.verify(refreshToken, this.options.tokenSecret);
-        const decodedAccessToken = jwt.verify(accessToken, this.options.tokenSecret, {
+        jwt.verify(refreshToken, getSecretOrPublicKey(this.options));
+        const decodedAccessToken = jwt.verify(accessToken, getSecretOrPublicKey(this.options), {
           ignoreExpiration: true,
         }) as { data: { token: string } };
         sessionToken = decodedAccessToken.data.token;
@@ -44,9 +43,9 @@ export const patch = (srv: AccountsServer) => {
           newToken = await (this.options.tokenCreator ? this.options.tokenCreator.createToken(user) : generateRandomToken());
 
         const tokens = createTokens({ opts: this.getOptions(), token: newToken || sessionToken, user: user as User });
-        await this.options.db!.updateSession(session.id, { ip, userAgent }, newToken);
+        await this.options.db!.updateSession(session.id, infos, newToken);
 
-        const result = { sessionId: session.id, user: this.sanitizeUser(user), tokens };
+        const result = { sessionId: session.id, tokens };
         this.getHooks().emit(ServerHooks.RefreshTokensSuccess, result);
         return result;
       } else throw new Error('Session is no longer valid');
@@ -57,11 +56,18 @@ export const patch = (srv: AccountsServer) => {
   };
 };
 
-const createTokens = ({ isImpersonated = false, opts: { tokenSecret: secret, tokenConfigs }, token, user }: CreateTokensP): Tokens => {
-  const accessToken = generateAccessToken({ isImpersonated, secret, token, user, config: tokenConfigs!.accessToken! });
-  const refreshToken = generateRefreshToken({ secret, config: tokenConfigs!.refreshToken! });
+const createTokens = ({ isImpersonated = false, opts, token, user }: CreateTokensP): Tokens => {
+  const secret: jwt.Secret = getSecretOrPrivateKey(opts);
+  const accessToken = generateAccessToken({ isImpersonated, secret, token, user, config: opts.tokenConfigs!.accessToken! });
+  const refreshToken = generateRefreshToken({ secret, config: opts.tokenConfigs!.refreshToken! });
   return { accessToken, refreshToken };
 };
+
+const getSecretOrPublicKey = ({ tokenSecret }: AccountsServerOptions): jwt.Secret =>
+  typeof tokenSecret === 'string' ? tokenSecret : tokenSecret.publicKey;
+
+const getSecretOrPrivateKey = ({ tokenSecret }: AccountsServerOptions): jwt.Secret =>
+  typeof tokenSecret === 'string' ? tokenSecret : tokenSecret.privateKey;
 
 const generateAccessToken = ({ config, isImpersonated, secret, token, user }: GenerateAccessTokenP) =>
   jwt.sign(
@@ -85,9 +91,9 @@ export interface CreateTokensP {
 }
 
 export interface GenerateAccessTokenP {
-  config: jwt.SignOptions;
+  config: any;
   isImpersonated: boolean;
-  secret: string;
+  secret: jwt.Secret;
   token: string;
   user: User;
 }

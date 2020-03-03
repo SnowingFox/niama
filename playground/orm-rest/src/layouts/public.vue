@@ -16,10 +16,10 @@ q-layout(view="hHh Lpr lff")
 <script lang="ts">
 import { provideRouter, provideI18n, useI18n } from '@niama/core';
 import { readMany, getModelToItem } from '@niama/nav-client';
-import { createComponent, ref } from '@vue/composition-api';
+import { defineComponent, ref } from '@vue/composition-api';
 import { provideApi, useApi } from '@niama/api-client';
 
-export default createComponent({
+export default defineComponent({
   meta() {
     return { title: this.$t(`titles.${this.$route.name}`), titleTemplate: (title) => `${title} - Niama Starter` };
   },

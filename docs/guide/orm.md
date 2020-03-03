@@ -3,12 +3,11 @@
 An ORM Module is a specific module. It can be described by a configuration interface containing :
 
 ```ts
-interface OrmConfig {
-  Model: M;
+interface Cfg {
   Fields: F;
   Item: I;
   OrderBy: OB;
-  Resource: R;
+  Po: Po;
   Where: W;
 }
 ```

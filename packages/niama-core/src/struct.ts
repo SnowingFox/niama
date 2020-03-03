@@ -2,6 +2,4 @@ import { struct } from 'superstruct';
 
 import * as T from '../types';
 
-export function maybe<V>(value: V): T.Struct {
-  return struct.union([value, 'null']);
-}
+export const maybe = <V>(value: V): T.Struct => struct.union([value, 'null']);

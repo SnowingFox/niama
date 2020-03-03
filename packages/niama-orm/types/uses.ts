@@ -1,72 +1,70 @@
-import { Loadable, Maybe, Observable, Ref, SagaO, Subject } from '@niama/core/types';
+import * as Api from '@niama/api/types';
+import {
+    Asyncer, Loadable, Maybe, Observable, Observabler, Ref, SagaCfg, SagaO, Sourcable, Subject, UseSagaReturnsO
+} from '@niama/core/types';
 
-import { Config, RP } from './main';
+import { Cfg, OpCfg, Rp } from './main';
 
 // OPERATIONS ==============================================================================================================================
 
-export interface OpO<C extends Config> {
-  rp: RP<C>;
-}
+export type OpO<C extends Cfg> = { rp: Rp<C> };
 
 // MAIN ====================================================================================================================================
 
-export interface UseO {
-  debug?: boolean;
-}
+export type UseO = { debug?: boolean };
+export type UseR = { error: Ref<Error>; loading: Ref<boolean> };
 
-export interface UseR {
-  loading: Ref<boolean>;
-}
-
-export interface UseReadO<C extends Config, Vo, Dto extends object = C['Dto']> extends UseO {
+export interface UseReadO<C extends Cfg, Vo, Dto> extends UseO {
+  fallback?: Vo;
   fetchPolicy?: 'cache-and-network' | 'cache-first' | 'network-only' | 'cache-only' | 'no-cache' | 'standby';
-  fields?: C['Fields'];
+  fields?: C['FiC']['F'];
   update?: (dto: Dto) => Vo;
   validation?: unknown;
 }
 
-// ONE =====================================================================================================================================
+// READ ONE ================================================================================================================================
 
-export interface UseOneO<C extends Config, Vo, Dto extends object = C['Dto']> extends UseReadO<C, Vo, Dto> {
-  fallback?: Vo;
+export interface UseReadOneO<C extends Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']['Po']> extends UseReadO<C, Vo, Dto> {
   id: string;
 }
 
-export interface UseOneP<C extends Config, Vo, Dto extends object = C['Dto']> extends OpO<C>, UseOneO<C, Vo, Dto> {}
-export type UseOneTypedP<C extends Config, Vo, Dto extends object = C['Dto']> = UseOneO<C, Vo, Dto>;
+export interface UseReadOneP<C extends Cfg, Vo, Dto = C['ObC']['Po']> extends OpO<C>, UseReadOneO<C, Vo, Dto> {}
+export type UseReadOneTypedP<C extends Cfg, Vo, Dto = C['ObC']['Po']> = UseReadOneO<C, Vo, Dto>;
 
-export interface UseOneR<Vo> extends UseR {
-  item: Ref<Vo>;
+export interface UseReadOneR<Vo> extends UseR {
+  item: Api.R<Maybe<Vo>>;
 }
 
-// MANY ====================================================================================================================================
+// READ MANY ===============================================================================================================================
 
-export interface UseManyO<C extends Config, Vo, Dto extends object = C['Dto']> extends UseReadO<C, Vo, Dto> {
+export interface UseReadManyO<C extends Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']['Po']> extends UseReadO<C, Vo, Dto> {
   count?: boolean;
   fetchAll?: boolean;
-  first?: Maybe<number>;
-  skip?: number;
+  limit?: Maybe<number>;
+  offset?: number;
+  orderBy?: C['OpC']['OB']
   total?: boolean;
-  where?: C['Where'];
+  where?: C['OpC']['W'];
 }
-export interface UseManyP<C extends Config, Vo, Dto extends object = C['Dto']> extends OpO<C>, UseManyO<C, Vo, Dto> {}
-export type UseManyTypedP<C extends Config, Vo, Dto extends object = C['Dto']> = UseManyO<C, Vo, Dto>;
+export interface UseReadManyP<C extends Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']['Po']> extends OpO<C>, UseReadManyO<C, Vo, Dto> {}
+export type UseReadManyTypedP<C extends Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']['Po']> = UseReadManyO<C, Vo, Dto>;
 
-export interface UseManyR<Vo> extends UseR {
+export interface UseReadManyR<Vo> extends UseR {
   count: Ref<Maybe<number>>;
-  items: Ref<Maybe<Vo[]>>;
-  fetchMore: (_index: number, done: Function) => Promise<void>;
+  items: Api.R<Vo[]>;
+  fetchMore: (index: number, done: Function) => Promise<void>;
+  refetch: any;
   total: Ref<Maybe<number>>;
 }
 
 // COUNT ===================================================================================================================================
 
-export interface UseCountO<C extends Config> extends UseO {
-  where: Ref<C['Where']> | C['Where'];
+export interface UseCountO<C extends Cfg> extends UseO {
+  where: Ref<C['OpC']['W']> | C['OpC']['W'];
 }
 
-export interface UseCountP<C extends Config> extends OpO<C>, Partial<UseCountO<C>> {}
-export type UseCountTypedP<C extends Config> = Partial<UseCountO<C>>;
+export interface UseCountP<C extends Cfg> extends OpO<C>, Partial<UseCountO<C>> {}
+export type UseCountTypedP<C extends Cfg> = Partial<UseCountO<C>>;
 
 export interface UseCountR extends UseR {
   count: Ref<Maybe<number>>;
@@ -84,22 +82,30 @@ export interface UseRequestR<Res = unknown, Src = unknown> extends Loadable<Res>
 
 // CREATE ==================================================================================================================================
 
-export interface UseCreateO<Dto = unknown> extends UseO {
-  getData: () => Dto;
-}
+export type CreateO<C extends Cfg> = { fields?: C['FiC']['F'] };
 
-export interface UseCreateP<C extends Config, Dto = unknown, R = unknown, S = unknown> extends OpO<C>, UseRequestP<R, S>, UseCreateO<Dto> {}
-export interface UseCreateTypedP<Dto = unknown, Res = unknown, Src = unknown> extends UseRequestP<Res, Src>, UseCreateO<Dto> {}
+/*export interface UseCreateP<C extends Cfg, Done, Fail = null> extends OpO<C>, UseCreateO<C, Done, Fail> {}
+export interface UseCreateTypedP<C extends Cfg, Done, Fail = null> extends UseCreateO<C, Done, Fail> {}
+export type UseCreateR<C extends Cfg, Done, Fail = null> = Observabler<Done | Fail, C['ObC']['Create']>;
 
-export type UseCreateR<Res = unknown, Src = unknown> = UseRequestR<Res, Src>;
+export interface UseCreate$P<C extends Cfg, Done, Fail = null> extends UseCreateP<C, Done, Fail> {}
+export interface UseCreate$TypedP<C extends Cfg, Done, Fail = null> extends UseCreateTypedP<C, Done, Fail> {}
+export type UseCreate$R<C extends Cfg, Done, Fail = null> = Sourcable<Done | Fail, C['ObC']['Create']>;*/
+
+export type CreateC<C extends Cfg, Done = string, Fail = null> = OpCfg<C, C['ObC']['Create'], C['ObC']['Po'], Done, Fail, CreateO<C>>;
+export type CreateTypedC<C extends Cfg, Done = string, Fail = null> = SagaCfg<C['ObC']['Create'], C['ObC']['Po'], Done, Fail, CreateO<C>>;
 
 // DELETE ONE ==============================================================================================================================
 
-export interface UseDeleteOneO extends UseO {
-  id: string;
-}
+/*export interface UseDeleteOneO<C extends Cfg, Done, Fail = null> extends UseO, SagaO<Done, string, Fail> {}
 
-export interface UseDeleteOneP<C extends Config, Res = unknown, Src = unknown> extends OpO<C>, UseRequestP<Res, Src>, UseDeleteOneO {}
-export interface UseDeleteOneTypedP<Res = unknown, Src = unknown> extends UseRequestP<Res, Src>, UseDeleteOneO {}
+export interface UseDeleteOneP<C extends Cfg, Done, Fail = null> extends OpO<C>, UseDeleteOneO<C, Done, Fail> {}
+export interface UseDeleteOneTypedP<C extends Cfg, Done, Fail = null> extends UseDeleteOneO<C, Done, Fail> {}
+export type UseDeleteOneR<C extends Cfg, Done, Fail = null> = Observabler<Done | Fail, string>;
 
-export type UseDeleteOneR<Res = unknown, Src = unknown> = UseRequestR<Res, Src>;
+export interface UseDeleteOne$P<C extends Cfg, Done, Fail = null> extends UseDeleteOneP<C, Done, Fail> {}
+export interface UseDeleteOne$TypedP<C extends Cfg, Done, Fail = null> extends UseDeleteOneTypedP<C, Done, Fail> {}
+export type UseDeleteOne$R<C extends Cfg, Done, Fail = null> = Sourcable<Done | Fail, string>;*/
+
+export type DeleteOneC<C extends Cfg, Done = string, Fail = null> = OpCfg<C, string, string, Done, Fail>;
+export type DeleteOneTypedC<Done = string, Fail = null> = SagaCfg<string, string, Done, Fail>;

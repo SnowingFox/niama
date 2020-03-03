@@ -1,6 +1,6 @@
 module.exports = () => ({
   animations: [],
-  boot: ['composition', 'i18n', 'api', 'auth'],
+  boot: ['composition', 'core', 'api', 'auth'],
   build: {
     analyze: true,
     env: {

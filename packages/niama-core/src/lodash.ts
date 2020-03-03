@@ -1,18 +1,22 @@
 import camelCase from 'lodash/camelCase';
+import chunk from 'lodash/chunk';
 import defaultsDeep from 'lodash/defaultsDeep';
 import defaultTo from 'lodash/defaultTo';
+import filter from 'lodash/filter';
 import isEqual from 'lodash/isEqual';
 import isFunction from 'lodash/isFunction';
 import isPlainObject from 'lodash/isPlainObject';
 import merge from 'lodash/merge';
 import mergeWith from 'lodash/mergeWith';
 import orderBy from 'lodash/orderBy';
+import random from 'lodash/random';
 import union from 'lodash/union';
 import zipObject from 'lodash/zipObject';
 
 import * as T from '../types';
 
-export { camelCase, defaultsDeep, defaultTo, isEqual, isFunction, isPlainObject, merge, mergeWith, orderBy, union, zipObject };
+export { camelCase, chunk, defaultsDeep, defaultTo, filter, isEqual, isFunction, isPlainObject, merge, mergeWith, orderBy, random, union };
+export { zipObject };
 
 // LANG ====================================================================================================================================
 
@@ -21,40 +25,35 @@ export const toNumber = (v: string): number => +v;
 
 // OBJECT ==================================================================================================================================
 
-export function omit<O extends object, K extends keyof O>(obj: O, keys: K[]): Omit<O, K> {
+export const omit = <O extends object, K extends keyof O>(obj: O, keys: K[]): Omit<O, K> => {
   const res: any = { ...obj };
   for (const key of keys) delete res[key];
   return res;
-}
+};
 
-export function pick<O extends object, K extends keyof O>(obj: O, keys: K[]): Pick<O, K> {
+export const pick = <O extends object, K extends keyof O>(obj: O, keys: K[]): Pick<O, K> => {
   if (!obj || !keys) return obj;
   const res: any = {};
   for (const key of keys) res[key] = obj[key];
   return res;
-}
+};
 
-export function map<O extends object, R>(obj: O, mapper: (value: O[keyof O], key: string) => R): R[] {
-  return Object.keys(obj).map((k) => mapper(obj[k], k));
-}
+export const map = <O extends object, R>(obj: O, mapper: (value: O[keyof O], key: string) => R): R[] =>
+  Object.keys(obj).map((k) => mapper(obj[k], k));
 
-export function reduce<O extends object, R>(obj: O, reducer: (acc: R, value: O[keyof O], key: string) => R, initial: R): R {
-  return Object.keys(obj).reduce((acc, k) => reducer(acc, obj[k], k), initial);
-}
+export const reduce = <O extends object, R>(obj: O, reducer: (acc: R, value: O[keyof O], key: string) => R, initial: R): R =>
+  Object.keys(obj).reduce((acc, k) => reducer(acc, obj[k], k), initial);
 
-export function mapValues<O extends object, R>(obj: O, mapper: (v: O[keyof O], k: string) => R): { [P in keyof O]: R } {
-  return Object.keys(obj).reduce((acc, k) => ({ ...acc, [k]: mapper(obj[k], k) }), {} as any);
-}
+export const mapKeys = <O extends object, R extends string>(obj: O, mapper: (v: O[keyof O], k: string) => R): { [P in R]: O[keyof O] } =>
+  Object.keys(obj).reduce((acc, k) => ({ ...acc, [mapper(obj[k], k)]: obj[k] }), {} as any);
+
+export const mapValues = <O extends object, R>(obj: O, mapper: (v: O[keyof O], k: string) => R): { [P in keyof O]: R } =>
+  Object.keys(obj).reduce((acc, k) => ({ ...acc, [k]: mapper(obj[k], k) }), {} as any);
 
 // ARRAY ===================================================================================================================================
 
-export function difference<O>(arr1: O[], arr2: O[]): O[] {
-  return (arr1 || []).filter((item) => !(arr2 || []).includes(item));
-}
-
-export function intersection<O>(arr1: O[], arr2: O[]): O[] {
-  return (arr1 || []).filter((item) => (arr2 || []).includes(item));
-}
+export const difference = <O>(arr1: O[], arr2: O[]): O[] => (arr1 || []).filter((item) => !(arr2 || []).includes(item));
+export const intersection = <O>(arr1: O[], arr2: O[]): O[] => (arr1 || []).filter((item) => (arr2 || []).includes(item));
 
 // STRING ==================================================================================================================================
 

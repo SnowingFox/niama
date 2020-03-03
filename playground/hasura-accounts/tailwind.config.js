@@ -1,7 +1,7 @@
 const colors = require('./src/css/colors');
 
 module.exports = {
-  prefix: 'tw-',
+  prefix: '_',
   theme: { colors },
   variants: {},
   plugins: [],

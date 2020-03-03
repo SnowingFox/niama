@@ -36,12 +36,12 @@ q-page.Page(padding)
 
 <script lang="ts">
 import { useQuery, useResult, useMutation } from '@vue/apollo-composable';
-import { createComponent, watch } from '@vue/composition-api';
+import { defineComponent, watch } from '@vue/composition-api';
 import { getQuery, getMutation } from '@niama/api';
 
 // COMPONENT ===============================================================================================================================
 
-export default createComponent({
+export default defineComponent({
   setup() {
     const { loading, result } = useQuery(getQuery({ selector: 'posts', fields: ['id', 'title', 'content'] }));
     const posts = useResult(result, []);

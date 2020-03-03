@@ -1,84 +1,101 @@
 import * as Api from '@niama/api/types';
 import * as Auth from '@niama/auth/types';
-import { Maybe } from '@niama/core/types';
+import { Maybe, Opt, SagaCfg } from '@niama/core/types';
 
 // CONFIG ==================================================================================================================================
 
-export interface Config<IDto extends Dto = any, F extends Api.F = any, W = any, OB = any> {
-  Fields: F;
-  OrderBy: OB;
-  Dto: IDto;
-  Where: W;
-}
+export type Cfg<ObC extends ObjectsCfg = any, FiC extends Api.FieldCfg = any, OpC extends OpsCfg = any> = {
+  ExL: OpC['E'];
+  FiC: FiC;
+  ObC: ObC;
+  OpC: OpC;
+};
 
-// NAMING ==================================================================================================================================
+export type OpCfg<C extends Cfg = any, Src = any, Res = any, Done = Res, Fail = any, Extra = {}> = SagaCfg<
+  Src,
+  Res,
+  Done,
+  Fail,
+  { rp: Rp<C> } & Extra
+>;
 
-export type NamesStatus = 'status';
-export type NamesTime = 'createdAt' | 'updatedAt';
-export type NamesD = NamesStatus | NamesTime | Auth.GrantNames;
-export type Names = Api.Names | NamesD;
+// LABELS ==================================================================================================================================
+
+export type LabelsInputK = 'createI' | 'orderBy' | 'updateI' | 'whereI' | 'whereUI';
+export type LabelsMainK = 'plural' | 'singular' | 'type';
+export type LabelsRequestK = 'count' | 'create' | 'deleteMany' | 'deleteOne' | 'exists' | 'readMany' | 'readOne' | 'update' | 'upsert';
+export type LabelsStrict = Record<LabelsInputK | LabelsMainK | LabelsRequestK, string>;
+export type Labels<C extends Cfg> = C['ExL'] extends string ? LabelsStrict & Record<C['ExL'], string> : LabelsStrict;
+
+// FIELDS ==================================================================================================================================
+
+export type SF = K[];
+export type F = SF;
+
+export type StatusK = 'status';
+export type TimeK = 'createdAt' | 'updatedAt';
+export type DefaultK = StatusK | TimeK | Auth.GrantK;
+export type K = Api.K | DefaultK;
+
+// OPS =====================================================================================================================================
+
+export type OpsCfg<W = any, OB = any, EF extends Opt<string> = any, ED extends Opt<string> = any> = {
+  E: ED | EF extends string ? ED | EF : ED extends string ? ED : EF;
+  ED: ED;
+  EF: EF;
+  OB: OB;
+  W: W;
+};
+
+export type Ops<C extends Cfg> = C['ExL'] extends undefined
+  ? OpsStrict<C>
+  : C['OpC']['ED'] extends undefined
+  ? OpsStrict<C> & OpsF<C['OpC']['EF'], C['FiC']['F']>
+  : C['OpC']['EF'] extends undefined
+  ? OpsStrict<C> & OpsD<C['OpC']['ED']>
+  : OpsStrict<C> & OpsF<C['OpC']['EF'], C['FiC']['F']> & OpsD<C['OpC']['ED']>;
+
+type OpsStrict<C extends Cfg> = OpsD<OpDK> & OpsF<OpFK, C['FiC']['F']>;
+type OpsD<K extends string> = Record<K, Api.DocumentNode>;
+type OpsF<K extends string, F extends Api.F> = Record<K, DocumentNodeFactory<F>>;
+
+export type OpFK = 'create' | 'readAll' | 'readMany' | 'readOne' | 'update' | 'upsert';
+export type OpDK = 'count' | 'deleteMany' | 'deleteOne' | 'exists';
+export type OpK = OpDK | OpFK;
+
+type OpsExtra<C extends Cfg, Less extends Opt<string> = undefined> = Exclude<C['ExL'], Less> extends Opt<never>
+  ? undefined
+  : Exclude<C['OpC']['ED'], Less> extends Opt<never>
+  ? OpsExtraF<C, Less>
+  : Exclude<C['OpC']['EF'], Less> extends Opt<never>
+  ? OpsExtraD<C, Less>
+  : OpsExtraF<C, Less> & OpsExtraD<C, Less>;
+
+type OpsExtraF<C extends Cfg, Less extends Opt<string> = undefined> = { factories: Record<Exclude<C['OpC']['EF'], Less>, Api.GetOpP> };
+type OpsExtraD<C extends Cfg, Less extends Opt<string> = undefined> = { docs: Record<Exclude<C['OpC']['ED'], Less>, Api.GetOpP> };
 
 // OBJECTS =================================================================================================================================
 
-export interface Dto<Role extends string = string> extends Api.Dto, Omit<Vo<Role>, NamesTime> {
+export type ObjectsCfg<Po = any, Create = any> = {
+  Create: Create;
+  Po: Po;
+};
+
+export interface Po extends Api.Po, Omit<Vo, TimeK> {
   createdAt: Maybe<string>;
   updatedAt: Maybe<string>;
 }
 
-export interface Vo<Role extends string = string> extends Api.Vo, Auth.Caps<Role> {
+export interface Vo extends Api.Vo, Auth.Caps {
   createdAt: Maybe<Date>;
   status: Auth.Status;
   updatedAt: Maybe<Date>;
 }
 
-export type F = Names[];
+export type DocumentNodeFactory<Fi extends Api.F> = (p?: Fi | GetDocumentNodeP<Fi>) => Api.DocumentNode;
 
-export type OpNamesComplex = 'readAll' | 'readMany' | 'readOne';
-export type OpNamesSimple = 'count' | 'create' | 'deleteMany' | 'deleteOne' | 'exists' | 'update' | 'upsert';
-export type OpNames = OpNamesComplex | OpNamesSimple;
-export type Ops<Fi extends Api.F, Extra extends string = string> = Record<OpNamesSimple, Api.DocumentNode> &
-  Record<OpNamesComplex, DocumentNodeFactory<Fi>> &
-  Partial<Record<Extra, Api.DocumentNode | DocumentNodeFactory<Fi>>>;
-
-export type DocumentNodeFactory<Fi extends Api.F> = (p?: GetDocumentNodeP<Fi>) => Api.DocumentNode;
-
-
-
-export interface RP<C extends Config> extends Api.RP<Labels, Ops<C['Fields']>> {
-  fields: C['Fields'];
-}
-
-export interface Actions {
-  count: () => Promise<number>;
-  create: () => Promise<any>;
-  deleteMany: (ids: string[]) => Promise<any>;
-  deleteOne: (id: string) => Promise<any>;
-  exists: () => Promise<any>;
-  readMany: () => Promise<any>;
-  readOne: () => Promise<any>;
-  update: () => Promise<any>;
-}
-
-// LABELS ==================================================================================================================================
-
-export type LabelsNamesInput = 'CI' | 'OB' | 'UI' | 'WI' | 'WUI';
-export type LabelsNamesMain = 'PLURAL' | 'SINGULAR' | 'TYPE';
-export type LabelsNamesRequest =
-  | 'COUNT'
-  | 'CREATE'
-  | 'DELETE_MANY'
-  | 'DELETE_ONE'
-  | 'EXISTS'
-  | 'READ_MANY'
-  | 'READ_ONE'
-  | 'UPDATE'
-  | 'UPSERT';
-export type LabelsStrict = Record<LabelsNamesInput | LabelsNamesMain | LabelsNamesRequest, string>;
-export type Labels<T extends string = string> = LabelsStrict | LabelsStrict & Record<T, string>;
-
-export interface GetLabelsP<Other extends string> {
-  singular: string;
-  other?: Record<Other, string>;
+export interface Rp<C extends Cfg> extends Api.Rp<Labels<C>, Ops<C>> {
+  F: Api.Fields<C['FiC']>;
 }
 
 // PARAMS ==================================================================================================================================
@@ -88,17 +105,34 @@ export interface GetDocumentNodeP<Fi extends Api.F> {
   fields?: Fi;
 }
 
-export interface GetOpsP<Fi extends Api.F, Extra extends string = string> {
-  extra?: Record<Extra, Api.DocumentNode | DocumentNodeFactory<Fi>>;
-  fields: Fi;
-  labels: Labels;
+type GetLabelStrictP = { singular: string };
+export type GetLabelsP<C extends Cfg> = C['ExL'] extends string
+  ? GetLabelStrictP & { extra: Record<C['ExL'], string> }
+  : GetLabelStrictP & { extra?: never };
+
+interface GetOpsStrictP<C extends Cfg> {
+  F: Api.Fields<C['FiC']>;
+  L: Labels<C>;
   local?: boolean;
-  rest?: boolean | Partial<Record<OpNames, Api.OpRest | string>>;
+  rest?: boolean | Partial<Record<OpK, Api.OpRest | string>>;
 }
+export type GetOpsP<C extends Cfg> = C['ExL'] extends string
+  ? GetOpsStrictP<C> & { extra?: OpsExtra<C> }
+  : GetOpsStrictP<C> & { extra?: never };
+
+interface GetRpStrictP<C extends Cfg> {
+  F: Api.Fields<C['FiC']>;
+  local?: boolean;
+  rest?: boolean | Partial<Record<OpK, Api.OpRest | string>>;
+  singular: string;
+}
+export type GetRpP<C extends Cfg, Less extends Opt<string> = undefined> = Exclude<C['ExL'], Less> extends Opt<never>
+  ? GetRpStrictP<C> & { extra?: never }
+  : GetRpStrictP<C> & { extra: OpsExtra<C, Less> };
 
 // ARGS ====================================================================================================================================
 
-export interface ReadManyArgs<Where, OrderBy> {
+/*export interface ReadManyArgs<Where, OrderBy> {
   where?: Where;
   orderBy?: OrderBy;
   skip?: number;
@@ -112,4 +146,4 @@ export interface UpsertArgs<Create, Update, WhereUnique> {
   create: Create;
   update: Update;
   where: WhereUnique;
-}
+}*/

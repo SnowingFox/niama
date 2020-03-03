@@ -1,3 +1,5 @@
+export * from './src/boot.i18n';
+export * from './src/boot.router';
 export * from './src/chance';
 export * from './src/i18n.fr';
 export * from './src/lodash';

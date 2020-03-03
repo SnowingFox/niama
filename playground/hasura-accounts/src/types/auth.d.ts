@@ -1,3 +1,5 @@
+import * as Auth from '@niama/auth/types';
+
 export * from '@niama/auth/types';
 export * from '@niama/auth-server/types';
 
@@ -18,7 +20,7 @@ declare module '@niama/auth/types' {
     email: string;
     firstname: string;
     lastname: string;
-    roles: string[];
+    roles: Role[];
   }
 
   interface SignupDto {
@@ -27,6 +29,8 @@ declare module '@niama/auth/types' {
       firstname: string;
       lastname: string;
     };
-    roles: string[];
+    roles: Role[];
   }
 }
+
+export type Role = Auth.Role | 'ADMIN';

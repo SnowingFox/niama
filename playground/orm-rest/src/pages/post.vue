@@ -27,12 +27,12 @@
 </template>
 
 <script lang="ts">
-import { createComponent, ref } from '@vue/composition-api';
+import { defineComponent, ref } from '@vue/composition-api';
 import { Item as OrmItem, Items as OrmItems } from '@niama/orm-client';
 
 import { rp } from '@/modules/post/post.api';
 
-export default createComponent({
+export default defineComponent({
   components: { OrmItem, OrmItems },
   setup() {
     const showSameCategory = ref(false);

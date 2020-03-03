@@ -13,25 +13,44 @@ module.exports = {
     sidebar: {
       '/documentation/': [
         {
+          title: '@niama/address',
+          children: [
+            ['address/boot', 'Boot Files'],
+            ['address/types', 'Types'],
+            ['address/i18n', 'I18n'],
+          ],
+        },
+        {
+          title: '@niama/api',
+          children: [
+            ['api/boot', 'Boot Files'],
+            ['api/uses', 'Uses'],
+            ['api/utils', 'Utilities'],
+            ['api/types', 'Types'],
+            ['api/i18n', 'I18n'],
+          ],
+        },
+        {
+          title: '@niama/core',
+
+          children: [
+            ['core/boot', 'Boot Files'],
+          ],
+        },
+        {
           title: 'Universal',
           collapsable: false,
           children: [
-            ['universal/api', 'api'],
             ['universal/auth', 'auth'],
-            ['universal/core', 'core'],
-            ['universal/nav', 'nav'],
             ['universal/orm', 'orm'],
           ],
         },
         {
           title: 'Client',
           collapsable: false,
-          children: [['client/api', 'api'], ['client/auth', 'auth'], ['client/nav', 'nav'], ['client/orm', 'orm']],
-        },
-        {
-          title: 'Server',
-          collapsable: false,
-          children: [],
+          children: [
+            ['client/auth', 'auth'],
+          ],
         },
         {
           title: 'Quasar extensions',

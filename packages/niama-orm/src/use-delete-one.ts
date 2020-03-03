@@ -1,14 +1,17 @@
-import { notifyFail$, saga$, useLoadable, useSourcable } from '@niama/core';
-import { useMutation } from '@vue/apollo-composable';
+import { useMutation } from '@niama/api';
+import { useLoadable, useSourcable } from '@niama/core';
 
 import * as T from './types';
 
-export function useDeleteOne<C extends T.Config>({ debug, id, rp, src$, ...opts }: T.UseDeleteOneP<C>): T.UseDeleteOneR {
-  if (!opts.fail$ && !opts.always$ && !opts.onAlways) opts.fail$ = notifyFail$;
+export const useDeleteOne = <C extends T.Cfg, D = string, F = null>(p: T.DeleteOneC<C, D, F>['UseP']): T.DeleteOneC<C, D, F>['R'] => {
+  const { rp, ...rest } = p;
+  return useMutation({ mutation: rp.O.deleteOne, notifyId: `${rp.L.singular}.op.deleteOne.Done`, ...rest });
+};
 
-  const { mutate } = useMutation(rp.ops.deleteOne);
+export const useDeleteOneL$ = <C extends T.Cfg, D = string, F = null>(p: T.DeleteOneC<C, D, F>['L$P']): T.DeleteOneC<C, D, F>['L$R'] => {
+  const { src$, ...rest } = p;
+  return useLoadable({ src$, switcher: useDeleteOne<C, D, F>(rest) });
+};
 
-  const switcher = () => saga$({ saga: () => mutate({ where: { id } }, {}), ...opts });
-
-  return { ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
-}
+export const useDeleteOneS$ = <C extends T.Cfg, D = string, F = null>(p: T.DeleteOneC<C, D, F>['UseP']): T.DeleteOneC<C, D, F>['S$R'] =>
+  useSourcable({ switcher: useDeleteOne<C, D, F>(p) });

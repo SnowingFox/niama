@@ -1,5 +1,5 @@
-import { fragments } from './helper';
 import * as T from './types';
+import { fragments } from './utils';
 
 // FIELDS ==================================================================================================================================
 

@@ -24,7 +24,7 @@ export const init = async (opts: T.InitO) => {
     const connection = await initConnection(opts.typeorm?.entities);
 
     // sendMail: async ({ from, subject, to, text, html }) => await transporter.sendMail({ from, to, subject, text, html }),
-    const db = new AccountsTypeorm({ ...opts.typeorm, connection });
+    const db = new AccountsTypeorm({ connection, ...opts.typeorm?.entities, cache: opts.typeorm?.cache });
 
     const accountsServer = new AccountsServer({ ...opts.server, db, siteUrl, tokenSecret: NIAMA_AUTH_SECRET! }, { password });
     patch(accountsServer);

@@ -10,13 +10,13 @@ q-page.tw-flex.tw-items-center.tw-justify-center: q-card.tw-w-full.tw-max-w-lg
 
 <script lang="ts">
 import { useSignup } from '@niama/auth';
-import { createComponent, reactive } from '@vue/composition-api';
+import { defineComponent, reactive } from '@vue/composition-api';
 import { getMutation, useMutation } from '@niama/api';
 import { getSourcable, notifyError$, useI18n, notifySuccess } from '@niama/core';
 
 // COMPONENT ===============================================================================================================================
 
-export default createComponent({
+export default defineComponent({
   setup() {
     const $niama = { i18n: useI18n() };
     const input: Signup = reactive({ email: '', password: '', username: '' });

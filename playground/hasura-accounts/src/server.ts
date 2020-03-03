@@ -2,12 +2,11 @@ import { init } from '@niama/auth-server';
 import gql from 'graphql-tag';
 import nodemailer from 'nodemailer';
 
+import {
+    User as userEntity, UserEmail as userEmailEntity, UserProfile as userProfileEntity, UserService as userServiceEntity,
+    UserSession as userSessionEntity
+} from '@/hasura-accounts/modules/user/server';
 import * as T from '@/hasura-accounts/types';
-import { UserEmail as userEmailEntity } from './b.user.email.entity';
-import { User as userEntity } from './b.user.entity';
-import { UserProfile as userProfileEntity } from './b.user.profile.entity';
-import { UserService as userServiceEntity } from './b.user.service.entity';
-import { UserSession as userSessionEntity } from './b.user.session.entity';
 
 const password: T.Auth.PasswordO = {
   sendVerificationEmailAfterSignup: true,

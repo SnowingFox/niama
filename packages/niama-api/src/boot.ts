@@ -9,8 +9,8 @@ import { defer } from 'rxjs';
 
 import * as T from './types';
 
-export const boot = async (p: T.BootP) => {
-  const opts: T.BootO = { ...fill(false, 'debug', 'http', 'rest', 'secured', 'ws'), resolvers: [], seeds: [], ...p };
+export const bootApi = async (p: T.BootApiP) => {
+  const opts: T.BootApiO = { ...fill(false, 'debug', 'http', 'rest', 'secured', 'ws'), resolvers: [], seeds: [], ...p };
 
   const cache: T.InMemoryCache = new InMemoryCache();
   const data = await processSeeds(opts.seeds);
@@ -26,7 +26,9 @@ export const boot = async (p: T.BootP) => {
     cache.writeData({ data: await seed() });
   };
   provider.onResetStore(async () => cache.writeData({ data: await processSeeds(provider.seeds) }));
-  provider.resetStore$ = defer(() => provider.resetStore());
+  provider.resetStore$ = defer(async () => {
+    await provider.resetStore();
+  });
 
   setProvider({ provider, id: 'api', onInit: () => provide(DefaultApolloClient, provider) });
 };
@@ -36,7 +38,7 @@ const getUri = (type: 'http' | 'ws', secured = false): string => {
   return `${type}${secured ? 's' : ''}://${HOST || 'localhost'}${PORT ? ':' + PORT : ''}${PATH ? '/' + PATH : ''}`;
 };
 
-const getLink = async ({ debug, http, prelink, secured, ws, rest }: T.BootO): Promise<T.ApolloLink> => {
+const getLink = async ({ debug, http, prelink, secured, ws, rest }: T.BootApiO): Promise<T.ApolloLink> => {
   if (rest) {
     const { RestLink } = await import('apollo-link-rest');
     const opts: T.RestLinkO = {

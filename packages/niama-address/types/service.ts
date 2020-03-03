@@ -1,32 +1,30 @@
-import { NiamaProvider, NiamaProviderKeys, Observable } from '@niama/core/types';
+import { Maybe, SagaCfg } from '@niama/core/types';
 
-import { Dto, Suggestion, SuggestionType } from './objects';
+import { Coords, Po, Proposal, ProposalType } from './objects';
 
-// BASE PARAMS =============================================================================================================================
+// SERVICES ================================================================================================================================
 
-export interface ServiceP<Props extends NiamaProviderKeys = 'address'> {
-  $niama: Pick<NiamaProvider, Props>;
-}
+export type ServiceK = 'fromCoords' | 'fromValue' | 'proposalsFromInput';
+export type UseSagaP<C extends SagaCfg> = { name: ServiceK } & C['UseP'];
+export type UseSagaL$P<C extends SagaCfg> = { name: ServiceK } & C['L$P'];
 
-// FROM VALUE =================================================================================================================================
+// FROM COORDS =============================================================================================================================
+
+export type FromCoordsC<Done = Maybe<Po>, Fail = null> = SagaCfg<Coords, Maybe<Po>, Done, Fail>;
+
+// FROM VALUE ==============================================================================================================================
 
 export interface FromValueO {
   fields?: any[];
-  value: string;
 }
 
-export interface FromValueP extends FromValueO, ServiceP {}
+export type FromValueC<Done = Po, Fail = null> = SagaCfg<string, Po, Done, Fail, FromValueO>;
 
-export type FromValueR = Observable<Dto>;
+// PROPOSALS FROM INPUT ====================================================================================================================
 
-// SUGGESIONS FROM INPUT ===================================================================================================================
-
-export interface SuggestionsFromInputO {
+export interface ProposalsFromInputO {
   countries?: string[];
-  input: string;
-  type?: SuggestionType;
+  type?: ProposalType;
 }
 
-export interface SuggestionsFromInputP extends SuggestionsFromInputO, ServiceP {}
-
-export type SuggestionsFromInputR = Observable<Suggestion[]>;
+export type ProposalsFromInputC<Done = Proposal[], Fail = null> = SagaCfg<string, Proposal[], Done, Fail, ProposalsFromInputO>;

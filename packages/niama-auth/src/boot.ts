@@ -1,34 +1,28 @@
 import { getProvider, hasProvider, setProvider } from '@niama/core';
 
-import { getRS, getSeed } from './api';
+import { getSeed, queryIsAuthenticated } from './api';
 import * as T from './types';
+import { getError } from './utils';
 
-export function boot(p: T.BootP, initProvider: (p: T.InitProviderP) => T.Provider) {
-  if (!hasProvider('api')) throw new Error('auth.boot.error.API_UNDEFINED');
-  const api: T.Api.Provider = getProvider('api') as T.Api.Provider;
-  const provider: T.Provider = initProvider({ ...p, api });
+export const bootAuth = async ({ initProvider, opts }: T.BootAuthP) => {
+  if (!hasProvider('api')) throw getError('boot.UndefinedApi');
+
+  const provider = initProvider(opts);
   setProvider({ id: 'auth', provider });
 
-  api.addSeed(getSeed(provider));
-  api.addResolvers(getRS());
+  const $api = getProvider('api');
+  await $api.addSeed(getSeed(provider));
+  // $api.addResolvers(getRS());
 
-  // api.addResolvers({})
-  // api.writeData({ data: auth: getIni})
-  /*const current: T.Current<C['Role']> = await rest.getCurrent();
-  const auth: T.Provider<C> = { signedInRoute: '', signedOutRoute: 'signin', ...rest, current };
-  Vue.prototype.$auth = auth;
+  opts.router.beforeEach(async (to, _from, next) => {
+    const authenticatedRequired = to.matched.some(({ meta: { authenticated } }) => authenticated === true);
+    if (authenticatedRequired && !opts.authenticatedRoute) throw getError('boot.UndefinedAuthenticatedRoute');
+    const unauthenticatedRequired = to.matched.some(({ meta: { authenticated } }) => authenticated === false);
+    if (unauthenticatedRequired && !opts.unauthenticatedRoute) throw getError('boot.UndefinedUnauthenticatedRoute');
 
-  router.beforeEach((to, _from, next) => {
-    const authenticatedRequired: boolean = to.matched.some(({ meta: { authenticated } }) => authenticated === true);
-    const unauthenticatedRequired: boolean = to.matched.some(({ meta: { authenticated } }) => authenticated === false);
-
-    /*await app.apolloProvider.defaultClient.mutate({
-      mutation: api.requests.setAuthorizedRoles,
-      variables: { roles: [...to.matched].pop().meta.authorized || [] },
-    });*
-
-    if (unauthenticatedRequired && !!auth.current.id) return next({ name: auth.signedInRoute });
-    if (authenticatedRequired && !auth.current.id) return next({ name: auth.signedOutRoute });
+    const isAuthenticated = await queryIsAuthenticated();
+    if (unauthenticatedRequired && isAuthenticated) return next(opts.authenticatedRoute);
+    if (authenticatedRequired && !isAuthenticated) return next(opts.unauthenticatedRoute);
     return next();
-  });*/
-}
+  });
+};

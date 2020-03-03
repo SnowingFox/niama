@@ -3,9 +3,9 @@ q-page.q-mx-auto.Page(padding): q-toolbar.q-mb-md.bg-primary.text-white: q-toolb
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 
-export default createComponent({});
+export default defineComponent({});
 </script>
 
 <i18n>

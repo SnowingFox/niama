@@ -1,16 +1,18 @@
-import { notifyFail$, saga$, useLoadable, useNiama, useSourcable } from '@niama/core';
-import { useMutation } from '@vue/apollo-composable';
+import { useMutation } from '@niama/api';
+import { pick, sagaDone, useLoadable, useSourcable } from '@niama/core';
 
-import { getError } from './helper';
 import * as T from './types';
 
-export function useCreate<C extends T.Config, Dto>({ debug, getData, rp, src$, ...opts }: T.UseCreateP<C, Dto>): T.UseCreateR {
-  if (!opts.fail$ && !opts.always$ && !opts.onAlways)
-    opts.fail$ = () => notifyFail$({ error: getError(`${rp.labels.SINGULAR}.request.CREATE_FAIL`) });
+export const useCreate = <C extends T.Cfg, D = C['ObC']['Po'], F = null>(p: T.CreateC<C, D, F>['UseP']): T.CreateC<C, D, F>['R'] => {
+  const { fields, rp, ...rest } = p;
+  const done = ({ data }: T.Api.QR<C['ObC']['Po']>) => sagaDone(pick(rest, ['always', 'done', 'onAlways', 'onDone']))(data![rp.L.create]);
+  return useMutation({ mutation: rp.O.create(fields), notifyId: `${rp.L.singular}.op.create.Done`, ...rest, done });
+};
 
-  const { mutate } = useMutation(rp.ops.create);
+export const useCreateL$ = <C extends T.Cfg, D = C['ObC']['Po'], F = null>(p: T.CreateC<C, D, F>['L$P']): T.CreateC<C, D, F>['L$R'] => {
+  const { src$, ...rest } = p;
+  return useLoadable({ src$, switcher: useCreate<C, D, F>(rest) });
+};
 
-  const switcher = () => saga$({ saga: () => mutate({ data: getData() }, {}), ...opts });
-
-  return { ...(src$ ? useLoadable({ src$, switcher }) : useSourcable(switcher)) };
-}
+export const useCreateS$ = <C extends T.Cfg, D = C['ObC']['Po'], F = null>(p: T.CreateC<C, D, F>['UseP']): T.CreateC<C, D, F>['S$R'] =>
+  useSourcable({ switcher: useCreate<C, D, F>(p) });

@@ -1,0 +1,1 @@
+export { rp as postRp, useReadMany as useReadPosts, useReadOne as useReadPost } from './api';

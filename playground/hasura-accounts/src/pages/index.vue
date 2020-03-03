@@ -1,24 +1,22 @@
 <template lang="pug">
 q-page.u-page(padding)
   q-linear-progress(v-if="loading", query)
-  q-banner(v-else-if="networkStatus === 8") {{ error.message }}
+  q-banner(v-else-if="error") {{ error.message }}
     template(#avatar): q-icon(name="warning")
   q-list(v-else, bordered, separator): q-item(v-for="post of posts", :key="post.id"): q-item-section {{ post.title }} 
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
-import { useQuery, useResult } from '@vue/apollo-composable';
+import { defineComponent } from '@vue/composition-api';
 
-import { rp } from '@/hasura-accounts/modules/post/api';
+import { useReadPosts } from '@/hasura-accounts/modules/post';
 
 // COMPONENT ===============================================================================================================================
 
-export default createComponent({
+export default defineComponent({
   setup() {
-    const { error, loading, networkStatus, result } = useQuery(rp.ops.readAll);
-    const posts = useResult(result, []);
-    return { error, loading, networkStatus, posts }; // use networkStatus instead of error till vue-apollo fixes the issue
+    const { error, items: posts, loading } = useReadPosts();
+    return { error, loading, posts }; // use networkStatus instead of error till vue-apollo fixes the issue
   },
 });
 </script>
@@ -29,5 +27,5 @@ fr:
 </i18n>
 
 <style lang="postcss" scoped>
-.q-banner { @apply tw-bg-negative tw-text-white }
+.q-banner { @apply _bg-negative _text-white }
 </style>

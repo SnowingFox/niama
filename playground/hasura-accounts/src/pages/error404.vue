@@ -5,11 +5,11 @@ q-page.u-page(padding)
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 
 // COMPONENT ===============================================================================================================================
 
-export default createComponent({});
+export default defineComponent({});
 </script>
 
 <i18n>
@@ -19,5 +19,5 @@ fr:
 </i18n>
 
 <style lang="postcss" scoped>
-.Back { @apply tw-bg-secondary tw-text-white }
+.Back { @apply _bg-secondary _text-white }
 </style>

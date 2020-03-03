@@ -15,15 +15,15 @@ q-layout(view="hHh Lpr lff")
 </template>
 
 <script lang="ts">
-import { useNavs } from '@niama/nav';
-import { createComponent, ref } from '@vue/composition-api';
+import { useReadNavs } from '@niama/nav';
+import { defineComponent, ref } from '@vue/composition-api';
 
-import AuthSign from '@/hasura-accounts/modules/auth/sign.component.vue';
+import { AuthSign } from '@/hasura-accounts/modules/auth';
 import * as T from '@/hasura-accounts/types';
 
 // COMPONENT ===============================================================================================================================
 
-export default createComponent({
+export default defineComponent({
   components: { AuthSign },
   meta() {
     return {
@@ -33,12 +33,11 @@ export default createComponent({
   },
   setup() {
     const show = ref(false);
-    const { items: navs } = useNavs<Nav>({
+    const { items: navs } = useReadNavs<Nav>({
       fields: ['exact', 'icon', 'id', 'to'],
       where: { parent: 'public' },
       update: (nav) => ({ ...nav, icon: nav.icon || undefined }),
     });
-
 
     return { navs, show };
   },
@@ -46,23 +45,23 @@ export default createComponent({
 
 // TYPES ===================================================================================================================================
 
-interface Nav extends Pick<T.Nav.Dto, 'exact' | 'id' | 'to'> {
+interface Nav extends Pick<T.Nav.Po, 'exact' | 'id' | 'to'> {
   icon?: string;
 }
 </script>
 
 <style lang="postcss" scoped>
-.Drawer-item { @apply tw-uppercase }
-.Background { @apply tw-fixed tw-inset-0 tw-flex tw-items-center tw-justify-center;
-  &-image { @apply tw-max-w-xs tw-opacity-50 } }
+.Drawer-item { @apply _uppercase }
+.Background { @apply _fixed _inset-0 _flex _items-center _justify-center;
+  &-image { @apply _max-w-xs _opacity-50 } }
 .Menu {
-  &-items { @apply tw-mr-3 tw-bg-accent tw-hidden }
-  &-toggle { @apply tw-bg-primary } }
-.Toolbar { @apply tw-bg-secondary }
+  &-items { @apply _mr-3 _bg-accent _hidden }
+  &-toggle { @apply _bg-primary } }
+.Toolbar { @apply _bg-secondary }
 
 @screen sm {
   .Menu {
-    &-items { @apply tw-flex }
-    &-toggle { @apply tw-hidden } }
+    &-items { @apply _flex }
+    &-toggle { @apply _hidden } }
 }
 </style>

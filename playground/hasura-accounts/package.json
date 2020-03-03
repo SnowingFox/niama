@@ -8,12 +8,11 @@
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0",
-    "dev:mock": "nodemon --config config/b.mock.nodemon.json",
     "dev:client": "quasar dev",
     "dev:docker": "docker-compose -p hasura_dev -f config/b.docker.dev.yml up -d",
     "dev:docker:reset" : "docker volume prune -f",
     "dev:hasura": "hasura console",
+    "dev:hasura:export": "gq http://192.168.99.101:9101/v1/graphql -H 'X-Hasura-Admin-Secret:niama_api_secret' --introspect > schema.graphql",
     "dev:hasura:init": "hasura migrate apply",
     "dev:server": "nodemon --config config/b.server.nodemon.json",
     "prod:client": "quasar build",

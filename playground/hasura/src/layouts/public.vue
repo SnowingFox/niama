@@ -15,13 +15,13 @@ q-layout(view="hHh Lpr lff")
 
 <script lang="ts">
 import { useNavs } from '@niama/nav';
-import { createComponent, ref } from '@vue/composition-api';
+import { defineComponent, ref } from '@vue/composition-api';
 
 import * as T from '@/hasura/types';
 
 // COMPONENT ===============================================================================================================================
 
-export default createComponent({
+export default defineComponent({
   meta() {
     return {
       title: this.$t(`titles.${this.$route.name}`),

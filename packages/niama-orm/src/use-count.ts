@@ -3,11 +3,12 @@ import { ref } from '@vue/composition-api';
 
 import * as T from './types';
 
-export function useCount<C extends T.Config>(p: T.UseCountP<C>): T.UseCountR {
+export function useCount<C extends T.Cfg>(p: T.UseCountP<C>): T.UseCountR {
   const { debug = false, rp, where } = p;
 
   const count: T.Ref<T.Maybe<number>> = ref(null);
   const loading = ref(true);
+  const error: T.Ref<Error> = ref(undefined);
 
   /*addSmartQuery('count', {
     query: rp.ops.count,
@@ -21,9 +22,9 @@ export function useCount<C extends T.Config>(p: T.UseCountP<C>): T.UseCountR {
     manual: true,
   });*/
 
-  return { count, loading };
+  return { count, error, loading };
 }
 
-export function getUseCount<C extends T.Config>(rp: T.RP<C>): (p: T.UseCountTypedP<C>) => T.UseCountR {
+export function getUseCount<C extends T.Cfg>(rp: T.Rp<C>): (p: T.UseCountTypedP<C>) => T.UseCountR {
   return (p) => useCount({ ...p, rp });
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  prefix: 'tw-',
+  prefix: '_',
   theme: {
     colors: {
       current: 'currentColor',

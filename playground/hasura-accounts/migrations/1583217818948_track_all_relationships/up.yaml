@@ -1,0 +1,40 @@
+- args:
+    name: user
+    table:
+      name: post
+      schema: public
+    using:
+      foreign_key_constraint_on: author
+  type: create_object_relationship
+- args:
+    name: post_category
+    table:
+      name: post
+      schema: public
+    using:
+      foreign_key_constraint_on: category
+  type: create_object_relationship
+- args:
+    name: posts
+    table:
+      name: post_category
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: category
+        table:
+          name: post
+          schema: public
+  type: create_array_relationship
+- args:
+    name: posts
+    table:
+      name: user
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: author
+        table:
+          name: post
+          schema: public
+  type: create_array_relationship

@@ -3,11 +3,11 @@ q-page.u-page(padding): q-toolbar.u-title: q-toolbar-title {{ $t('title') }}
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 
 // COMPONENT ===============================================================================================================================
 
-export default createComponent({});
+export default defineComponent({});
 </script>
 
 <i18n>

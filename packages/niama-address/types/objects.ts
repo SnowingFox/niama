@@ -1,10 +1,31 @@
 import * as Api from '@niama/api/types';
+import { Maybe } from '@niama/core/types';
 
-// NAMES =================================================================================================================================
+// FIELDS ==================================================================================================================================
 
-export type Names = Api.Names | FragmentNames | 'label' | 'lat' | 'lng' | 'types';
+export type SF = K[];
+export type F = SF;
 
-export type FragmentNames =
+// OBJECTS =================================================================================================================================
+
+export interface Po extends Proposal, Coords, Fragments {}
+export type Coords = Record<CoordK, number>;
+export type Fragments = Record<FragmentK, Maybe<string>>;
+
+export interface Proposal extends Api.Po {
+  label: string;
+  types: string[];
+  value: string;
+}
+
+export type ProposalType = 'address' | 'city' | 'region';
+
+// KEYS ====================================================================================================================================
+
+export type K = Api.K | CoordK | FragmentK | 'label' | 'types';
+export type CoordK = 'lat' | 'lng';
+
+export type FragmentK =
   | 'administrativeAreaLevel1'
   | 'administrativeAreaLevel1SV'
   | 'administrativeAreaLevel2'
@@ -69,22 +90,3 @@ export type FragmentNames =
   | 'sublocalityLevel5SV'
   | 'subpremise'
   | 'subpremiseSV';
-
-// OBJECTS =================================================================================================================================
-
-export interface Dto extends Api.Dto, Suggestion, Record<FragmentNames, string> {
-  lat: number;
-  lng: number;
-}
-
-export interface Suggestion extends Api.Dto {
-  label: string;
-  types: string[];
-  value: string;
-}
-
-export type SuggestionType = 'address' | 'city' | 'region';
-
-// FIELDS ==================================================================================================================================
-
-export type F = Names[];

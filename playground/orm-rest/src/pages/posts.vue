@@ -37,7 +37,7 @@ orm-items(v-slot="{ count, fetchMore, items, loading, total }", :rp="rp", :first
 </template>
 
 <script lang="ts">
-import { computed, createComponent, ref } from '@vue/composition-api';
+import { computed, defineComponent, ref } from '@vue/composition-api';
 
 /*import { PostActions } from '@/modules/post/f.post.component.actions';
 import { PostItems } from '@/modules/post/f.post.component.items';*/
@@ -48,7 +48,7 @@ import { rp } from '@/modules/post/post.api';
 import { useApi } from '@niama/api-client';
 import { Dialog } from 'quasar';
 
-export default createComponent({
+export default defineComponent({
   components: { OrmItems },
   setup() {
     const $niama = { api: useApi(), i18n: useI18n() };

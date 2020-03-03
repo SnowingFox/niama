@@ -1,16 +1,16 @@
 <template lang="pug">
-  #q-app: router-view
+#q-app: router-view
 </template>
 
 <script lang="ts">
 import { provideNiama } from '@niama/core';
-import { createComponent } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 
 import * as T from '@/hasura-accounts/types';
 
 // COMPONENT ===============================================================================================================================
 
-export default createComponent({
+export default defineComponent({
   setup(_p, context: T.SetupContext) {
     provideNiama(context);
   },

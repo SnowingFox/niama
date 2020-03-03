@@ -8,9 +8,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
+    "dev:client": "quasar dev",
     "dev:mock": "nodemon --config config/b.mock.nodemon.json",
-    "dev:quasar": "quasar dev",
-    "prod:quasar": "quasar build"
+    "prod:client": "quasar build"
   },
   "dependencies": {
     "@niama/quasar-app-extension-i18n": "^1.0.1",
