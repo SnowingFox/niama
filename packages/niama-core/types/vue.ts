@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 import { Niama } from './';
 import { NiamaOnInit } from './main';
 

@@ -21,15 +21,6 @@ export interface GetErrorP {
 
 // OBJECTS =================================================================================================================================
 
-export interface ChanceImageO {
-  blur?: number;
-  grayscale?: boolean;
-  height?: number;
-  id?: number;
-  width?: number;
-  withExtension?: boolean;
-}
-
 export type Actioner<Res = void, Src = void> = Syncer<Res, Src> | Asyncer<Res, Src>;
 export type Asyncer<Res = void, Src = void> = (...s: [Src]) => Promise<Res>;
 export type Dict<T = string> = { [index: string]: T };
