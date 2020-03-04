@@ -21,7 +21,24 @@ cd <folder_name>
 quasar ext add @niama/starter
 ```
 
-## Server: Prisma 2 (optional)
+## What is installed for you
+
+### All Niama extensions
+
+- pug
+- tailwindcss
+- ts
+
+### Boots
+
+#### Api
+
+#### I18n
+
+#### Router
+
+### Provider
+
 
 
 
