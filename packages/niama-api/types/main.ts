@@ -1,4 +1,4 @@
-import { Dict, Observable, Opt } from '@niama/core/types';
+import { AtLeastOne, Dict, Observable, Opt } from '@niama/core/types';
 
 import { ApolloClient, ApolloLink, DocumentNode, HttpLinkO, Resolvers, RestLinkO } from './externals';
 
@@ -71,7 +71,7 @@ export type FieldCfg<Fi extends F = any, SFi extends SF = any, EF extends Opt<st
 export type Fields<C extends FieldCfg> = Record<'main' | C['EF'], C['F']> & Record<C['ESF'], C['SF']>;
 
 export type SF = string[];
-export type F = SF | AtLeastOneKey<{ _: SF } & Dict<any>>;
+export type F = SF | AtLeastOne<{ _: SF } & Dict<any>>;
 
 export type K = IdK | TypeK;
 export type IdK = 'id';

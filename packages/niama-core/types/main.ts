@@ -23,6 +23,7 @@ export interface GetErrorP {
 
 export type Actioner<Res = void, Src = void> = Syncer<Res, Src> | Asyncer<Res, Src>;
 export type Asyncer<Res = void, Src = void> = (...s: [Src]) => Promise<Res>;
+export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> & U[keyof U];
 export type Dict<T = string> = { [index: string]: T };
 export type I18n<T extends string = string> = Record<T, string>;
 export type Key<T extends { [i: string]: unknown }> = keyof T;
