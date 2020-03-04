@@ -10,7 +10,7 @@ export type QData<T> = Maybe<Record<string, T>>;
 export type QR<T = unknown> = ApolloQueryResult<QData<T>>;
 
 export { UseMutationOptions as UseMutationO, UseQueryOptions as UseQueryO, UseResultReturn as R } from '@vue/apollo-composable';
-export { InMemoryCache } from 'apollo-cache-inmemory';
+export { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 export { Resolvers } from 'apollo-client';
 export { ApolloLink } from 'apollo-link';
 export { HttpLink } from 'apollo-link-http';

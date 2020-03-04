@@ -1,13 +1,9 @@
-import { getError as baseGetError, map, mergeWith, pick } from '@niama/core';
+import { getError as baseGetError, map, mergeWith } from '@niama/core';
 import gql from 'graphql-tag';
 
 import * as T from './types';
 
 const DEBUG = false;
-
-// OPTIONS ===================================================================================================================================
-
-export const pickUseMutationO = <Done, Src>(opts: any): T.UseMutationO<Done, Src> => pick(opts, ['errorPolicy', 'fetchPolicy']);
 
 // LOCAL ===================================================================================================================================
 
