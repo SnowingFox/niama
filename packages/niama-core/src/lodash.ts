@@ -1,17 +1,17 @@
-import camelCase from 'lodash/camelCase';
-import chunk from 'lodash/chunk';
-import defaultsDeep from 'lodash/defaultsDeep';
-import defaultTo from 'lodash/defaultTo';
-import filter from 'lodash/filter';
-import isEqual from 'lodash/isEqual';
-import isFunction from 'lodash/isFunction';
-import isPlainObject from 'lodash/isPlainObject';
-import merge from 'lodash/merge';
-import mergeWith from 'lodash/mergeWith';
-import orderBy from 'lodash/orderBy';
-import random from 'lodash/random';
-import union from 'lodash/union';
-import zipObject from 'lodash/zipObject';
+import camelCase from 'lodash-es/camelCase';
+import chunk from 'lodash-es/chunk';
+import defaultsDeep from 'lodash-es/defaultsDeep';
+import defaultTo from 'lodash-es/defaultTo';
+import filter from 'lodash-es/filter';
+import isEqual from 'lodash-es/isEqual';
+import isFunction from 'lodash-es/isFunction';
+import isPlainObject from 'lodash-es/isPlainObject';
+import merge from 'lodash-es/merge';
+import mergeWith from 'lodash-es/mergeWith';
+import orderBy from 'lodash-es/orderBy';
+import random from 'lodash-es/random';
+import union from 'lodash-es/union';
+import zipObject from 'lodash-es/zipObject';
 
 import * as T from '../types';
 

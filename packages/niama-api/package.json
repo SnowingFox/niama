@@ -1,6 +1,6 @@
 {
   "name": "@niama/api",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "index.ts",
   "license": "MIT",
   "sideEffects": false,
@@ -14,7 +14,7 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "@niama/core": "^1.2.3",
+    "@niama/core": "^1.2.4",
     "@types/graphql": "^14.5.0",
     "@vue/apollo-composable": "^4.0.0-alpha.7",
     "apollo-cache-inmemory": "^1.6.5",

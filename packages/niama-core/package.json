@@ -1,6 +1,6 @@
 {
   "name": "@niama/core",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
@@ -21,9 +21,9 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.149",
+    "@types/lodash-es": "^4.17.3",
     "@vue/composition-api": "^0.4.0",
-    "lodash": "^4.17.15",
+    "lodash-es": "^4.17.15",
     "quasar": "^1.9.7",
     "rxjs": "^6.5.4",
     "superstruct": "^0.8.3",
