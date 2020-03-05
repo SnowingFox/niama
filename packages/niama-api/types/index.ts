@@ -1,3 +1,4 @@
+export * from './boot';
 export * from './core';
 export * from './externals';
 export * from './main';

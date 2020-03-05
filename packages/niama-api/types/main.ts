@@ -1,31 +1,10 @@
-import { AtLeastOne, Dict, Observable, Opt } from '@niama/core/types';
+import { AtLeastOne, Dict, Opt } from '@niama/core/types';
 
-import { ApolloClient, ApolloLink, DocumentNode, HttpLinkO, Resolvers, RestLinkO } from './externals';
+import { DocumentNode } from './externals';
 
-// BOOT ====================================================================================================================================
-
-export interface BootApiO {
-  debug: boolean;
-  http: boolean | HttpLinkO;
-  prelink?: ApolloLink;
-  resolvers: Resolvers | Resolvers[];
-  rest: boolean | RestLinkO;
-  secured: boolean;
-  seeds: Seed[];
-  ws: boolean;
-}
-
-export interface BootApiP extends Partial<BootApiO> {}
+// SEED ====================================================================================================================================
 
 export type Seed<D extends object = {}> = () => D | Promise<D>;
-
-// PROVIDER ================================================================================================================================
-
-export type Provider = ApolloClient & {
-  addSeed: <D extends object>(seed: Seed<D>) => Promise<void>;
-  resetStore$: Observable<void>;
-  seeds: Seed[];
-};
 
 // REPOSITORY ==============================================================================================================================
 
