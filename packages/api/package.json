@@ -1,6 +1,6 @@
 {
   "name": "@niama/api",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
