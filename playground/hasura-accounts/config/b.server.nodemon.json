@@ -1,4 +1,0 @@
-{
-  "ext": "ts",
-  "exec": "ts-node -P config/b.server.ts.json -r dotenv/config -r tsconfig-paths/register src/server.ts dotenv_config_path=.env.dev"
-}
