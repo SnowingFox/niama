@@ -8,6 +8,10 @@
   },
   "dependencies": {
     "@babel/core": "^7.8.7",
+    "@niama/quasar-app-extension-i18n": "^2.2.1",
+    "@niama/quasar-app-extension-pug": "^2.2.1",
+    "@niama/quasar-app-extension-tailwindcss": "^2.2.1",
+    "@niama/quasar-app-extension-ts": "^2.2.1",
     "@quasar/extras": "^1.0.0",
     "@storybook/addon-actions": "^5.3.14",
     "@storybook/addon-console": "^1.2.1",

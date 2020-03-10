@@ -1,0 +1,2 @@
+admin_secret: ${NIAMA_API_SECRET}
+endpoint: ${NIAMA_API_PROTOCOL}://${NIAMA_API_HOST}:${NIAMA_API_PORT}
