@@ -1,11 +1,17 @@
 {
+  "version": "2.3.2",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "packages": [
     "packages/*",
     "playgrounds/*",
     "projects/*",
     "quasar/*"
   ],
-  "npmClient": "yarn",
-  "useWorkspaces": true,
-  "version": "2.3.2"
+  "command": {
+    "publish": {
+      "conventionalCommits": true, 
+      "yes": true
+    }
+  }
 }

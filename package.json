@@ -9,6 +9,17 @@
       "quasar/*"
     ]
   },
+  "scripts": {
+    "release": "cross-env HUSKY_BYPASS=true lerna publish"
+  },
+  "husky": {
+    "hooks": {
+    "commit-msg": "[[ -n $HUSKY_BYPASS ]] || commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/parser": "^2.22.0",
@@ -20,5 +31,11 @@
     "prettier": "^1.19.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "cross-env": "^7.0.2",
+    "husky": "^4.2.3"
   }
 }
