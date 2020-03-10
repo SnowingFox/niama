@@ -1,0 +1,47 @@
+{
+  "name": "@niama/core-play",
+  "version": "0.0.0",
+  "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
+  "license": "MIT",
+  "scripts": {
+    "storybook": "start-storybook"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@quasar/extras": "^1.0.0",
+    "@storybook/addon-actions": "^5.3.14",
+    "@storybook/addon-console": "^1.2.1",
+    "@storybook/addon-docs": "^5.3.14",
+    "@storybook/addon-knobs": "^5.3.14",
+    "@storybook/addon-storysource": "^5.3.14",
+    "@storybook/preset-typescript": "^2.1.0",
+    "@storybook/source-loader": "^5.3.14",
+    "@storybook/vue": "^5.3.14",
+    "@types/webpack": "^4.41.7",
+    "babel-loader": "^8.0.6",
+    "babel-preset-vue": "^2.0.2",
+    "css-loader": "^3.4.2",
+    "fork-ts-checker-webpack-plugin": "^4.0.5",
+    "quasar": "^1.0.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-is": "^16.13.0",
+    "regenerator-runtime": "^0.13.3",
+    "ts-loader": "^6.2.1",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.42.0"
+  },
+  "devDependencies": {
+    "@quasar/app": "^1.0.0"
+  },
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
+}

@@ -6,7 +6,9 @@
   "main": "index.ts",
   "sideEffects": false,
   "dependencies": {
+    "@niama/core": "^2.1.4",
     "@vue/apollo-composable": "^4.0.0-alpha.7",
+    "@vue/composition-api": "^0.4.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link": "^1.2.13",
@@ -14,7 +16,11 @@
     "apollo-link-rest": "0.7.3",
     "apollo-link-ws": "^1.0.19",
     "graphql": "^14.6.0",
-    "graphql-tag": "^2.10.3"
+    "graphql-anywhere": "^4.2.6",
+    "graphql-tag": "^2.10.3",
+    "qs": "^6.9.1",
+    "subscriptions-transport-ws": "^0.9.16",
+    "vue": "^2.6.11"
   },
   "gitHead": "f1b940be53a298a6e453e38aa737694bc07552e6"
 }

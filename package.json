@@ -4,6 +4,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
+      "playgrounds/*",
+      "projects/*",
       "quasar/*"
     ]
   },
