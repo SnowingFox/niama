@@ -1,12 +1,12 @@
 {
   "name": "@niama/api",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@niama/core": "^2.2.0",
+    "@niama/core": "^2.2.1",
     "@vue/apollo-composable": "^4.0.0-alpha.7",
     "@vue/composition-api": "^0.4.0",
     "apollo-cache-inmemory": "^1.6.5",
@@ -22,5 +22,5 @@
     "subscriptions-transport-ws": "^0.9.16",
     "vue": "^2.6.11"
   },
-  "gitHead": "f1b940be53a298a6e453e38aa737694bc07552e6"
+  "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"
 }

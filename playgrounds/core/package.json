@@ -1,6 +1,6 @@
 {
-  "name": "@niama/core-play",
-  "version": "2.2.0",
+  "name": "@niama/playground",
+  "version": "2.2.1",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "scripts": {
@@ -43,5 +43,6 @@
   },
   "browserslist": [
     "last 1 version, not dead, ie >= 11"
-  ]
+  ],
+  "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"
 }
