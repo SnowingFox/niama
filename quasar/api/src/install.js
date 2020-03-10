@@ -22,7 +22,8 @@ const addNiamaExtensions = (api) =>
     });
 
 const updateContent = (api) => {
-  api.render('./templates');
+  const package = require(api.resolve.app('/package.json'));
+  api.render('./templates', { package });
 };
 
 module.exports = (api) => {
