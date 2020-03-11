@@ -1,0 +1,26 @@
+{
+  "name": "@niama/quasar-app-extension-starter",
+  "version": "0.0.0",
+  "description": "Transform Quasar starter to Niama starter",
+  "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
+  "license": "MIT",
+  "main": "src/index.js",
+  "keywords": [
+    "quasar",
+    "app",
+    "app extension",
+    "extension",
+    "niama",
+    "starter"
+  ],
+  "devDependencies": {
+    "execa": "^4.0.0",
+    "fs": "^0.0.1-security",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "@niama/nav": "^2.6.0",
+    "dotenv": "^8.2.0",
+    "prettier": "^1.19.1"
+  }
+}
