@@ -4,5 +4,8 @@
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "@niama/api": "^2.2.1"
+  }
 }
