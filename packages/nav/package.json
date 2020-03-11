@@ -1,6 +1,6 @@
 {
   "name": "@niama/nav",
-  "version": "0.0.0",
+  "version": "2.6.0",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
