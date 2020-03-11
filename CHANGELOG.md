@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/niama-strategies/niama/compare/v2.4.0...v2.5.0) (2020-03-11)
+
+
+### Bug Fixes
+
+* add @niama/api dependency ([0ed8de4](https://github.com/niama-strategies/niama/commit/0ed8de4108c3044e7f001c05d1ba21ca56a88cab))
+
+
+### Features
+
+* add @niama/orm ([2af98fe](https://github.com/niama-strategies/niama/commit/2af98feb5fa6cc636c0415f4aecac6d0be5bc124))
+
+
+
+
+
 # [2.4.0](https://github.com/niama-strategies/niama/compare/v2.3.2...v2.4.0) (2020-03-11)
 
 
