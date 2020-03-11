@@ -1,0 +1,11 @@
+{
+  "name": "@niama/nav",
+  "version": "0.0.0",
+  "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
+  "license": "MIT",
+  "main": "index.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@niama/orm": "^2.5.0"
+  }
+}
