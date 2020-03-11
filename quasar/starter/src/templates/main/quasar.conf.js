@@ -1,6 +1,6 @@
 module.exports = () => ({
   animations: [],
-  boot: ['composition', 'router', 'i18n', 'api'],
+  boot: ['composition', 'core', 'api'],
   build: {
     env: {
       NIAMA_API_HOST: JSON.stringify(process.env.NIAMA_API_HOST),

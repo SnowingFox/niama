@@ -41,7 +41,7 @@ export default defineComponent({
 
 // TYPES ===================================================================================================================================
 
-interface Nav extends Pick<T.Nav.Dto, 'exact' | 'id' | 'to'> {
+interface Nav extends Pick<T.Nav.Po, 'exact' | 'id' | 'to'> {
   icon?: string;
 }
 </script>
