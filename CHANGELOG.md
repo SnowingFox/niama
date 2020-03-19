@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.1](https://github.com/niama-strategies/niama/compare/v2.13.0...v2.13.1) (2020-03-19)
+
+
+### Bug Fixes
+
+* add loader ([e0b62ff](https://github.com/niama-strategies/niama/commit/e0b62ffa10ab8bee48086553cef300fc7398e794))
+
+
+
+
+
 # [2.13.0](https://github.com/niama-strategies/niama/compare/v2.7.1...v2.13.0) (2020-03-19)
 
 
