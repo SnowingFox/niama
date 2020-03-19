@@ -20,7 +20,7 @@ function default_1(source) {
 exports.default = default_1;
 // PRELEX PLUGIN ===========================================================================================================================
 var preLex = function (content, opts) {
-    var _a = opts.separatorE, separatorE = _a === void 0 ? '-' : _a, _b = opts.separatorM, separatorM = _b === void 0 ? '--' : _b;
+    var _a = opts.separatorM, separatorM = _a === void 0 ? '--' : _a;
     var reg = {
         BEM: /\.@-(\w+)--(\w+)/g,
         BE: /\.@-(\w+)/g,
@@ -30,12 +30,12 @@ var preLex = function (content, opts) {
         E: /\.-(\w+)/g,
     };
     var repl = {
-        BEM: ".BE" + separatorE + "$1.BE" + separatorE + "$1" + separatorM + "$2",
-        BE: ".BE" + separatorE + "$1",
-        BM: ".B" + separatorE + "$1.B" + separatorE + "$1" + separatorM + "$2",
-        B: ".B" + separatorE + "$1",
-        EM: ".E" + separatorE + "$1.E" + separatorE + "$1" + separatorM + "$2",
-        E: ".E" + separatorE + "$1",
+        BEM: ".BE_$1.BE_$1" + separatorM + "$2",
+        BE: ".BE_$1",
+        BM: ".B_$1.B_$1" + separatorM + "$2",
+        B: ".B_$1",
+        EM: ".E_$1.E_$1" + separatorM + "$2",
+        E: ".E_$1",
     };
     return Object.keys(reg).reduce(function (r, k) { return r.replace(reg[k], repl[k]); }, content);
 };

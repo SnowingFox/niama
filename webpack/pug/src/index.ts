@@ -23,7 +23,7 @@ export default function(this: webpack.loader.LoaderContext, source: string) {
 // PRELEX PLUGIN ===========================================================================================================================
 
 const preLex = (content: string, opts: T.LoaderO): string => {
-  const { separatorE = '-', separatorM = '--' } = opts;
+  const { separatorM = '--' } = opts;
 
   const reg: Record<T.ClassType, RegExp> = {
     BEM: /\.@-(\w+)--(\w+)/g,
@@ -35,12 +35,12 @@ const preLex = (content: string, opts: T.LoaderO): string => {
   };
 
   const repl: Record<T.ClassType, string> = {
-    BEM: `.BE${separatorE}$1.BE${separatorE}$1${separatorM}$2`,
-    BE: `.BE${separatorE}$1`,
-    BM: `.B${separatorE}$1.B${separatorE}$1${separatorM}$2`,
-    B: `.B${separatorE}$1`,
-    EM: `.E${separatorE}$1.E${separatorE}$1${separatorM}$2`,
-    E: `.E${separatorE}$1`,
+    BEM: `.BE_$1.BE_$1${separatorM}$2`,
+    BE: `.BE_$1`,
+    BM: `.B_$1.B_$1${separatorM}$2`,
+    B: `.B_$1`,
+    EM: `.E_$1.E_$1${separatorM}$2`,
+    E: `.E_$1`,
   };
 
   return Object.keys(reg).reduce((r, k) => r.replace(reg[k], repl[k]), content);
