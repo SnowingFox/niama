@@ -48,8 +48,9 @@ var postLex = function (tokens, opts) {
         return casing === 'camel' ? lodash_1.camelCase(val) : casing === 'kebab' ? lodash_1.kebabCase(val) : lodash_1.upperFirst(lodash_1.camelCase(val));
     };
     var modifier = function (_a) {
-        var casing = _a.casing, vals = _a.vals;
-        var main = format({ casing: casing, val: vals[0] });
+        var casing = _a.casing, _b = _a.prefix, prefix = _b === void 0 ? '' : _b, val = _a.val;
+        var vals = val.split(separatorM);
+        var main = prefix + format({ casing: casing, val: vals[0] });
         return { main: main, val: main + (vals.length > 1 ? " " + main + separatorM + format({ casing: casingM, val: vals[1] }) : '') };
     };
     // DEPTHS ================================================================================================================================
@@ -77,14 +78,14 @@ var postLex = function (tokens, opts) {
     // BLOCK TOKENS ==========================================================================================================================
     var isTokenB = function (token) { return token.type === 'class' && token.val.startsWith('B_'); };
     var tokenB = function (token) {
-        var _a = modifier({ casing: casingB, vals: token.val.replace('B_', '').split(separatorM) }), main = _a.main, val = _a.val;
+        var _a = modifier({ casing: casingB, val: token.val.replace('B_', '') }), main = _a.main, val = _a.val;
         updateBlocks(main);
         return tslib_1.__assign(tslib_1.__assign({}, token), { val: val });
     };
     // BLOCK ELEMENT TOKENS ==================================================================================================================
     var isTokenBE = function (token) { return token.type === 'class' && token.val.startsWith('BE_'); };
     var tokenBE = function (token) {
-        var _a = modifier({ casing: casingB, vals: token.val.replace('BE_', '').split(separatorM) }), main = _a.main, val = _a.val;
+        var _a = modifier({ casing: casingB, val: token.val.replace('BE_', '') }), main = _a.main, val = _a.val;
         updateBlocks(main);
         var valE = format({ casing: casingE, val: main });
         return tslib_1.__assign(tslib_1.__assign({}, token), { val: "" + block() + separatorE + valE + " " + val });
@@ -92,7 +93,7 @@ var postLex = function (tokens, opts) {
     // ELEMENT TOKENS ========================================================================================================================
     var isTokenE = function (token) { return token.type === 'class' && token.val.startsWith('E_'); };
     var tokenE = function (token) {
-        var val = modifier({ casing: casingE, vals: (block() + separatorE + token.val.replace('E_', '')).split(separatorM) }).val;
+        var val = modifier({ casing: casingE, prefix: block() + separatorE, val: token.val.replace('E_', '') }).val;
         return tslib_1.__assign(tslib_1.__assign({}, token), { val: val });
     };
     return tokens.map(function (token) {

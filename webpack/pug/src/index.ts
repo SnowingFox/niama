@@ -56,8 +56,9 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
   const format = ({ casing, val }: T.FormatP): string =>
     casing === 'camel' ? camelCase(val) : casing === 'kebab' ? kebabCase(val) : upperFirst(camelCase(val));
 
-  const modifier = ({ casing, vals }): { main: string; val: string } => {
-    const main = format({ casing, val: vals[0] });
+  const modifier = ({ casing, prefix = '', val }: T.ModifierP): T.ModifierR => {
+    const vals = val.split(separatorM);
+    const main = prefix + format({ casing, val: vals[0] });
     return { main, val: main + (vals.length > 1 ? ` ${main}${separatorM}${format({ casing: casingM, val: vals[1] })}` : '') };
   };
 
@@ -89,7 +90,7 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
 
   const isTokenB = (token: T.Token): token is T.ClassToken => token.type === 'class' && token.val.startsWith('B_');
   const tokenB = (token: T.ClassToken) => {
-    const { main, val } = modifier({ casing: casingB, vals: token.val.replace('B_', '').split(separatorM) });
+    const { main, val } = modifier({ casing: casingB, val: token.val.replace('B_', '') });
     updateBlocks(main);
     return { ...token, val };
   };
@@ -98,7 +99,7 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
 
   const isTokenBE = (token: T.Token): token is T.ClassToken => token.type === 'class' && token.val.startsWith('BE_');
   const tokenBE = (token: T.ClassToken) => {
-    const { main, val } = modifier({ casing: casingB, vals: token.val.replace('BE_', '').split(separatorM) });
+    const { main, val } = modifier({ casing: casingB, val: token.val.replace('BE_', '') });
     updateBlocks(main);
     const valE = format({ casing: casingE, val: main });
     return { ...token, val: `${block()}${separatorE}${valE} ${val}` };
@@ -108,7 +109,7 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
 
   const isTokenE = (token: T.Token): token is T.ClassToken => token.type === 'class' && token.val.startsWith('E_');
   const tokenE = (token: T.ClassToken) => {
-    const { val } = modifier({ casing: casingE, vals: (block() + separatorE + token.val.replace('E_', '')).split(separatorM) });
+    const { val } = modifier({ casing: casingE, prefix: block() + separatorE, val: token.val.replace('E_', '') });
     return { ...token, val };
   };
 

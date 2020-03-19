@@ -23,6 +23,8 @@ export interface Template extends pug.compileTemplate {
 export type Depths = { component: number; line: number };
 
 export type FormatP = { casing: Casing; val: string };
+export type ModifierP = { casing: Casing; prefix?: string; val: string };
+export type ModifierR = { main: string; val: string };
 
 export interface Loc {
   end: Pos;
