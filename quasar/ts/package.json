@@ -1,6 +1,6 @@
 {
   "name": "@niama/quasar-app-extension-ts",
-  "version": "2.12.0",
+  "version": "2.13.0",
   "description": "Add Typescript to Quasar",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
