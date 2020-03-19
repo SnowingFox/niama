@@ -14,8 +14,8 @@
     "pug"
   ],
   "dependencies": {
-    "pug": "^2.0.4",
-    "pug-plain-loader": "^1.0.0"
+    "@types/pug": "^2.0.4",
+    "pug": "^2.0.4"
   },
   "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"
 }

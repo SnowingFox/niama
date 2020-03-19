@@ -4,5 +4,5 @@ module.exports = (api) =>
       .rule('pug')
       .test(/\.pug$/)
       .use('pug-plain')
-      .loader('pug-plain-loader')
+      .loader('@niama/pug-bem-plain-loader')
   );
