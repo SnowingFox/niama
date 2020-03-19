@@ -6,7 +6,8 @@
     "packages/*",
     "playgrounds/*",
     "projects/*",
-    "quasar/*"
+    "quasar/*",
+    "webpack/*"
   ],
   "command": {
     "publish": {
