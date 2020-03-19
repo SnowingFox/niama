@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.5](https://github.com/niama-strategies/niama/compare/v2.13.4...v2.13.5) (2020-03-19)
+
+
+### Bug Fixes
+
+* formatting ([20b763f](https://github.com/niama-strategies/niama/commit/20b763f714d3902d23ab27b5c1ef7a34d098fc4c))
+
+
+
+
+
 ## [2.13.4](https://github.com/niama-strategies/niama/compare/v2.13.3...v2.13.4) (2020-03-19)
 
 
