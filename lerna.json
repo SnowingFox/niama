@@ -5,7 +5,6 @@
   "packages": [
     "packages/*",
     "playgrounds/*",
-    "projects/*",
     "quasar/*",
     "webpack/*"
   ],
