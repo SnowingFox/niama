@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.3](https://github.com/niama-strategies/niama/compare/v2.13.1...v2.13.3) (2020-03-19)
+
+
+### Bug Fixes
+
+* compilation ([83af298](https://github.com/niama-strategies/niama/commit/83af298e996c8895593d9a6aa158b502e929cc3c))
+* multiple ([b502be2](https://github.com/niama-strategies/niama/commit/b502be2407237251b44532287d823f780608ebeb))
+* remove projects from lerna versioning ([f2b110e](https://github.com/niama-strategies/niama/commit/f2b110e1d7468092261213a1307a38eef409fb22))
+
+
+
+
+
 ## [2.13.2](https://github.com/niama-strategies/niama/compare/v2.13.1...v2.13.2) (2020-03-19)
 
 
