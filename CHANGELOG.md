@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/niama-strategies/niama/compare/v2.7.1...v2.8.0) (2020-03-19)
+
+
+### Features
+
+* add niama weback pug loader to quasar extension ([8631887](https://github.com/niama-strategies/niama/commit/8631887165c108be7bf6e61a170b7e75974a18f3))
+* add webpack packages ([7a1fb6f](https://github.com/niama-strategies/niama/commit/7a1fb6fd768f2d833ba4c41623f1a1650ec2a127))
+* add webpack pug ([7166971](https://github.com/niama-strategies/niama/commit/71669717ad666babee21ba43a66858e9aa4c4258))
+
+
+
+
+
 ## [2.7.1](https://github.com/niama-strategies/niama/compare/v2.7.0...v2.7.1) (2020-03-11)
 
 
