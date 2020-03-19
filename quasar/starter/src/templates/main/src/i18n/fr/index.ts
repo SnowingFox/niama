@@ -1,8 +1,8 @@
 export default {
   menus: {
-    publicHome: 'Accueil',
+    publicIndex: 'Accueil',
   },
   titles: {
-    home: 'Accueil',
+    index: 'Accueil',
   },
 };

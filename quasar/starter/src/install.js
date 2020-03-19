@@ -45,7 +45,7 @@ const addNiamaExtensions = (api) =>
 
 const updateContent = (api) => {
   const package = require(api.resolve.app('/package.json'));
-  ['assets', 'boot', 'i18n', 'layouts', 'pages', 'router', 'App.vue'].forEach((name) => rimraf.sync(api.resolve.src(name)));
+  ['assets', 'boot', 'components', 'i18n', 'layouts', 'pages', 'router', 'App.vue'].forEach((name) => rimraf.sync(api.resolve.src(name)));
   rimraf.sync(api.resolve.app('quasar.conf.js'));
   api.render('./templates/main', { package });
 };

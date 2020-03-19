@@ -1,15 +1,16 @@
-<template lang="pug">     
-q-layout(view="hHh Lpr lff") 
-  q-header: q-toolbar.Toolbar
+<template lang="pug">
+q-layout.@l-Public(view="hHh Lpr lff") 
+  q-header: q-toolbar._pr-0._bg-secondary
     q-toolbar-title Niama starter
-    q-btn.Menu-toggle(icon="menu", unelevated, stretch, @click="show = !show")
-    q-tabs.Menu-items(inline-label, stretch): q-route-tab(v-for="nav of navs", :key="nav.id", v-bind="nav", :label="$t(`menus.${nav.id}`)")
+    q-btn._bg-primary.sm:_hidden(icon="menu", unelevated, stretch, @click="show = !show")
+    q-tabs._bg-accent._hidden.sm:_flex(inline-label, stretch) 
+      q-route-tab(v-for="nav of navs", :key="nav.id", v-bind="nav", :label="$t(`menus.${nav.id}`)")
   
   q-drawer(v-model="show", overlay, elevated): q-list(v-for="nav in navs", :key="nav.id")
-    q-item(:exact="nav.exact", :to="nav.to"): q-item-section.Drawer-item {{ $t(`menus.${nav.id}`) }}
+    q-item(:exact="nav.exact", :to="nav.to"): q-item-section._uppercase {{ $t(`menus.${nav.id}`) }}
   
   q-page-container
-    .Background: img.Background-image(alt="Logo", src="statics/logo.png")
+    ._fixed._inset-0._flex._items-center._justify-center: img._max-w-xs._opacity-50(alt="Logo", src="statics/logo.png")
     router-view
 </template>
 
@@ -45,19 +46,3 @@ interface Nav extends Pick<T.Nav.Po, 'exact' | 'id' | 'to'> {
   icon?: string;
 }
 </script>
-
-<style lang="postcss" scoped>
-.Drawer-item { @apply _uppercase }
-.Background { @apply _fixed _inset-0 _flex _items-center _justify-center;
-  &-image { @apply _max-w-xs _opacity-50 } }
-.Menu {
-  &-items { @apply _bg-accent _hidden }
-  &-toggle { @apply _bg-primary } }
-.Toolbar { @apply _pr-0 _bg-secondary }
-
-@screen sm {
-  .Menu {
-    &-items { @apply _flex }
-    &-toggle { @apply _hidden } }
-}
-</style>
