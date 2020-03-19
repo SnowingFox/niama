@@ -1,7 +1,5 @@
 import loaderUtils from 'loader-utils';
-import camelCase from 'lodash-es/camelCase';
-import kebabCase from 'lodash-es/kebabCase';
-import upperFirst from 'lodash-es/upperFirst';
+import { camelCase, kebabCase, upperFirst } from 'lodash';
 import pug from 'pug';
 import * as webpack from 'webpack';
 
