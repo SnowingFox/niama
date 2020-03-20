@@ -1,6 +1,6 @@
 import pug from 'pug';
 
-export type Casing = 'camel' | 'kebab' | 'pascal';
+export type Casing = 'camel' | 'kebab' | 'pascal' | 'raw';
 export type ClassType = 'B' | 'BE' | 'BEM' | 'BM' | 'E' | 'EM';
 
 export interface LoaderO {
@@ -20,7 +20,7 @@ export interface Template extends pug.compileTemplate {
   dependencies: string[];
 }
 
-export type Depths = { component: number; line: number };
+export type Depths = { extras: number[]; tab: number };
 
 export type FormatP = { casing: Casing; val: string };
 export type ModifierP = { casing: Casing; prefix?: string; val: string };

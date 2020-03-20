@@ -54,7 +54,7 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
   const { casingB = 'pascal', casingE = 'camel', casingM = 'camel', separatorE = '-', separatorM = '--' } = opts;
 
   const format = ({ casing, val }: T.FormatP): string =>
-    casing === 'camel' ? camelCase(val) : casing === 'kebab' ? kebabCase(val) : upperFirst(camelCase(val));
+    casing === 'camel' ? camelCase(val) : casing === 'kebab' ? kebabCase(val) : casing === 'pascal' ? upperFirst(camelCase(val)) : val;
 
   const modifier = ({ casing, prefix = '', val }: T.ModifierP): T.ModifierR => {
     const vals = val.split(separatorM);
@@ -64,14 +64,14 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
 
   // DEPTHS ================================================================================================================================
 
-  let depths: T.Depths = { component: 0, line: 0 };
-  const depth = (): number => depths.line + depths.component;
+  let depths: T.Depths = { extras: [0], tab: 0 };
+  const depth = (): number => depths.extras.reduce((r, e) => r + e, 0) + depths.tab;
 
   const updateDepths = (token: T.Token) => {
-    if (token.type === 'indent') depths = { line: depths.line + 1, component: 0 };
-    if (token.type === ':') depths.component++;
-    if (token.type === 'outdent') depths = { line: depths.line - 1, component: 0 };
-    if (token.type === 'newline') depths.component = 0;
+    if (token.type === 'indent') depths = { extras: [...depths.extras, 0], tab: depths.tab + 1 };
+    if (token.type === ':') depths.extras[depths.tab]++;
+    if (token.type === 'outdent') depths = { extras: [...depths.extras.slice(0, -2), 0], tab: depths.tab - 1 };
+    if (token.type === 'newline') depths.extras[depths.tab] = 0;
   };
 
   // BLOCKS ================================================================================================================================
