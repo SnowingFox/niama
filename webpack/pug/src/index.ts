@@ -35,7 +35,7 @@ const preLex = (content: string, opts: T.LoaderO): string => {
   };
 
   const repl: Record<T.ClassType, string> = {
-    BEM: `.BE_$1.BE_$1${separatorM}$2`,
+    BEM: `.BE_$1.B_$1${separatorM}$2`,
     BE: `.BE_$1`,
     BM: `.B_$1.B_$1${separatorM}$2`,
     B: `.B_$1`,
@@ -59,7 +59,7 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
   const modifier = ({ casing, prefix = '', val }: T.ModifierP): T.ModifierR => {
     const vals = val.split(separatorM);
     const main = prefix + format({ casing, val: vals[0] });
-    return { main, val: main + (vals.length > 1 ? ` ${main}${separatorM}${format({ casing: casingM, val: vals[1] })}` : '') };
+    return { main, val: main + (vals.length > 1 ? `${separatorM}${format({ casing: casingM, val: vals[1] })}` : '') };
   };
 
   // DEPTHS ================================================================================================================================

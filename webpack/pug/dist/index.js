@@ -30,7 +30,7 @@ var preLex = function (content, opts) {
         E: /\.-(\w+)/g,
     };
     var repl = {
-        BEM: ".BE_$1.BE_$1" + separatorM + "$2",
+        BEM: ".BE_$1.B_$1" + separatorM + "$2",
         BE: ".BE_$1",
         BM: ".B_$1.B_$1" + separatorM + "$2",
         B: ".B_$1",
@@ -51,7 +51,7 @@ var postLex = function (tokens, opts) {
         var casing = _a.casing, _b = _a.prefix, prefix = _b === void 0 ? '' : _b, val = _a.val;
         var vals = val.split(separatorM);
         var main = prefix + format({ casing: casing, val: vals[0] });
-        return { main: main, val: main + (vals.length > 1 ? " " + main + separatorM + format({ casing: casingM, val: vals[1] }) : '') };
+        return { main: main, val: main + (vals.length > 1 ? "" + separatorM + format({ casing: casingM, val: vals[1] }) : '') };
     };
     // DEPTHS ================================================================================================================================
     var depths = { extras: [0], tab: 0 };
