@@ -51,7 +51,7 @@ const preLex = (content: string, opts: T.LoaderO): string => {
 const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
   // OPTS ==================================================================================================================================
 
-  const { casingB = 'pascal', casingE = 'camel', casingM = 'camel', separatorE = '-', separatorM = '--' } = opts;
+  const { casingB = 'raw', casingE = 'camel', casingM = 'camel', separatorE = '-', separatorM = '--' } = opts;
 
   const format = ({ casing, val }: T.FormatP): string =>
     casing === 'camel' ? camelCase(val) : casing === 'kebab' ? kebabCase(val) : casing === 'pascal' ? upperFirst(camelCase(val)) : val;
@@ -76,7 +76,7 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
 
   // BLOCKS ================================================================================================================================
 
-  const blocks: string[] = [];
+  const blocks: (string | null)[] = [];
 
   const block = (): string =>
     blocks
@@ -115,6 +115,7 @@ const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
 
   return tokens.map((token) => {
     updateDepths(token);
+    if (['outdent', 'newline'].includes(token.type)) blocks.fill(null, depth());
     return isTokenB(token) ? tokenB(token) : isTokenBE(token) ? tokenBE(token) : isTokenE(token) ? tokenE(token) : token;
   });
 };

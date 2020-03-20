@@ -42,7 +42,7 @@ var preLex = function (content, opts) {
 // POSTLEX PLUGIN ==========================================================================================================================
 var postLex = function (tokens, opts) {
     // OPTS ==================================================================================================================================
-    var _a = opts.casingB, casingB = _a === void 0 ? 'pascal' : _a, _b = opts.casingE, casingE = _b === void 0 ? 'camel' : _b, _c = opts.casingM, casingM = _c === void 0 ? 'camel' : _c, _d = opts.separatorE, separatorE = _d === void 0 ? '-' : _d, _e = opts.separatorM, separatorM = _e === void 0 ? '--' : _e;
+    var _a = opts.casingB, casingB = _a === void 0 ? 'raw' : _a, _b = opts.casingE, casingE = _b === void 0 ? 'camel' : _b, _c = opts.casingM, casingM = _c === void 0 ? 'camel' : _c, _d = opts.separatorE, separatorE = _d === void 0 ? '-' : _d, _e = opts.separatorM, separatorM = _e === void 0 ? '--' : _e;
     var format = function (_a) {
         var casing = _a.casing, val = _a.val;
         return casing === 'camel' ? lodash_1.camelCase(val) : casing === 'kebab' ? lodash_1.kebabCase(val) : casing === 'pascal' ? lodash_1.upperFirst(lodash_1.camelCase(val)) : val;
@@ -98,6 +98,8 @@ var postLex = function (tokens, opts) {
     };
     return tokens.map(function (token) {
         updateDepths(token);
+        if (['outdent', 'newline'].includes(token.type))
+            blocks.fill(null, depth());
         return isTokenB(token) ? tokenB(token) : isTokenBE(token) ? tokenBE(token) : isTokenE(token) ? tokenE(token) : token;
     });
 };
