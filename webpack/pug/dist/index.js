@@ -45,7 +45,7 @@ var postLex = function (tokens, opts) {
     var _a = opts.casingB, casingB = _a === void 0 ? 'pascal' : _a, _b = opts.casingE, casingE = _b === void 0 ? 'camel' : _b, _c = opts.casingM, casingM = _c === void 0 ? 'camel' : _c, _d = opts.separatorE, separatorE = _d === void 0 ? '-' : _d, _e = opts.separatorM, separatorM = _e === void 0 ? '--' : _e;
     var format = function (_a) {
         var casing = _a.casing, val = _a.val;
-        return casing === 'camel' ? lodash_1.camelCase(val) : casing === 'kebab' ? lodash_1.kebabCase(val) : lodash_1.upperFirst(lodash_1.camelCase(val));
+        return casing === 'camel' ? lodash_1.camelCase(val) : casing === 'kebab' ? lodash_1.kebabCase(val) : casing === 'pascal' ? lodash_1.upperFirst(lodash_1.camelCase(val)) : val;
     };
     var modifier = function (_a) {
         var casing = _a.casing, _b = _a.prefix, prefix = _b === void 0 ? '' : _b, val = _a.val;
@@ -54,17 +54,17 @@ var postLex = function (tokens, opts) {
         return { main: main, val: main + (vals.length > 1 ? " " + main + separatorM + format({ casing: casingM, val: vals[1] }) : '') };
     };
     // DEPTHS ================================================================================================================================
-    var depths = { component: 0, line: 0 };
-    var depth = function () { return depths.line + depths.component; };
+    var depths = { extras: [0], tab: 0 };
+    var depth = function () { return depths.extras.reduce(function (r, e) { return r + e; }, 0) + depths.tab; };
     var updateDepths = function (token) {
         if (token.type === 'indent')
-            depths = { line: depths.line + 1, component: 0 };
+            depths = { extras: tslib_1.__spreadArrays(depths.extras, [0]), tab: depths.tab + 1 };
         if (token.type === ':')
-            depths.component++;
+            depths.extras[depths.tab]++;
         if (token.type === 'outdent')
-            depths = { line: depths.line - 1, component: 0 };
+            depths = { extras: tslib_1.__spreadArrays(depths.extras.slice(0, -2), [0]), tab: depths.tab - 1 };
         if (token.type === 'newline')
-            depths.component = 0;
+            depths.extras[depths.tab] = 0;
     };
     // BLOCKS ================================================================================================================================
     var blocks = [];
