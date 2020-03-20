@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.9](https://github.com/niama-strategies/niama/compare/v2.13.8...v2.13.9) (2020-03-20)
+
+
+### Bug Fixes
+
+* default casing for blocks and block reset ([a1f2224](https://github.com/niama-strategies/niama/commit/a1f2224d39e99fddf5709a5c560c9d2722f00f84))
+
+
+
+
+
 ## [2.13.8](https://github.com/niama-strategies/niama/compare/v2.13.7...v2.13.8) (2020-03-20)
 
 
