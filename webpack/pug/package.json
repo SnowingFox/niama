@@ -1,6 +1,6 @@
 {
   "name": "@niama/pug-bem-plain-loader",
-  "version": "2.13.7",
+  "version": "2.13.8",
   "description": "Pug with BEM to plain html loader for webpack",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
