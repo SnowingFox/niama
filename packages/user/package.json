@@ -1,0 +1,10 @@
+{
+  "name": "@niama/user",
+  "version": "0.0.0",
+  "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
+  "license": "MIT",
+  "main": "index.ts",
+  "dependencies": {
+    "@niama/orm": "^2.13.0"
+  }
+}
