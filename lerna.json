@@ -11,6 +11,7 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
+      "noChangelog": true,
       "yes": true
     }
   }
