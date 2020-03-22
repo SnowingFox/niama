@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/niama-strategies/niama/compare/v2.18.0...v2.18.1) (2020-03-22)
+
+
+### Bug Fixes
+
+* **webpack-pug:** update default element separator ([5c0e7fb](https://github.com/niama-strategies/niama/commit/5c0e7fbfcb000a0563f07445288a2418dc40cff9))
+
+
+
+
+
 ## [2.13.9](https://github.com/niama-strategies/niama/compare/v2.13.8...v2.13.9) (2020-03-20)
 
 

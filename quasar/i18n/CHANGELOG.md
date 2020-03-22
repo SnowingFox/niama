@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/niama-strategies/niama/compare/v2.18.0...v2.18.1) (2020-03-22)
+
+
+### Bug Fixes
+
+* **quasar-i18n:** update packages ([6659908](https://github.com/niama-strategies/niama/commit/6659908ea0c055c9e69d951c405f8badc8b850cd))
+
+
+
+
+
 # [2.13.0](https://github.com/niama-strategies/niama/compare/v2.7.1...v2.13.0) (2020-03-19)
 
 
