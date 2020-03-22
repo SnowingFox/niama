@@ -10,8 +10,8 @@
   ],
   "command": {
     "publish": {
+      "amend": true,
       "conventionalCommits": true,
-      "noChangelog": true,
       "yes": true
     }
   }
