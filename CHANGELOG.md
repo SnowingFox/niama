@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.3](https://github.com/niama-strategies/niama/compare/v2.18.2...v2.18.3) (2020-03-22)
+
+
+### Bug Fixes
+
+* **webpack-pug:** update default ([801b8af](https://github.com/niama-strategies/niama/commit/801b8af5912e4171f8726d860ed34b103621d15c))
+
+
+
+
+
 ## [2.18.2](https://github.com/niama-strategies/niama/compare/v2.18.0...v2.18.2) (2020-03-22)
 
 
