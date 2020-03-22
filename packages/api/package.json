@@ -1,12 +1,12 @@
 {
   "name": "@niama/api",
-  "version": "2.13.2",
+  "version": "2.13.4",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@niama/core": "^2.13.2",
+    "@niama/core": "^2.13.4",
     "@vue/apollo-composable": "^4.0.0-alpha.7",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
