@@ -1,0 +1,31 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 2.18.0 (2020-03-22)
+
+
+### Bug Fixes
+
+* removing changelog ([8066f2c](https://github.com/niama-strategies/niama/commit/8066f2c143a8e93600d5dab4ab313501e81f7a82))
+* version ([d30de35](https://github.com/niama-strategies/niama/commit/d30de355da29ccd03916cddcd532e543e5906d0d))
+* versioning ([6467127](https://github.com/niama-strategies/niama/commit/6467127550c6c1bfbc0d43ab4d83906695d9d732))
+
+
+
+# 2.15.0 (2020-03-21)
+
+
+### Features
+
+* add adress-gmaps package ([2410190](https://github.com/niama-strategies/niama/commit/24101905974ce5c81ac38619688e65bb4b145684))
+
+
+
+# 2.14.0 (2020-03-21)
+
+
+### Features
+
+* add address package ([2c833fc](https://github.com/niama-strategies/niama/commit/2c833fc38b2ed6d442e65d21429940edf846dbb3))

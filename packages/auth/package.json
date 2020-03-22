@@ -1,11 +1,11 @@
 {
   "name": "@niama/auth",
-  "version": "2.15.0",
+  "version": "2.16.0",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@niama/api": "^2.13.2"
+    "@niama/api": "^2.13.3"
   }
 }
