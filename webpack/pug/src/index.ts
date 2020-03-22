@@ -51,7 +51,7 @@ const preLex = (content: string, opts: T.LoaderO): string => {
 const postLex = (tokens: T.Token[], opts: T.LoaderO): T.Token[] => {
   // OPTS ==================================================================================================================================
 
-  const { casingB = 'raw', casingE = 'camel', casingM = 'camel', separatorE = '-', separatorM = '--' } = opts;
+  const { casingB = 'raw', casingE = 'camel', casingM = 'camel', separatorE = '_', separatorM = '--' } = opts;
 
   const format = ({ casing, val }: T.FormatP): string =>
     casing === 'camel' ? camelCase(val) : casing === 'kebab' ? kebabCase(val) : casing === 'pascal' ? upperFirst(camelCase(val)) : val;
