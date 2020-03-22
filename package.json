@@ -11,7 +11,7 @@
     ]
   },
   "scripts": {
-    "release": "cross-env HUSKY_BYPASS=true lerna publish --no-changelog"
+    "release": "cross-env HUSKY_BYPASS=true lerna publish --amend"
   },
   "husky": {
     "hooks": {
