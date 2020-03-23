@@ -12,6 +12,15 @@ export interface LoaderO {
   separatorM?: string;
 }
 
+export interface PostLexO extends Required<LoaderO> {
+  blocks: (string | null)[];
+  depths: Depths;
+}
+
+export type ValO = { opts: PostLexO; val: string };
+export type TokenO = { opts: PostLexO; token: Token };
+export type ClassTokenO = { opts: PostLexO; token: ClassToken };
+
 export interface CompilerO extends pug.Options {
   plugins: unknown[];
 }
@@ -23,7 +32,7 @@ export interface Template extends pug.compileTemplate {
 export type Depths = { extras: number[]; tab: number };
 
 export type FormatP = { casing: Casing; val: string };
-export type ModifierP = { casing: Casing; prefix?: string; val: string };
+export type ModifierP = { casing: Casing; opts: LoaderO; prefix?: string; val: string };
 export type ModifierR = { main: string; val: string };
 
 export interface Loc {
