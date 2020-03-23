@@ -18,6 +18,10 @@ function default_1(source) {
     return template(loaderO.data || {});
 }
 exports.default = default_1;
+// CONSTANTS ===============================================================================================================================
+exports.B = 'B_';
+exports.BE = 'BE_';
+exports.E = 'E_';
 // PRELEX PLUGIN ===========================================================================================================================
 var preLex = function (content, opts) {
     var _a = opts.separatorM, separatorM = _a === void 0 ? '--' : _a;
@@ -30,76 +34,87 @@ var preLex = function (content, opts) {
         E: /\.-(\w+)/g,
     };
     var repl = {
-        BEM: ".BE_$1.B_$1" + separatorM + "$2",
-        BE: ".BE_$1",
-        BM: ".B_$1.B_$1" + separatorM + "$2",
-        B: ".B_$1",
-        EM: ".E_$1.E_$1" + separatorM + "$2",
-        E: ".E_$1",
+        BEM: "." + exports.BE + "$1." + exports.B + "$1" + separatorM + "$2",
+        BE: "." + exports.BE + "$1",
+        BM: "." + exports.B + "$1." + exports.B + "$1" + separatorM + "$2",
+        B: "." + exports.B + "$1",
+        EM: "." + exports.E + "$1." + exports.E + "$1" + separatorM + "$2",
+        E: "." + exports.E + "$1",
     };
     return Object.keys(reg).reduce(function (r, k) { return r.replace(reg[k], repl[k]); }, content);
 };
 // POSTLEX PLUGIN ==========================================================================================================================
-var postLex = function (tokens, opts) {
-    // OPTS ==================================================================================================================================
-    var _a = opts.casingB, casingB = _a === void 0 ? 'raw' : _a, _b = opts.casingE, casingE = _b === void 0 ? 'camel' : _b, _c = opts.casingM, casingM = _c === void 0 ? 'camel' : _c, _d = opts.separatorE, separatorE = _d === void 0 ? '_' : _d, _e = opts.separatorM, separatorM = _e === void 0 ? '--' : _e;
-    var format = function (_a) {
-        var casing = _a.casing, val = _a.val;
-        return casing === 'camel' ? lodash_1.camelCase(val) : casing === 'kebab' ? lodash_1.kebabCase(val) : casing === 'pascal' ? lodash_1.upperFirst(lodash_1.camelCase(val)) : val;
-    };
-    var modifier = function (_a) {
-        var casing = _a.casing, _b = _a.prefix, prefix = _b === void 0 ? '' : _b, val = _a.val;
-        var vals = val.split(separatorM);
-        var main = prefix + format({ casing: casing, val: vals[0] });
-        return { main: main, val: main + (vals.length > 1 ? "" + separatorM + format({ casing: casingM, val: vals[1] }) : '') };
-    };
-    // DEPTHS ================================================================================================================================
-    var depths = { extras: [0], tab: 0 };
-    var depth = function () { return depths.extras.reduce(function (r, e) { return r + e; }, 0) + depths.tab; };
-    var updateDepths = function (token) {
-        if (token.type === 'indent')
-            depths = { extras: tslib_1.__spreadArrays(depths.extras, [0]), tab: depths.tab + 1 };
-        if (token.type === ':')
-            depths.extras[depths.tab]++;
-        if (token.type === 'outdent')
-            depths = { extras: tslib_1.__spreadArrays(depths.extras.slice(0, -2), [0]), tab: depths.tab - 1 };
-        if (token.type === 'newline')
-            depths.extras[depths.tab] = 0;
-    };
-    // BLOCKS ================================================================================================================================
-    var blocks = [];
-    var block = function () {
-        return blocks
-            .slice(0, depth())
-            .filter(function (v) { return v !== null; })
-            .pop() || '';
-    };
-    var updateBlocks = function (value) { return (blocks[depth()] = value); };
-    // BLOCK TOKENS ==========================================================================================================================
-    var isTokenB = function (token) { return token.type === 'class' && token.val.startsWith('B_'); };
-    var tokenB = function (token) {
-        var _a = modifier({ casing: casingB, val: token.val.replace('B_', '') }), main = _a.main, val = _a.val;
-        updateBlocks(main);
-        return tslib_1.__assign(tslib_1.__assign({}, token), { val: val });
-    };
-    // BLOCK ELEMENT TOKENS ==================================================================================================================
-    var isTokenBE = function (token) { return token.type === 'class' && token.val.startsWith('BE_'); };
-    var tokenBE = function (token) {
-        var _a = modifier({ casing: casingB, val: token.val.replace('BE_', '') }), main = _a.main, val = _a.val;
-        updateBlocks(main);
-        var valE = format({ casing: casingE, val: main });
-        return tslib_1.__assign(tslib_1.__assign({}, token), { val: "" + block() + separatorE + valE + " " + val });
-    };
-    // ELEMENT TOKENS ========================================================================================================================
-    var isTokenE = function (token) { return token.type === 'class' && token.val.startsWith('E_'); };
-    var tokenE = function (token) {
-        var val = modifier({ casing: casingE, prefix: block() + separatorE, val: token.val.replace('E_', '') }).val;
-        return tslib_1.__assign(tslib_1.__assign({}, token), { val: val });
-    };
+var postLex = function (tokens, loaderO) {
+    var defaultO = { casingB: 'raw', casingE: 'camel', casingM: 'camel', data: {}, separatorE: '_', separatorM: '--' };
+    var opts = tslib_1.__assign(tslib_1.__assign(tslib_1.__assign({}, defaultO), loaderO), { blocks: [], depths: { extras: [0], tab: 0 } });
     return tokens.map(function (token) {
-        updateDepths(token);
+        updateDepths({ opts: opts, token: token });
         if (['outdent', 'newline'].includes(token.type))
-            blocks.fill(null, depth());
-        return isTokenB(token) ? tokenB(token) : isTokenBE(token) ? tokenBE(token) : isTokenE(token) ? tokenE(token) : token;
+            opts.blocks.fill(null, depth(opts));
+        if (isBEM(token, exports.B))
+            return tokenB({ opts: opts, token: token });
+        if (isBEM(token, exports.BE))
+            return tokenBE({ opts: opts, token: token });
+        if (isBEM(token, exports.E))
+            return tokenE({ opts: opts, token: token });
+        return token;
     });
+};
+// OPTS ====================================================================================================================================
+var format = function (_a) {
+    var casing = _a.casing, val = _a.val;
+    return casing === 'camel' ? lodash_1.camelCase(val) : casing === 'kebab' ? lodash_1.kebabCase(val) : casing === 'pascal' ? lodash_1.upperFirst(lodash_1.camelCase(val)) : val;
+};
+var modifier = function (_a) {
+    var casing = _a.casing, _b = _a.opts, _c = _b.casingM, casingM = _c === void 0 ? 'camel' : _c, _d = _b.separatorM, separatorM = _d === void 0 ? '--' : _d, _e = _a.prefix, prefix = _e === void 0 ? '' : _e, val = _a.val;
+    var vals = val.split(separatorM);
+    var main = prefix + format({ casing: casing, val: vals[0] });
+    return { main: main, val: main + (vals.length > 1 ? "" + separatorM + format({ casing: casingM, val: vals[1] }) : '') };
+};
+// DEPTHS ==================================================================================================================================
+var depth = function (_a) {
+    var depths = _a.depths;
+    return depths.extras.reduce(function (r, e) { return r + e; }, 0) + depths.tab;
+};
+var updateDepths = function (_a) {
+    var depths = _a.opts.depths, token = _a.token;
+    if (token.type === 'indent')
+        depths = { extras: tslib_1.__spreadArrays(depths.extras, [0]), tab: depths.tab + 1 };
+    if (token.type === ':')
+        depths.extras[depths.tab]++;
+    if (token.type === 'outdent')
+        depths = { extras: tslib_1.__spreadArrays(depths.extras.slice(0, -2), [0]), tab: depths.tab - 1 };
+    if (token.type === 'newline')
+        depths.extras[depths.tab] = 0;
+};
+// BLOCKS ==================================================================================================================================
+var block = function (opts) {
+    return opts.blocks
+        .slice(0, depth(opts))
+        .filter(function (v) { return v !== null; })
+        .pop() || '';
+};
+var updateBlocks = function (_a) {
+    var opts = _a.opts, val = _a.val;
+    return (opts.blocks[depth(opts)] = val);
+};
+// TOKENS =================================================================================================================================
+var isBEM = function (token, prefix) { return token.type === 'class' && token.val.startsWith(prefix); };
+var tokenB = function (_a) {
+    var opts = _a.opts, token = _a.token;
+    var _b = modifier({ opts: opts, casing: opts.casingB, val: token.val.replace(exports.B, '') }), main = _b.main, val = _b.val;
+    updateBlocks({ opts: opts, val: main });
+    return tslib_1.__assign(tslib_1.__assign({}, token), { val: val });
+};
+var tokenBE = function (_a) {
+    var opts = _a.opts, token = _a.token;
+    var _b = modifier({ opts: opts, casing: opts.casingB, val: token.val.replace(exports.BE, '') }), main = _b.main, val = _b.val;
+    updateBlocks({ opts: opts, val: main });
+    var valE = format({ casing: opts.casingE, val: main });
+    return tslib_1.__assign(tslib_1.__assign({}, token), { val: "" + block(opts) + opts.separatorE + valE + " " + val });
+};
+var tokenE = function (_a) {
+    var opts = _a.opts, token = _a.token;
+    var val = modifier({ opts: opts, casing: opts.casingE, prefix: block(opts) + opts.separatorE, val: token.val.replace(exports.E, '') }).val;
+    return tslib_1.__assign(tslib_1.__assign({}, token), { val: val });
 };
