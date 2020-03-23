@@ -24,6 +24,7 @@ module.exports = {
     es6: true,
   },
   rules: {
+    'max-lines-per-function': ['error', { max: 25, skipBlankLines: true, skipComments: true }],
     '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions'] }],
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
