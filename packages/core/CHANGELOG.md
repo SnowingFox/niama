@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.5](https://github.com/niama-strategies/niama/compare/@niama/core@2.13.4...@niama/core@2.13.5) (2020-03-25)
+
+
+### Bug Fixes
+
+* **core:** unnecessary await ([e26cf33](https://github.com/niama-strategies/niama/commit/e26cf330181d84e151aa9293a35f74627c986fa7))
+
+
+
+
+
 ## 2.13.4 (2020-03-22)
 
 
