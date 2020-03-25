@@ -1,6 +1,6 @@
 {
   "name": "@niama/auth-amplify",
-  "version": "2.21.0",
+  "version": "2.21.1",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.1](https://github.com/niama-strategies/niama/compare/@niama/nav@2.17.0...@niama/nav@2.17.1) (2020-03-25)
+
+**Note:** Version bump only for package @niama/nav
+
+
+
+
+
 # 2.17.0 (2020-03-22)
 
 
