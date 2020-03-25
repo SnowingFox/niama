@@ -1,25 +1,39 @@
 import { AsyncSubject, Maybe } from '@niama/core/types';
 
-import { BootAuthO, Payload, Service } from './';
+import { BootO, Payload, Raw } from './';
 import { Po } from './main';
 import * as S from './service';
 
 // BOOT ====================================================================================================================================
 
 export interface BootAuthP {
-  initProvider: (opts: BootAuthO) => Provider;
-  opts: BootAuthO;
+  initProvider: (opts: BootO) => Provider;
+  opts: BootO;
 }
 
 // PROVIDER ================================================================================================================================
 
-export interface Provider {
-  service: ServiceConfig;
-  opts: BootAuthO;
+export interface Provider extends Services, ServiceO {}
+
+// RAW =====================================================================================================================================
+
+export interface RawConfig {
+  $: AsyncSubject<Raw>;
+  loading: boolean;
+}
+
+// SERVICES ================================================================================================================================
+
+export interface ServiceO {
+  opts: BootO;
+  raw: RawConfig;
+}
+
+export interface Services {
   // refreshSession: () => any;
   // current: Current<C['CurrentDto'], C['Role']>;
-  changePassword: <Done, Fail>(p: S.ChangePasswordC<Done, Fail>['P']) => S.ChangePasswordC<Done, Fail>['R'];
-  confirmSignup: <Done, Fail>(p: S.ConfirmSignupC<Done, Fail>['P']) => S.ConfirmSignupC<Done, Fail>['R'];
+  changePassword: <Done, Fail>(p: S.ChangePasswordP<Done, Fail>) => S.ChangePasswordR<Done, Fail>;
+  confirmSignup: <Done, Fail>(p: S.ConfirmSignupP<Done, Fail>) => S.ConfirmSignupR<Done, Fail>;
   //deleteCurrent$?: (p: S.DeleteCurrentP) => Observable;
   fetch: () => Promise<Maybe<Payload>>;
   fromPayload: (p: Maybe<Payload>) => Po;
@@ -27,18 +41,13 @@ export interface Provider {
   //getRefreshedTokens$<Done, Fail>(p: any): any;
   //refresh$: (p: S.RefreshP) => Observable;
 
-  resetPassword: <Done, Fail>(p: S.ResetPasswordC<Done, Fail>['P']) => S.ResetPasswordC<Done, Fail>['R'];
+  resetPassword: <Done, Fail>(p: S.ResetPasswordP<Done, Fail>) => S.ResetPasswordR<Done, Fail>;
   //sendEmailResetCode$?: (p: S.SendEmailResetCodeP) => Observable;
-  sendConfirmSignup: <Done, Fail>(p: S.SendConfirmSignupC<Done, Fail>['P']) => S.SendConfirmSignupC<Done, Fail>['R'];
-  sendResetPassword: <Done, Fail>(p: S.SendResetPasswordC<Done, Fail>['P']) => S.SendResetPasswordC<Done, Fail>['R'];
-  sendVerifyEmail: <Done, Fail>(p: S.SendVerifyEmailC<Done, Fail>['P']) => S.SendVerifyEmailC<Done, Fail>['R'];
-  signin: <Done, Fail>(p: S.SigninC<Done, Fail>['P']) => S.SigninC<Done, Fail>['R'];
-  signout: <Done, Fail>(p: S.SignoutC<Done, Fail>['P']) => S.SignoutC<Done, Fail>['R'];
-  signup: <Done, Fail>(p: S.SignupC<Done, Fail>['P']) => S.SignupC<Done, Fail>['R'];
-  verifyEmail: <Done, Fail>(p: S.VerifyEmailC<Done, Fail>['P']) => S.VerifyEmailC<Done, Fail>['R'];
-}
-
-export interface ServiceConfig {
-  $: AsyncSubject<Service>;
-  loading: boolean;
+  sendConfirmSignup: <Done, Fail>(p: S.SendConfirmSignupP<Done, Fail>) => S.SendConfirmSignupR<Done, Fail>;
+  sendResetPassword: <Done, Fail>(p: S.SendResetPasswordP<Done, Fail>) => S.SendResetPasswordR<Done, Fail>;
+  sendVerifyEmail: <Done, Fail>(p: S.SendVerifyEmailP<Done, Fail>) => S.SendVerifyEmailR<Done, Fail>;
+  signin: <Done, Fail>(p: S.SigninP<Done, Fail>) => S.SigninR<Done, Fail>;
+  signout: <Done, Fail>(p: S.SignoutP<Done, Fail>) => S.SignoutR<Done, Fail>;
+  signup: <Done, Fail>(p: S.SignupP<Done, Fail>) => S.SignupR<Done, Fail>;
+  verifyEmail: <Done, Fail>(p: S.VerifyEmailP<Done, Fail>) => S.VerifyEmailR<Done, Fail>;
 }

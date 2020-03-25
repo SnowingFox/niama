@@ -9,7 +9,7 @@ export * from './objects';
 export * from './service';
 
 declare module '@niama/auth/types' {
-  export interface BootAuthO {
+  interface BootO {
     authenticatedRoute?: RawLocation;
     refresh?: Observabler<any, Po>;
     router: VueRouter;
@@ -19,10 +19,8 @@ declare module '@niama/auth/types' {
   }
 
   interface Payload {}
-
+  interface Raw {}
   interface SendConfirmSignup {}
-
-  interface Service {}
 
   interface Signin {
     password: string;
