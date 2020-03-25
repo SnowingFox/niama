@@ -8,7 +8,7 @@ import { notifyFail } from './ui';
 // UTILS ===================================================================================================================================
 
 export const observabler = <R, S>(asyncOrSync?: T.Actioner<R, S>): T.Maybe<T.Observabler<R, S>> =>
-  asyncOrSync ? (...s) => from((async () => await asyncOrSync(...s))()) : null;
+  asyncOrSync ? (...s) => from((async () => asyncOrSync(...s))()) : null;
 
 export const subscribeMany = (observables: T.Observable[]) => {
   const subscription: T.Subscription = new Subscription();
