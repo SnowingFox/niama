@@ -11,7 +11,7 @@ export interface PayloadAttrsAddress {
 }
 
 declare module '@niama/auth/types' {
-  interface BootAuthO {
+  interface BootO {
     config: any;
   }
 
@@ -25,11 +25,11 @@ declare module '@niama/auth/types' {
     username: string;
   }
 
+  interface Raw extends AuthClass {}
+
   interface SendConfirmSignup {
     username: string;
   }
-
-  interface Service extends AuthClass {}
 
   interface Signin {
     username: string;
