@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/niama-strategies/niama/compare/@niama/pug-bem-plain-loader@2.24.1...@niama/pug-bem-plain-loader@2.25.0) (2020-03-25)
+
+
+### Features
+
+* **webpack/pug:** add .gitignore ([69cb585](https://github.com/niama-strategies/niama/commit/69cb5852841a907b591e8211e2f2de069cc329ff))
+
+
+
+
+
 ## [2.24.1](https://github.com/niama-strategies/niama/compare/@niama/pug-bem-plain-loader@2.24.0...@niama/pug-bem-plain-loader@2.24.1) (2020-03-23)
 
 
