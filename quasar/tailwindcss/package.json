@@ -13,13 +13,24 @@
     "niama",
     "tailwindcss"
   ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "prepare": "yarn build"
+  },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^2.1.0",
+    "@types/autoprefixer": "^9.7.1",
     "postcss-nested": "^4.2.1",
+    "purgecss-webpack-plugin": "^2.1.0",
     "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
+    "@types/rimraf": "^3.0.0",
+    "glob-all": "^3.2.1",
+    "quasar": "^1.9.11",
     "rimraf": "^3.0.2"
   },
-  "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"
+  "gitHead": "f068c907ad542e942cac174943f6fe77917883b1",
+  "peerDependencies": {
+    "quasar": "^1.9.11"
+  }
 }
