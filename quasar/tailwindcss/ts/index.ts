@@ -7,7 +7,7 @@ import tailwindcss from 'tailwindcss';
 
 import wl from './whitelister';
 
-export default async (api) => {
+export = async (api) => {
   enforceCompatibility(api);
 
   api.chainWebpack(({ module: mod, plugin }) => {
