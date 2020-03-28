@@ -10,11 +10,11 @@ import wl from './whitelister';
 export = async (api) => {
   enforceCompatibility(api);
 
-  api.chainWebpack(({ module: mod, plugin }) => {
-    const vueRule = mod.rule('vue').test(/\.vue$/);
+  api.chainWebpack((cfg) => {
+    const vueRule = cfg.module.rule('vue').test(/\.vue$/);
     vueRule.use('whitelister').loader(path.join(__dirname, 'loader'));
 
-    const postCssRule = mod.rule('postcss').test(/\.(postcss)$/);
+    const postCssRule = cfg.module.rule('postcss').test(/\.(postcss)$/);
     postCssRule.use('vue-style').loader('vue-style-loader');
     postCssRule.use('css').loader('css-loader');
     postCssRule
@@ -23,9 +23,9 @@ export = async (api) => {
       .options({ plugins: [nested, tailwindcss(), autoprefixer], ident: 'postcss' });
 
     if (api.ctx.prod)
-      plugin('purgecss').use(
-        new PurgecssPlugin({ paths: glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), whitelist: wl.elements })
-      );
+      cfg
+        .plugin('purgecss')
+        .use(new PurgecssPlugin({ paths: [...glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), ...wl.paths] }));
     // defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
     // whitelistPatterns: [/^((?!_).)((?!:_).)*$/],
   });

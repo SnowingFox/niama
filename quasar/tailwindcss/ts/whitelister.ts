@@ -1,8 +1,13 @@
 import data from 'quasar/dist/babel-transforms/auto-import.json';
+import getPath from 'quasar/dist/babel-transforms/imports';
 
 class WhiteLister {
   elements: string[] = [];
   regex = new RegExp(data.regex.components || data.regex.directives, 'g');
+
+  get paths() {
+    return this.elements.map((element) => 'node_modules/' + getPath(element));
+  }
 
   process(file: string) {
     const elements = this.regex.exec(file);
