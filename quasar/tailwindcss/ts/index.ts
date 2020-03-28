@@ -40,5 +40,5 @@ const enforceCompatibility = (api) => {
 
 const extendConf = async (api) => {
   const colors = await import(api.resolve.src('css/colors'));
-  api.extendQuasarConf((conf) => (conf.framework.config.brand = colors));
+  api.extendQuasarConf((conf) => (conf.framework.config.brand = colors.default));
 };
