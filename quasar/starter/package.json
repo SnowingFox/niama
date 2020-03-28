@@ -1,6 +1,6 @@
 {
   "name": "@niama/quasar-app-extension-starter",
-  "version": "2.22.7",
+  "version": "2.22.8",
   "description": "Transform Quasar starter to Niama starter",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
