@@ -25,7 +25,7 @@ export = async (api) => {
     if (api.ctx.prod)
       cfg
         .plugin('purgecss')
-        .use(new PurgecssPlugin({ paths: [...glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), ...wl.paths] }));
+        .use(PurgecssPlugin, [{ paths: () => [...glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), ...wl.paths] }]);
     // defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
     // whitelistPatterns: [/^((?!_).)((?!:_).)*$/],
   });

@@ -10,7 +10,7 @@ class WhiteLister {
   }
 
   process(file: string) {
-    const elements = this.regex.exec(file);
+    const elements = file.match(this.regex);
     if (elements) this.elements = [...new Set([...this.elements, ...elements.map((name) => data.importName[name])])];
   }
 
