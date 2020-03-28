@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.9](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-starter@2.22.8...@niama/quasar-app-extension-starter@2.22.9) (2020-03-28)
+
+**Note:** Version bump only for package @niama/quasar-app-extension-starter
+
+
+
+
+
 ## [2.22.8](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-starter@2.22.7...@niama/quasar-app-extension-starter@2.22.8) (2020-03-28)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-starter
