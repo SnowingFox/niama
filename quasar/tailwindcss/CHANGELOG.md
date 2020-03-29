@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.0.7...@niama/quasar-app-extension-tailwindcss@3.1.0) (2020-03-29)
+
+
+### Features
+
+* **quasar/tailiwindcss:** add whitelist for quasar ([8b62504](https://github.com/niama-strategies/niama/commit/8b625046d68ee452c13082b8f089c9973ce370ff))
+
+
+
+
+
 ## [3.0.7](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.0.6...@niama/quasar-app-extension-tailwindcss@3.0.7) (2020-03-28)
 
 
