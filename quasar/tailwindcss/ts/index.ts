@@ -25,9 +25,13 @@ export = async (api) => {
     if (api.ctx.prod)
       cfg
         .plugin('purgecss')
-        .use(PurgecssPlugin, [{ paths: () => [...glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), ...wl.paths] }]);
+        .use(PurgecssPlugin, [
+          {
+            paths: () => [...glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), ...wl.paths],
+            whitelistPatterns: wl.patterns,
+          },
+        ]);
     // defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
-    // whitelistPatterns: [/^((?!_).)((?!:_).)*$/],
   });
 
   await extendConf(api);

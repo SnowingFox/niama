@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@types/autoprefixer": "^9.7.1",
+    "@types/webpack": "^4.41.8",
     "glob-all": "^3.2.1",
     "postcss-nested": "^4.2.1",
     "purgecss-webpack-plugin": "^2.1.0",
