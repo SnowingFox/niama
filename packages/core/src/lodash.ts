@@ -6,6 +6,7 @@ import filter from 'lodash-es/filter';
 import isEqual from 'lodash-es/isEqual';
 import isFunction from 'lodash-es/isFunction';
 import isPlainObject from 'lodash-es/isPlainObject';
+import kebabCase from 'lodash-es/kebabCase';
 import merge from 'lodash-es/merge';
 import mergeWith from 'lodash-es/mergeWith';
 import orderBy from 'lodash-es/orderBy';
@@ -15,8 +16,8 @@ import zipObject from 'lodash-es/zipObject';
 
 import * as T from '../types';
 
-export { camelCase, chunk, defaultsDeep, defaultTo, filter, isEqual, isFunction, isPlainObject, merge, mergeWith, orderBy, random, union };
-export { zipObject };
+export { camelCase, chunk, defaultsDeep, defaultTo, filter, isEqual, isFunction, isPlainObject, kebabCase, merge, mergeWith, orderBy };
+export { random, union, zipObject };
 
 // LANG ====================================================================================================================================
 
