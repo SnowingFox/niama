@@ -28,7 +28,7 @@ export = async (api) => {
         .use(PurgecssPlugin, [
           {
             paths: () => [...glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), ...wl.paths],
-            whitelistPatterns: wl.patterns,
+            whitelistPatterns: () => wl.patterns,
           },
         ]);
     // defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],

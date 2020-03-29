@@ -20,6 +20,16 @@ quasar ext add @niama/tailwindcss
 quasar ext remove @niama/tailwindcss
 ```
 
+## Usage
+
+### Quasar and Tailwind CSS similarities
+
+- absolute
+- bg-{color}
+- fixed
+- float-{left|right}
+- text-{color}
+
 ## Donate
 
 If you appreciate the work that went into this App Extension, please consider [donating to Quasar](https://donate.quasar.dev).
