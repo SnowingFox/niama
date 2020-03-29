@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.6](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-api@2.13.5...@niama/quasar-app-extension-api@2.13.6) (2020-03-29)
+
+**Note:** Version bump only for package @niama/quasar-app-extension-api
+
+
+
+
+
 ## [2.13.5](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-api@2.13.4...@niama/quasar-app-extension-api@2.13.5) (2020-03-25)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-api

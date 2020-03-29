@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/niama-strategies/niama/compare/@niama/core@2.13.5...@niama/core@2.14.0) (2020-03-29)
+
+
+### Features
+
+* **core:** add kebabCase from lodash ([e6bd266](https://github.com/niama-strategies/niama/commit/e6bd2662ca4e20aaad80697f78b777d66bec7706))
+
+
+
+
+
 ## [2.13.5](https://github.com/niama-strategies/niama/compare/@niama/core@2.13.4...@niama/core@2.13.5) (2020-03-25)
 
 

@@ -1,10 +1,10 @@
 {
   "name": "@niama/user-amplify",
-  "version": "2.22.2",
+  "version": "2.22.3",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
-    "@niama/user": "^2.20.2"
+    "@niama/user": "^2.20.3"
   }
 }
