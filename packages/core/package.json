@@ -3,18 +3,36 @@
   "version": "2.14.0",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "sideEffects": false,
+  "scripts": {
+    "build": "bili",
+    "prepublishOnly": "yarn build"
+  },
   "dependencies": {
     "@types/lodash-es": "^4.17.3",
-    "@vue/composition-api": "^0.5.0",
-    "lodash-es": "^4.17.15",
-    "quasar": "^1.9.8",
+    "lodash-es": "^4.17.15"
+  },
+  "devDependencies": {
+    "quasar": "^1.9.12",
     "rxjs": "^6.5.4",
     "superstruct": "^0.8.3",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.11",
-    "vue-i18n": "^8.15.4",
+    "vue-i18n": "^8.16.0",
+    "vue-router": "^3.1.6"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^0.5.0",
+    "quasar": "^1.9.12",
+    "rxjs": "^6.5.4",
+    "superstruct": "^0.8.3",
+    "vee-validate": "^3.2.5",
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.16.0",
     "vue-router": "^3.1.6"
   },
   "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"

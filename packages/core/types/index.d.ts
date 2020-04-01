@@ -7,10 +7,10 @@ export * from './ui';
 export * from './uses';
 export * from './vue';
 
-declare module '@niama/core/types' {
-  interface Niama {
+//declare module '@niama/core/types' {
+  export interface Niama {
     i18n: VueI18n;
     router: VueRouter;
     storage: any;
   }
-}
+//}
