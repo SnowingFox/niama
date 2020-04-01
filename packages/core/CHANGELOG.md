@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/niama-strategies/niama/compare/@niama/core@2.14.0...@niama/core@2.15.0) (2020-04-01)
+
+
+### Features
+
+* **core:** add bili ([7a15323](https://github.com/niama-strategies/niama/commit/7a15323fc3cf60ab59533fccdfa4345ac7435a9d))
+
+
+
+
+
 # [2.14.0](https://github.com/niama-strategies/niama/compare/@niama/core@2.13.5...@niama/core@2.14.0) (2020-03-29)
 
 
