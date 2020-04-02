@@ -4,7 +4,19 @@
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
+  "scripts": {
+    "build": "bili",
+    "prepublishOnly": "yarn build"
+  },
+  "devDependencies": {
+    "vue": "^2.6.11"
+  },
   "dependencies": {
     "@niama/core": "^2.15.0",
     "@vue/apollo-composable": "^4.0.0-alpha.7",
@@ -18,7 +30,9 @@
     "graphql-anywhere": "^4.2.6",
     "graphql-tag": "^2.10.3",
     "qs": "^6.9.1",
-    "subscriptions-transport-ws": "^0.9.16",
+    "subscriptions-transport-ws": "^0.9.16"
+  },
+  "peerDependencies": {
     "vue": "^2.6.11"
   },
   "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"
