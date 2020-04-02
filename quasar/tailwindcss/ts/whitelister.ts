@@ -1,4 +1,4 @@
-import { kebabCase } from '@niama/core';
+import kebabCase from 'lodash.kebabcase';
 import { importName, regex } from 'quasar/dist/babel-transforms/auto-import.json';
 import getPath from 'quasar/dist/babel-transforms/imports';
 

@@ -18,10 +18,11 @@
     "prepare": "yarn build"
   },
   "dependencies": {
-    "@niama/core": "^2.15.1",
     "@types/autoprefixer": "^9.7.1",
+    "@types/lodash.kebabcase": "^4.1.6",
     "@types/webpack": "^4.41.8",
     "glob-all": "^3.2.1",
+    "lodash.kebabcase": "^4.1.1",
     "postcss-nested": "^4.2.1",
     "purgecss-webpack-plugin": "^2.1.0",
     "tailwindcss": "^1.2.0"
@@ -31,8 +32,8 @@
     "quasar": "^1.9.11",
     "rimraf": "^3.0.2"
   },
-  "gitHead": "f068c907ad542e942cac174943f6fe77917883b1",
   "peerDependencies": {
     "quasar": "^1.9.11"
-  }
+  },
+  "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"
 }
