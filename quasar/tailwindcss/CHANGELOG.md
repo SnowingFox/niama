@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.2.0...@niama/quasar-app-extension-tailwindcss@3.2.1) (2020-04-02)
+
+
+### Bug Fixes
+
+* **quasar/tailwindcss:** add monkey patch to purgecss ([8f042a8](https://github.com/niama-strategies/niama/commit/8f042a8ab15f74e8f283cc4c4182290a5825f66f))
+
+
+
+
+
 # [3.2.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.1.4...@niama/quasar-app-extension-tailwindcss@3.2.0) (2020-04-02)
 
 
