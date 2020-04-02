@@ -1,8 +1,8 @@
+import PurgecssPlugin from '@niama/purgecss-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import glob from 'glob-all';
 import path from 'path';
 import nested from 'postcss-nested';
-import PurgecssPlugin from 'purgecss-webpack-plugin';
 import tailwindcss from 'tailwindcss';
 
 import wl from './whitelister';
