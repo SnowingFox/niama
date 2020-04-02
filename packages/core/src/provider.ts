@@ -20,17 +20,22 @@ export const useNiama = (): T.Niama => inject(sym) as T.Niama;
 
 export const getNiama = (): T.Niama => Vue.prototype.$niama;
 
-export const getProvider = <K extends T.NiamaKeys>(id: K): T.Niama[K] => {
+export function getProvider<K extends T.NiamaKeys>(id: K): T.Niama[K] {
   if (!hasProvider(id)) throw getError('getProvider.undefined');
   return Vue.prototype.$niama[id];
-};
+}
 
-export const hasProvider = <K extends T.NiamaKeys>(id: K): boolean => Vue.prototype.$niama && !!Vue.prototype.$niama[id];
-export const hasProviders = (ids: T.NiamaKeys[]): boolean => ids.every(hasProvider);
+export function hasProvider<K extends T.NiamaKeys>(id: K): boolean {
+  return Vue.prototype.$niama && !!Vue.prototype.$niama[id];
+}
 
-export const setProvider = <K extends T.NiamaKeys>({ id, onInit, provider }: T.NiamaProviderInit<K>) => {
+export function hasProviders(ids: T.NiamaKeys[]): boolean {
+  return ids.every(hasProvider);
+}
+
+export function setProvider<K extends T.NiamaKeys>({ id, onInit, provider }: T.NiamaProviderInit<K>) {
   if (!Vue.prototype.$niama) Vue.prototype.$niama = {};
   if (!Vue.prototype.$niamaOnInit) Vue.prototype.$niamaOnInit = [];
   Vue.prototype.$niama[id] = provider;
   if (onInit) Vue.prototype.$niamaOnInit.push(onInit);
-};
+}

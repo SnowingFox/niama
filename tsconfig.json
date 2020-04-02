@@ -20,10 +20,6 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types"
-    ]
+    "target": "esnext"
   }
 }
