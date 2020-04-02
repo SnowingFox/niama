@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-starter@2.22.17...@niama/quasar-app-extension-starter@2.23.0) (2020-04-02)
+
+
+### Features
+
+* **webpack/purgecss:** add monkey patched purgecss ([6adffc2](https://github.com/niama-strategies/niama/commit/6adffc2a2a2237877854ea99e62a74e3514f4e28))
+
+
+
+
+
 ## [2.22.17](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-starter@2.22.16...@niama/quasar-app-extension-starter@2.22.17) (2020-04-02)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-starter
