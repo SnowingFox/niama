@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/niama-strategies/niama/compare/@niama/api@2.13.7...@niama/api@2.14.0) (2020-04-02)
+
+
+### Features
+
+* **api:** add bili ([69a89c6](https://github.com/niama-strategies/niama/commit/69a89c6c84e3c93335b9b9adfd7a12b3dc1f967a))
+
+
+
+
+
 ## [2.13.7](https://github.com/niama-strategies/niama/compare/@niama/api@2.13.6...@niama/api@2.13.7) (2020-04-01)
 
 **Note:** Version bump only for package @niama/api

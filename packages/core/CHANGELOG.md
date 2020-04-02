@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.1](https://github.com/niama-strategies/niama/compare/@niama/core@2.15.0...@niama/core@2.15.1) (2020-04-02)
+
+
+### Bug Fixes
+
+* **core:** keyof expand ([ea89ce3](https://github.com/niama-strategies/niama/commit/ea89ce3d435ae33121b3743b5b03d524d7b65082))
+
+
+
+
+
 # [2.15.0](https://github.com/niama-strategies/niama/compare/@niama/core@2.14.0...@niama/core@2.15.0) (2020-04-01)
 
 

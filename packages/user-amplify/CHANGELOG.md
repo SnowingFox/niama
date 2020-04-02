@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.5](https://github.com/niama-strategies/niama/compare/@niama/user-amplify@2.22.4...@niama/user-amplify@2.22.5) (2020-04-02)
+
+**Note:** Version bump only for package @niama/user-amplify
+
+
+
+
+
 ## [2.22.4](https://github.com/niama-strategies/niama/compare/@niama/user-amplify@2.22.3...@niama/user-amplify@2.22.4) (2020-04-01)
 
 **Note:** Version bump only for package @niama/user-amplify
