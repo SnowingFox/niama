@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.1.4...@niama/quasar-app-extension-tailwindcss@3.2.0) (2020-04-02)
+
+
+### Features
+
+* **quasar/tailwindcss:** replace @niama/core by lodash.kebabcase ([9a9778d](https://github.com/niama-strategies/niama/commit/9a9778df2ea177eddb27abcf21e84dbab0848b82))
+
+
+
+
+
 ## [3.1.4](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.1.3...@niama/quasar-app-extension-tailwindcss@3.1.4) (2020-04-02)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-tailwindcss
