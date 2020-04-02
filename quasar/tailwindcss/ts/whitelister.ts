@@ -7,6 +7,7 @@ class WhiteLister {
   patterns: RegExp[] = [];
 
   extras = {
+    QBtn: { patterns: [/^items-/, /^justify-/] },
     QHeader: { patterns: [/^absolute-top$/, /^fixed-top$/] },
   };
 
@@ -28,7 +29,7 @@ class WhiteLister {
 
   process(file: string) {
     let elementsFound = (file.match(new RegExp(regex.components || regex.directives, 'g')) ?? []).map((name) => importName[name]);
-    if (elementsFound.length) return;
+    if (!elementsFound.length) return;
     elementsFound = elementsFound.filter((el) => !this.elements.includes(el));
     if (!elementsFound.length) return;
     this.elements = this.append(this.elements, this.getElements(elementsFound));
