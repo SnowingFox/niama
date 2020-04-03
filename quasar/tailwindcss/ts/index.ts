@@ -1,9 +1,6 @@
 import PurgecssPlugin from '@niama/purgecss-webpack-plugin';
-import autoprefixer from 'autoprefixer';
 import glob from 'glob-all';
 import path from 'path';
-import nested from 'postcss-nested';
-import tailwindcss from 'tailwindcss';
 
 import wl from './whitelister';
 
@@ -11,30 +8,16 @@ export = async (api) => {
   enforceCompatibility(api);
 
   api.chainWebpack((cfg) => {
-    const vueRule = cfg.module.rule('vue').test(/\.vue$/);
-    vueRule.use('whitelister').loader(path.join(__dirname, 'loader'));
-
-    const postCssRule = cfg.module.rule('postcss').test(/\.(postcss)$/);
-    postCssRule.use('vue-style').loader('vue-style-loader');
-    postCssRule.use('css').loader('css-loader');
-    postCssRule
-      .use('postcss')
-      .loader('postcss-loader')
-      .options({ plugins: [nested, tailwindcss(), autoprefixer], ident: 'postcss' });
-
-    if (api.ctx.prod)
-      cfg
-        .plugin('purgecss')
-        .use(PurgecssPlugin, [
-          {
-            paths: () => [...glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), ...wl.paths],
-            whitelistPatterns: () => wl.patterns,
-          },
-        ]);
-    // defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+    processPostCss(cfg);
+    if (api.ctx.prod) purgeCss(api, cfg);
   });
 
-  await extendConf(api);
+  await addBrandColors(api);
+};
+
+const addBrandColors = async (api) => {
+  const colors = await import(api.resolve.src('css/colors'));
+  api.extendQuasarConf((conf) => (conf.framework.config.brand = colors.default));
 };
 
 const enforceCompatibility = (api) => {
@@ -42,7 +25,20 @@ const enforceCompatibility = (api) => {
   api.compatibleWith('@quasar/app', '^1.0.0');
 };
 
-const extendConf = async (api) => {
-  const colors = await import(api.resolve.src('css/colors'));
-  api.extendQuasarConf((conf) => (conf.framework.config.brand = colors.default));
+const processPostCss = (cfg) => {
+  const rule = cfg.module.rule('postcss').test(/\.(postcss)$/);
+  rule.use('vue-style').loader('vue-style-loader');
+  rule.use('css').loader('css-loader');
+  rule.use('postcss').loader('postcss-loader');
+};
+
+const purgeCss = (api, cfg) => {
+  const vueRule = cfg.module.rule('vue').test(/\.vue$/);
+  vueRule.use('whitelister').loader(path.join(__dirname, 'loader'));
+
+  const purgecssOpts = {
+    paths: () => [...glob.sync([api.resolve.src('**/*.html'), api.resolve.src('**/*.vue')]), ...wl.paths],
+    whitelistPatterns: () => wl.patterns,
+  };
+  cfg.plugin('purgecss').use(PurgecssPlugin, [purgecssOpts]);
 };
