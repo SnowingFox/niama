@@ -1,4 +1,4 @@
-import * as T from '@/<%= package.name %>/types';
+import * as T from '@/<%= pkg.name %>/types';
 
 export const menus: T.Nav.Menu[] = [
   {
