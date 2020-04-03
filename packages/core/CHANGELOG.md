@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/niama-strategies/niama/compare/@niama/core@2.15.2...@niama/core@3.0.0) (2020-04-03)
+
+
+### Bug Fixes
+
+* **core:** remove superstruct and vee-validate dependencies ([2fc64b0](https://github.com/niama-strategies/niama/commit/2fc64b0795b8b75afecae702185f61ff245203fe))
+
+
+### BREAKING CHANGES
+
+* **core:** struct is moved to its own repository
+
+
+
+
+
 ## [2.15.2](https://github.com/niama-strategies/niama/compare/@niama/core@2.15.1...@niama/core@2.15.2) (2020-04-03)
 
 

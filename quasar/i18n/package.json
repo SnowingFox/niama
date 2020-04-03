@@ -1,6 +1,6 @@
 {
   "name": "@niama/quasar-app-extension-i18n",
-  "version": "2.18.11",
+  "version": "2.18.12",
   "description": "Add i18n to Quasar",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "@kazupon/vue-i18n-loader": "^0.5.0",
-    "@niama/core": "^2.15.2",
+    "@niama/core": "^3.0.0",
     "vue-i18n": "^8.15.5",
     "yaml-loader": "^0.6.0"
   },
