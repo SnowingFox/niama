@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.1](https://github.com/niama-strategies/niama/compare/@niama/api@2.14.0...@niama/api@2.14.1) (2020-04-03)
+
+
+### Bug Fixes
+
+* add types ([adac0c6](https://github.com/niama-strategies/niama/commit/adac0c6c691096284b8048632e6f9eb927e30e38))
+
+
+
+
+
 # [2.14.0](https://github.com/niama-strategies/niama/compare/@niama/api@2.13.7...@niama/api@2.14.0) (2020-04-02)
 
 

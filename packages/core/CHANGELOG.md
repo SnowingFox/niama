@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/niama-strategies/niama/compare/@niama/core@2.15.1...@niama/core@2.15.2) (2020-04-03)
+
+
+### Bug Fixes
+
+* add types ([adac0c6](https://github.com/niama-strategies/niama/commit/adac0c6c691096284b8048632e6f9eb927e30e38))
+
+
+
+
+
 ## [2.15.1](https://github.com/niama-strategies/niama/compare/@niama/core@2.15.0...@niama/core@2.15.1) (2020-04-02)
 
 

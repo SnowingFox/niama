@@ -1,13 +1,13 @@
 {
   "name": "@niama/api",
-  "version": "2.14.0",
+  "version": "2.14.1",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist", 
+    "dist",
     "types"
   ],
   "sideEffects": false,
@@ -19,7 +19,7 @@
     "vue": "^2.6.11"
   },
   "dependencies": {
-    "@niama/core": "^2.15.1",
+    "@niama/core": "^2.15.2",
     "@vue/apollo-composable": "^4.0.0-alpha.7",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",

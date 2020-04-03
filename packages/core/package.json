@@ -1,13 +1,13 @@
 {
   "name": "@niama/core",
-  "version": "2.15.1",
+  "version": "2.15.2",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist", 
+    "dist",
     "types"
   ],
   "sideEffects": false,

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.6](https://github.com/niama-strategies/niama/compare/@niama/user@2.20.5...@niama/user@2.20.6) (2020-04-03)
+
+**Note:** Version bump only for package @niama/user
+
+
+
+
+
 ## [2.20.5](https://github.com/niama-strategies/niama/compare/@niama/user@2.20.4...@niama/user@2.20.5) (2020-04-02)
 
 **Note:** Version bump only for package @niama/user
