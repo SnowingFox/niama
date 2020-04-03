@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/niama-strategies/niama/compare/@niama/api@2.14.1...@niama/api@2.15.0) (2020-04-03)
+
+
+### Features
+
+* **quasar/tailwindcss:** add postcssrc.js ([91cdc3a](https://github.com/niama-strategies/niama/commit/91cdc3a1e8e6c1e35942cf344530054e60743b0b))
+
+
+
+
+
 ## [2.14.1](https://github.com/niama-strategies/niama/compare/@niama/api@2.14.0...@niama/api@2.14.1) (2020-04-03)
 
 

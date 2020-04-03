@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.7](https://github.com/niama-strategies/niama/compare/@niama/orm@2.17.6...@niama/orm@2.17.7) (2020-04-03)
+
+**Note:** Version bump only for package @niama/orm
+
+
+
+
+
 ## [2.17.6](https://github.com/niama-strategies/niama/compare/@niama/orm@2.17.5...@niama/orm@2.17.6) (2020-04-03)
 
 **Note:** Version bump only for package @niama/orm
