@@ -4,7 +4,6 @@ export * from './i18n.fr';
 export * from './lodash';
 export * from './provider';
 export * from './rx';
-export * from './struct';
 export * from './ui';
 export * from './uses';
 export * from './utils';

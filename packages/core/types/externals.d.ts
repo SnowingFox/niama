@@ -9,5 +9,4 @@ export type Subject<T = any> = BaseSubject<T>;
 export { VueI18n, VueRouter };
 export { Ref, SetupContext } from '@vue/composition-api';
 export { AsyncSubject, Subscription } from 'rxjs';
-export { Struct } from 'superstruct';
 export { Location, RawLocation, Route, RouteConfig } from 'vue-router';
