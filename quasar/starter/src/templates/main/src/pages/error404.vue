@@ -19,5 +19,5 @@ fr:
 </i18n>
 
 <style lang="postcss" scoped>
-.Back { @apply _bg-secondary _text-white }
+.Back { @apply bg-secondary text-white }
 </style>

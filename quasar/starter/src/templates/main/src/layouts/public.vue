@@ -1,16 +1,16 @@
 <template lang="pug">
 q-layout.@l-Public(view="hHh Lpr lff") 
-  q-header: q-toolbar._pr-0._bg-secondary
+  q-header: q-toolbar.pr-0.bg-secondary
     q-toolbar-title Niama starter
-    q-btn._bg-primary.sm:_hidden(icon="menu", unelevated, stretch, @click="show = !show")
-    q-tabs._bg-accent._hidden.sm:_flex(inline-label, stretch) 
+    q-btn.bg-grey1.sm_hidden(icon="menu", unelevated, stretch, @click="show = !show")
+    q-tabs.hidden.bg-grey1.sm_flex(inline-label, stretch, indicator-color="grey1") 
       q-route-tab(v-for="nav of navs", :key="nav.id", v-bind="nav", :label="$t(`menus.${nav.id}`)")
   
   q-drawer(v-model="show", overlay, elevated): q-list(v-for="nav in navs", :key="nav.id")
-    q-item(:exact="nav.exact", :to="nav.to"): q-item-section._uppercase {{ $t(`menus.${nav.id}`) }}
+    q-item(:exact="nav.exact", :to="nav.to"): q-item-section.uppercase {{ $t(`menus.${nav.id}`) }}
   
   q-page-container
-    ._fixed._inset-0._flex._items-center._justify-center: img._max-w-xs._opacity-50(alt="Logo", src="statics/logo.png")
+    .fixed.inset-0.flex.items-center.justify-center: img.max-w-xs.opacity-50(alt="Logo", src="statics/logo.png")
     router-view
 </template>
 
@@ -18,7 +18,7 @@ q-layout.@l-Public(view="hHh Lpr lff")
 import { useReadNavs } from '@niama/nav';
 import { defineComponent, ref } from '@vue/composition-api';
 
-import * as T from '@/<%= package.name %>/types';
+import * as T from '@/<%= pkg.name %>/types';
 
 // COMPONENT ===============================================================================================================================
 

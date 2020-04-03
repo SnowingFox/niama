@@ -6,7 +6,7 @@
 import { provideNiama } from '@niama/core';
 import { defineComponent } from '@vue/composition-api';
 
-import * as T from '@/<%= package.name %>/types';
+import * as T from '@/<%= pkg.name %>/types';
 
 // COMPONENT ===============================================================================================================================
 
