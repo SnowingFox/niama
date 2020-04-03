@@ -3391,10 +3391,10 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
-"@vue/apollo-composable@^4.0.0-alpha.7":
-  version "4.0.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/@vue/apollo-composable/-/apollo-composable-4.0.0-alpha.8.tgz#6e82a64b1f9637941579aa560defbca3765401ba"
-  integrity sha512-d+9Uigio43C13ex/FfvJ6oaB3YjNUvIc91jSix4PfJERcCPtCeLlVHYinX2MMv40va6gY9sC6GN6QzL5o/80uQ==
+"@vue/apollo-composable@4.0.0-alpha.7":
+  version "4.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@vue/apollo-composable/-/apollo-composable-4.0.0-alpha.7.tgz#b6f9aeee69ab5f8922255f3454bcbf87e7d02b44"
+  integrity sha512-riObuF/QxYUXQTdlL+mddSYFtKjGecPfVRry+vy2hejHSDmwWkezqy09VbdhxPct1OnMTzWTjfYQOlMhGzqcOg==
   dependencies:
     throttle-debounce "^2.1.0"
 
@@ -6519,10 +6519,12 @@ graphql@14.0.0:
   dependencies:
     iterall "^1.2.2"
 
-graphql@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.0.0.tgz#042a5eb5e2506a2e2111ce41eb446a8e570b8be9"
-  integrity sha512-ZyVO1xIF9F+4cxfkdhOJINM+51B06Friuv4M66W7HzUOeFd+vNzUn4vtswYINPi6sysjf1M2Ri/rwZALqgwbaQ==
+graphql@14.6.0:
+  version "14.6.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.6.0.tgz#57822297111e874ea12f5cd4419616930cd83e49"
+  integrity sha512-VKzfvHEKybTKjQVpTFrA5yUq2S9ihcZvfJAtsDBBCuV6wauPu1xl/f9ehgVf0FcEJJs4vz6ysb/ZMkGigQZseg==
+  dependencies:
+    iterall "^1.2.2"
 
 handlebars@^4.4.0:
   version "4.7.5"
