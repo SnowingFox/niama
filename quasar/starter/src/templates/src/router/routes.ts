@@ -5,6 +5,7 @@ const routes: RouteConfig[] = [
     path: '/',
     component: () => import('layouts/public.vue'),
     children: [
+      { name: 'contact', path: 'contact', component: () => import('pages/contact.vue') },
       { name: 'index', path: '', component: () => import('pages/index.vue') },
     ],
   },

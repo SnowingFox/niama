@@ -49,7 +49,7 @@ const updateContent = (api) => {
     rimraf.sync(api.resolve.src(name))
   );
   rimraf.sync(api.resolve.app('quasar.conf.js'));
-  api.render('./templates/main', { pkg });
+  api.render('./templates', { pkg });
 };
 
 module.exports = (api) => {

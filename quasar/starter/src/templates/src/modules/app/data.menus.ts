@@ -4,6 +4,9 @@ export const menus: T.Nav.Menu[] = [
   {
     id: 'public',
     to: '',
-    children: [{ id: 'index', to: '/', icon: 'home', exact: true }],
+    children: [
+      { id: 'index', to: '/', icon: 'home', exact: true },
+      { id: 'contact', to: '/contact' },
+    ],
   },
 ];
