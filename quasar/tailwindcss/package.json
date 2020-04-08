@@ -15,16 +15,21 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "prepare": "yarn build"
+    "patch": "node src/monkeypatch",
+    "prepublishOnly": "yarn build",
+    "postinstall": "yarn patch"
   },
   "dependencies": {
     "@niama/purgecss-webpack-plugin": "^1.0.0",
     "@types/autoprefixer": "^9.7.1",
+    "@types/cssnano": "^4.0.0",
     "@types/lodash.kebabcase": "^4.1.6",
+    "@types/stylus": "^0.48.32",
     "@types/webpack": "^4.41.8",
     "glob-all": "^3.2.1",
     "lodash.kebabcase": "^4.1.1",
     "postcss-nested": "^4.2.1",
+    "stylus": "^0.54.7",
     "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
