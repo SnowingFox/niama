@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.3.0...@niama/quasar-app-extension-tailwindcss@3.4.0) (2020-04-08)
+
+
+### Features
+
+* **quasar/tailwindcss:** add monkeypatch to remove colors from quasar ([219c20f](https://github.com/niama-strategies/niama/commit/219c20fe80310d3f2b2678d833f1da6c814e99ac))
+
+
+
+
+
 # [3.3.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.2.4...@niama/quasar-app-extension-tailwindcss@3.3.0) (2020-04-03)
 
 
