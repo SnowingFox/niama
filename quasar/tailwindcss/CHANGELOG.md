@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.4.0...@niama/quasar-app-extension-tailwindcss@3.4.1) (2020-04-08)
+
+
+### Bug Fixes
+
+* **quasar/tailwindcss:** npm package files ([947a591](https://github.com/niama-strategies/niama/commit/947a591394c5890821f008f3b3455f8dd4fa9444))
+
+
+
+
+
 # [3.4.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.3.0...@niama/quasar-app-extension-tailwindcss@3.4.0) (2020-04-08)
 
 
