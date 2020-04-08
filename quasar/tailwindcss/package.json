@@ -5,6 +5,9 @@
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "src/index.js",
+  "files": [
+    "src"
+  ],
   "keywords": [
     "quasar",
     "app",
