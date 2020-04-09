@@ -59,7 +59,7 @@ const postLex = (tokens: T.Token[], loaderO: T.LoaderO): T.Token[] => {
   const opts: T.PostLexO = { ...defaultO, ...loaderO, blocks: [], depths: { extras: [0], tab: 0 } };
 
   return tokens.map((token) => {
-    updateDepths({ opts, token });
+    opts.depths = updateDepths({ opts, token });
     if (['outdent', 'newline'].includes(token.type)) opts.blocks.fill(null, depth(opts));
     if (isBEM(token, B)) return tokenB({ opts, token });
     if (isBEM(token, BE)) return tokenBE({ opts, token });
@@ -88,6 +88,7 @@ const updateDepths = ({ opts: { depths }, token }: T.TokenO) => {
   if (token.type === ':') depths.extras[depths.tab]++;
   if (token.type === 'outdent') depths = { extras: [...depths.extras.slice(0, -2), 0], tab: depths.tab - 1 };
   if (token.type === 'newline') depths.extras[depths.tab] = 0;
+  return depths;
 };
 
 // BLOCKS ==================================================================================================================================
