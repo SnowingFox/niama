@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.3](https://github.com/niama-strategies/niama/compare/@niama/pug-bem-plain-loader@2.25.2...@niama/pug-bem-plain-loader@2.25.3) (2020-04-09)
+
+
+### Bug Fixes
+
+* **webpack/pug:** fix wrong depth update ([85db3dc](https://github.com/niama-strategies/niama/commit/85db3dcbff6d8cefa00fb381d5e3313b9b556b32))
+
+
+
+
+
 ## [2.25.2](https://github.com/niama-strategies/niama/compare/@niama/pug-bem-plain-loader@2.25.1...@niama/pug-bem-plain-loader@2.25.2) (2020-03-26)
 
 
