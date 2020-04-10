@@ -2,8 +2,8 @@
 q-layout.@l-Public(view="hHh Lpr lff") 
   q-header: q-toolbar.pr-0.bg-secondary
     q-toolbar-title Niama starter
-    q-btn.bg-grey1.sm_hidden(icon="menu", unelevated, stretch, @click="show = !show")
-    q-tabs.hidden.bg-grey1.sm_flex(inline-label, stretch, indicator-color="grey1") 
+    q-btn.sm_hidden(icon="menu", unelevated, stretch, color="grey1", @click="show = !show")
+    q-tabs.-menu.bg-grey1(inline-label, stretch, indicator-color="primary") 
       q-route-tab(v-for="nav of navs", :key="nav.id", v-bind="nav", :label="$t(`menus.${nav.id}`)")
   
   q-drawer(v-model="show", overlay, elevated): q-list(v-for="nav in navs", :key="nav.id")
@@ -46,3 +46,11 @@ interface Nav extends Pick<T.Nav.Po, 'exact' | 'id' | 'to'> {
   icon?: string;
 }
 </script>
+
+<style lang="postcss" scoped>
+.l-Public {
+  &_menu { @apply hidden } }
+
+@screen sm { .l-Public { 
+  &_menu { @apply flex } } }
+</style>
