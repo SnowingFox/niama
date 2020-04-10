@@ -1,4 +1,4 @@
-import { AsyncSubject, Maybe } from '@niama/core/types';
+import { AsyncSubject, Maybe, Syncer } from '@niama/core/types';
 
 import { BootO, Payload, Raw } from './';
 import { Po } from './main';
@@ -7,7 +7,7 @@ import * as S from './service';
 // BOOT ====================================================================================================================================
 
 export interface BootAuthP {
-  initProvider: (opts: BootO) => Provider;
+  initProvider: Syncer<Provider, BootO>;
   opts: BootO;
 }
 
