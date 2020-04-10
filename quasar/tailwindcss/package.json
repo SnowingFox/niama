@@ -1,6 +1,6 @@
 {
   "name": "@niama/quasar-app-extension-tailwindcss",
-  "version": "3.4.1",
+  "version": "3.5.0",
   "description": "Add Tailwind CSS styling to Quasar",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",

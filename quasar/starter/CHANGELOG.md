@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-starter@2.23.8...@niama/quasar-app-extension-starter@2.24.0) (2020-04-10)
+
+
+### Features
+
+* **quasar/starter:** add breakpoints and colors ([71bfce4](https://github.com/niama-strategies/niama/commit/71bfce4b87b59649dbff45a0346ba1a30665b49d))
+
+
+
+
+
 ## [2.23.8](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-starter@2.23.7...@niama/quasar-app-extension-starter@2.23.8) (2020-04-03)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-starter
