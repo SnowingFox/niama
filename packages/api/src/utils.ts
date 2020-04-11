@@ -28,9 +28,8 @@ export const addDefaultFields = <F extends T.F>({ defaults, fields }: T.AddDefau
   if (!fields) return defaults;
   if (Array.isArray(defaults))
     return Array.isArray(fields) ? ([...defaults, ...fields] as F) : { ...fields, _: [...defaults, ...fields['_']] };
-  return Array.isArray(fields)
-    ? { ...defaults, _: [...defaults['_'], ...fields] }
-    : mergeWith({}, defaults, fields, (obj, src) => addDefaultFields({ defaults: src, fields: obj }));
+  if (Array.isArray(fields)) return { ...defaults, _: [...defaults['_'], ...fields] }
+  return mergeWith({}, defaults, fields, (obj, src) => addDefaultFields({ defaults: src, fields: obj }));
 };
 
 // OPERATIONS ==============================================================================================================================

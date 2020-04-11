@@ -70,8 +70,12 @@ const postLex = (tokens: T.Token[], loaderO: T.LoaderO): T.Token[] => {
 
 // OPTS ====================================================================================================================================
 
-const format = ({ casing, val }: T.FormatP): string =>
-  casing === 'camel' ? camelCase(val) : casing === 'kebab' ? kebabCase(val) : casing === 'pascal' ? upperFirst(camelCase(val)) : val;
+const format = ({ casing, val }: T.FormatP): string => {
+  if (casing === 'camel') return camelCase(val);
+  if (casing === 'kebab') return kebabCase(val);
+  if (casing === 'pascal') return upperFirst(camelCase(val));
+  return val;
+};
 
 const modifier = ({ casing, opts: { casingM = 'camel', separatorM = '--' }, prefix = '', val }: T.ModifierP): T.ModifierR => {
   const vals = val.split(separatorM);

@@ -1,6 +1,5 @@
-import { useNiama } from '@niama/core';
 import { useQuery, useResult } from '@vue/apollo-composable';
-import { computed, ref } from '@vue/composition-api';
+import { ref } from '@vue/composition-api';
 import { struct } from 'superstruct';
 
 import * as T from './types';
@@ -12,16 +11,31 @@ export const useReadMany = <C extends T.Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']
   const { fields, limit, rp, offset = 0, update = (dto) => (dto as unknown) as Vo, validation, where } = p;
   const { count: getCount = true, debug = false, fetchPolicy = 'cache-first', orderBy, total: getTotal = true } = p;
   const { L, O } = rp;
-  const $niama = useNiama();
 
   const count: T.Ref<T.Maybe<number>> = ref(null);
-  //const items: T.Ref<T.Maybe<Vo[]>> = ref(null);
-  //const loading = ref(true);
   const total: T.Ref<T.Maybe<number>> = ref(null);
 
-  const canFetchMore = computed(() => items.value !== null && count.value !== null && count.value > items.value.length);
+  const { error, loading, refetch, result } = useQuery<T.Dict<Dto[]>>(O.readMany({ fields }), { limit, offset, where }, { fetchPolicy });
+  const items: T.Api.R<Vo[]> = useResult<T.Dict<Dto[]>, Vo[], Vo[]>(result, [], (data) => {
+    if (data === undefined) throw getError('UnknownQuery');
+    const dtos: Dto[] = (data && data[L.readMany]) || [];
+    if (debug) console.log(L.readMany, 'where', where, 'gets dtos', dtos);
+    const value = dtos.map((dto) => update(validation ? struct(validation)(dto) : dto));
+    if (debug) console.log(L.readMany, 'where', where, 'returns items', value);
+    return value;
+  });
 
-  /*if (getCount)
+  const fetchMore = async (_index: number, done: Function) => await done();
+
+  return { count, error, fetchMore, items, loading, refetch, total };
+};
+
+/*
+const items: T.Ref<T.Maybe<Vo[]>> = ref(null);
+const loading = ref(true);
+const canFetchMore = computed(() => items.value !== null && count.value !== null && count.value > items.value.length);
+
+ if (getCount)
     api.addSmartQuery('count', {
       query: rp.ops.count,
       variables: () => ({ where }),
@@ -44,22 +58,9 @@ export const useReadMany = <C extends T.Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']
         total.value = value;
       },
       manual: true,
-    });*/
-  const { error, loading, refetch, result } = useQuery<T.Dict<Dto[]>>(
-    O.readMany({ fields }),
-    { limit, offset, where },
-    { fetchPolicy }
-  );
-  const items: T.Api.R<Vo[]> = useResult<T.Dict<Dto[]>, Vo[], Vo[]>(result, [], (data) => {
-    if (data === undefined) throw getError('UnknownQuery');
-    const dtos: Dto[] = (data && data[L.readMany]) || [];
-    if (debug) console.log(L.readMany, 'where', where, 'gets dtos', dtos);
-    const value = dtos.map((dto) => update(validation ? struct(validation)(dto) : dto));
-    if (debug) console.log(L.readMany, 'where', where, 'returns items', value);
-    return value;
-  });
+    });
 
-  /*api.addSmartQuery('currentItems', {
+api.addSmartQuery('currentItems', {
     query: () => rp.ops.readMany({ fields }),
     variables: () => ({ first, skip, where }), // ({ first: this.first, orderBy: this.orderBy, skip: this.skip, where: this.where }),
     result: ({ data, loading: isLoading }) => {
@@ -77,18 +78,12 @@ export const useReadMany = <C extends T.Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']
     },
     fetchPolicy,
     manual: true,
-  });*/
-
-  const fetchMore = async (_index: number, done: Function) => {
-    /*if (canFetchMore.value)
+  });
+  
+  /*if (canFetchMore.value)
       await api.queries.currentItems.fetchMore({
         variables: { skip: (items.value && items.value.length) || 0 },
         updateQuery: (data, { fetchMoreResult }) => ({
           [rp.labels.READ_MANY]: [...data[rp.labels.READ_MANY], ...fetchMoreResult[rp.labels.READ_MANY]],
         }),
       });*/
-    await done();
-  };
-
-  return { count, error, fetchMore, items, loading, refetch, total };
-};
