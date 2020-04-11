@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.11](https://github.com/niama-strategies/niama/compare/@niama/auth@2.17.10...@niama/auth@2.17.11) (2020-04-11)
+
+**Note:** Version bump only for package @niama/auth
+
+
+
+
+
 ## [2.17.10](https://github.com/niama-strategies/niama/compare/@niama/auth@2.17.9...@niama/auth@2.17.10) (2020-04-11)
 
 
