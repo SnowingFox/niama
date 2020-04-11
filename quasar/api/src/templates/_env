@@ -1,8 +1,8 @@
 DB_HOST=localhost
-DB_NAME=<%= package.name %>
+DB_NAME=<%= pkg.name %>
 DB_PORT=5432
 DB_PWD=niama_db_secret
-DB_USER=<%= package.name %>
+DB_USER=<%= pkg.name %>
 
 NIAMA_API_ADMIN=niama_api_secret
 NIAMA_API_HOST=localhost
