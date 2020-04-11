@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.12](https://github.com/niama-strategies/niama/compare/@niama/nav@2.17.11...@niama/nav@2.17.12) (2020-04-11)
+
+
+### Bug Fixes
+
+* **nav,orm,user:** set types as sdeclaration files ([bb650aa](https://github.com/niama-strategies/niama/commit/bb650aaed9dfdeb03ed94c15d28cbdf6afa8c614))
+
+
+
+
+
 ## [2.17.11](https://github.com/niama-strategies/niama/compare/@niama/nav@2.17.10...@niama/nav@2.17.11) (2020-04-11)
 
 **Note:** Version bump only for package @niama/nav
