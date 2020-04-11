@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.11](https://github.com/niama-strategies/niama/compare/@niama/auth-amplify@2.21.10...@niama/auth-amplify@2.21.11) (2020-04-11)
+
+
+### Bug Fixes
+
+* **auth-amplify:** change types to declaration files ([c143a55](https://github.com/niama-strategies/niama/commit/c143a55614dbec46bc867f2e3e3359695cef5070))
+
+
+
+
+
 ## [2.21.10](https://github.com/niama-strategies/niama/compare/@niama/auth-amplify@2.21.9...@niama/auth-amplify@2.21.10) (2020-04-03)
 
 **Note:** Version bump only for package @niama/auth-amplify
