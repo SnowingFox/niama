@@ -60,8 +60,8 @@ export type Props = T.MarkerItem & { readonly: boolean; value: T.Po; zoom: numbe
 </script>
 
 <style lang="postcss" scoped>
-.n-address-MapSelect { @apply _relative;
-  &_map { @apply _w-full _h-full }
-  &_search { @apply _absolute _top-0 _left-0 _mt-2 _ml-2 }
-  &_submit { @apply _absolute _top-0 _right-0 _mt-2 _mr-2 _bg-white _text-green } }
+.n-address-MapSelect { @apply relative;
+  &_map { @apply w-full h-full }
+  &_search { @apply absolute top-0 left-0 mt-2 ml-2 }
+  &_submit { @apply absolute top-0 right-0 mt-2 mr-2 bg-white text-green } }
 </style>

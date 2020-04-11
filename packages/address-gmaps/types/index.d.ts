@@ -15,7 +15,7 @@ declare module '@niama/address/types' {
     region?: string;
   }
 
-  interface Service {
+  interface Raw {
     Geocoder: Type<Geocoder>;
     InfoWindow: Type<InfoWindow>;
     Map: Type<Map>;

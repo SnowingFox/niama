@@ -4,10 +4,10 @@ import * as T from './types';
 
 // PROPOSAL TRANSFORMERS ===================================================================================================================
 
-export const proposalFromPrediction = ({ id, description: label, place_id: value, types }: T.PlacesPrediction): T.Proposal => {
-  return { __typename: 'AddressProposal', id, label, types, value };
+export const hintFromPrediction = ({ id, description: label, place_id: value, types }: T.PlacesPrediction): T.Hint => {
+  return { __typename: 'AddressHint', id, label, types, value };
 };
-export const proposalsFromPredictions = (p: T.Maybe<T.PlacesPrediction[]>): T.Proposal[] => (p || []).map(proposalFromPrediction);
+export const hintsFromPredictions = (p: T.Maybe<T.PlacesPrediction[]>): T.Hint[] => (p || []).map(hintFromPrediction);
 
 // DTO TRANSFORMERS ========================================================================================================================
 

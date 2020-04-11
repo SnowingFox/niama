@@ -130,10 +130,10 @@ export type UseInitP = { p: Props };
 </script>
 
 <style lang="postcss" scoped>
-.n-address-Map { @apply _relative;
-  &_container { @apply _w-full _h-full _bg-grey-1 } }
+.n-address-Map { @apply relative;
+  &_container { @apply w-full h-full bg-grey-1 } }
 </style>
 
 <style lang="postcss">
-.n-address-Map_cluster { @apply _bg-primary _rounded-full _text-white _flex _items-center _justify-center } 
+.n-address-Map_cluster { @apply bg-primary rounded-full text-white flex items-center justify-center } 
 </style>
