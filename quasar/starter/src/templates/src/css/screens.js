@@ -1,6 +1,0 @@
-module.exports = {
-  sm: '600px',
-  md: '1024px',
-  lg: '1440px',
-  xl: '1920px',
-};

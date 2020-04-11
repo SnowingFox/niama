@@ -39,7 +39,8 @@ const processStylus = (code: string): Promise<string> =>
       .render((err, code) => (err ? rej(err) : res(code)))
   );
 
-const writeFile = async (dest: string, code: string) =>
-  new Promise((_res, rej) => fs.writeFile(dest, code, (err) => (err ? rej(err) : zlib.gzip(code, (err) => (err ? rej(err) : undefined)))));
+const writeFile = async (dest: string, code: string) => new Promise((_res, rej) => fs.writeFile(dest, code, handleWrite(code, rej)));
+const handleWrite = (code: string, rej: (reason?: any) => void) => (err: Error | null) => (err ? rej(err) : gzipFile(code, rej));
+const gzipFile = (code: string, rej: (reason?: any) => void) => zlib.gzip(code, (err) => (err ? rej(err) : undefined));
 
 buildCSS();
