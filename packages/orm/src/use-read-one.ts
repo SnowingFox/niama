@@ -7,15 +7,22 @@ const fromDto = <C extends T.Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']['Po']>(p: 
   const { debug = false, fallback = null, id, rp, update = (dto) => (dto as unknown) as Vo, validation } = p;
   const { L } = rp;
 
-  try {
-    const dto = data[L.readOne];
+  const getValue = (dto: Dto): T.Maybe<Vo> => {
     if (debug) console.log(L.readOne, 'with id', id, 'gets dto', dto);
     const value = dto ? update(validation ? struct(validation)(dto) : dto) : fallback;
     if (debug) console.log(L.readOne, 'with id', id, 'returns item', value);
     return value;
-  } catch (error) {
+  };
+
+  const manageError = (error: Error): null => {
     if (debug) console.error(L.readOne, 'with id', id, 'errored :', error);
     return null;
+  };
+
+  try {
+    return getValue(data[L.readOne]);
+  } catch (error) {
+    return manageError(error);
   }
 };
 
