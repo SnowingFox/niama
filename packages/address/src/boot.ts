@@ -2,7 +2,7 @@ import { setProvider } from '@niama/core';
 
 import * as T from './types';
 
-export function boot({ initProvider, opts }: T.BootP) {
+export const bootAddress = ({ initProvider, opts }: T.BootAddressP) => {
   const provider = initProvider(opts);
   setProvider({ id: 'address', provider });
-}
+};

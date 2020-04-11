@@ -8,17 +8,17 @@ export type F = SF;
 
 // OBJECTS =================================================================================================================================
 
-export interface Po extends Proposal, Coords, Fragments {}
+export interface Po extends Hint, Coords, Fragments {}
 export type Coords = Record<CoordK, number>;
 export type Fragments = Record<FragmentK, Maybe<string>>;
 
-export interface Proposal extends Api.Po {
+export interface Hint extends Api.Po {
   label: string;
   types: string[];
   value: string;
 }
 
-export type ProposalType = 'address' | 'city' | 'region';
+export type HintType = 'address' | 'city' | 'region';
 
 // KEYS ====================================================================================================================================
 

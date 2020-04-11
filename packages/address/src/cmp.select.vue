@@ -20,7 +20,7 @@ export default defineComponent({
     value: { type: Object, default: () => null },
   },
   setup(p: Props, { emit }: T.SetupContext): Setup {
-    const innerValue: T.Ref<T.Proposal> = ref(p.value);
+    const innerValue: T.Ref<T.Hint> = ref(p.value);
     const getValue = () => p.value;
     watch(innerValue, (v) => emit('input', v));
     watch(getValue, (v) => (innerValue.value = v));
@@ -30,6 +30,6 @@ export default defineComponent({
 
 // TYPES ===================================================================================================================================
 
-export type Props = { rules: string; value: T.Proposal };
-export type Setup = { innerValue: T.Ref<T.Proposal> };
+export type Props = { rules: string; value: T.Hint };
+export type Setup = { innerValue: T.Ref<T.Hint> };
 </script>

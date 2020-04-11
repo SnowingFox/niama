@@ -12,7 +12,7 @@ import { computed, defineComponent, ref } from '@vue/composition-api';
 
 import * as T from './types';
 import { pick, useSourcable } from '@niama/core';
-import { useProposalsFromInput } from './uses';
+import { useHintsFromInput } from './uses';
 
 // COMPONENT ===============================================================================================================================
 
@@ -26,14 +26,14 @@ export default defineComponent({
     value: { type: Object, default: () => null },
   },
   setup(p: Props) {
-    const proposalsFromInput = useProposalsFromInput({ ...pick(p, ['countries', 'type']) });
+    const hintsFromInput = useHintsFromInput({ ...pick(p, ['countries', 'type']) });
 
-    const { src$: filter$ } = useSourcable<void, [string, Function, Function], T.Maybe<T.Proposal[]>>({
-      switcher: ([input]) => proposalsFromInput(input),
-      selector: ([_, update], proposals) => update(() => (options.value = proposals || [])),
+    const { src$: filter$ } = useSourcable<void, [string, Function, Function], T.Maybe<T.Hint[]>>({
+      switcher: ([input]) => hintsFromInput(input),
+      selector: ([_, update], hints) => update(() => (options.value = hints || [])),
     });
 
-    const options: T.Ref<T.Proposal[]> = ref([]);
+    const options: T.Ref<T.Hint[]> = ref([]);
     const innerValue: T.Ref<string> = computed(() => (p.value && p.value.label) || '');
 
     return { fasSearch, fasTimes, filter$, innerValue, options };
@@ -47,8 +47,8 @@ export type Props = {
   countries?: string[];
   expanded?: boolean;
   toggle?: boolean;
-  type: T.ProposalType;
-  value: T.Proposal;
+  type: T.HintType;
+  value: T.Hint;
 };
 </script>
 
