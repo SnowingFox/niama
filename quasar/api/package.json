@@ -5,6 +5,9 @@
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "src/index.js",
+  "files": [
+    "src"
+  ],
   "keywords": [
     "quasar",
     "app",
@@ -16,6 +19,10 @@
     "apollo",
     "hasura"
   ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "prepublishOnly": "yarn build"
+  },
   "dependencies": {
     "@niama/api": "^2.15.2",
     "env-cmd": "^10.1.0"

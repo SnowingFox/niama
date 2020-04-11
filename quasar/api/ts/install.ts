@@ -1,6 +1,8 @@
-const execa = require('execa');
+import execa from 'execa';
 
-const addScripts = (api) =>
+import * as T from './types';
+
+const addScripts = (api: T.InstallAPI) =>
   api.extendPackageJson({
     scripts: {
       'dev:docker': 'env-cmd -f .env.dev docker-compose up -d',
@@ -9,7 +11,7 @@ const addScripts = (api) =>
     },
   });
 
-const addNiamaExtensions = (api) =>
+const addNiamaExtensions = (api: T.InstallAPI) =>
   ['ts']
     .map((name) => `@niama/${name}`)
     .forEach((name) => {
@@ -21,13 +23,13 @@ const addNiamaExtensions = (api) =>
         }
     });
 
-const updateContent = (api) => {
-  const package = require(api.resolve.app('/package.json'));
-  api.render('./templates', { package });
+const updateContent = async (api: T.InstallAPI) => {
+  const pkg = await import(api.resolve.app('/package.json'));
+  api.render('./templates', { pkg });
 };
 
-module.exports = (api) => {
+export = async (api: T.InstallAPI) => {
   addScripts(api);
   addNiamaExtensions(api);
-  updateContent(api);
+  await updateContent(api);
 };
