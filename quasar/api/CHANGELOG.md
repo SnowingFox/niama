@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.14](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-api@2.13.13...@niama/quasar-app-extension-api@2.13.14) (2020-04-11)
+
+
+### Bug Fixes
+
+* **quasar/api:** rename package to pkg in scope ([a1a306c](https://github.com/niama-strategies/niama/commit/a1a306c6adca13636472f2d9f677621e8d6bed1f))
+
+
+
+
+
 ## [2.13.13](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-api@2.13.12...@niama/quasar-app-extension-api@2.13.13) (2020-04-11)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-api

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.13](https://github.com/niama-strategies/niama/compare/@niama/orm@2.17.12...@niama/orm@2.17.13) (2020-04-11)
+
+
+### Bug Fixes
+
+* **quasar/api:** rename package to pkg in scope ([a1a306c](https://github.com/niama-strategies/niama/commit/a1a306c6adca13636472f2d9f677621e8d6bed1f))
+
+
+
+
+
 ## [2.17.12](https://github.com/niama-strategies/niama/compare/@niama/orm@2.17.11...@niama/orm@2.17.12) (2020-04-11)
 
 
