@@ -38,25 +38,38 @@ export const getSeed = async (p: T.GetSeedP): Promise<any> => {
 
 // USES ====================================================================================================================================
 
+export const useReadCurrent = <Vo = T.Po, Dto = T.Po>(p: T.UseReadCurrentTypedP<T.Cfg, Vo, Dto>): T.UseReadCurrentR<Vo> =>
+  getUseReadCurrent({ rp, ...p });
+
 export const getUseReadCurrent = <C extends T.Orm.Cfg, Vo = T.Po, Dto = T.Po>(p: T.UseReadCurrentP<C, Vo, Dto>): T.UseReadCurrentR<Vo> => {
-  const { debug = false, fallback = null, fields, update = (dto) => (dto as unknown) as Vo, validation } = p;
+  const { fallback = null, fields } = p;
   const rp = p.rp as T.Orm.Rp<T.Cfg>; // TO CHECK
   const { error, loading, result } = useQuery<T.Dict<Dto>>(rp.O.readCurrent(fields));
-  const item: T.Api.R<T.Maybe<Vo>> = useResult<T.Dict<Dto>, T.Maybe<Vo>, T.Maybe<Vo>>(result, fallback, (data) => {
-    try {
-      const dto = data[rp.L.readCurrent];
-      if (debug) console.log(rp.L.readCurrent, 'gets dto', dto);
-      const value = dto ? update(validation ? struct(validation)(dto) : dto) : fallback;
-      if (debug) console.log(rp.L.readCurrent, 'returns item', value);
-      return value;
-    } catch (error) {
-      if (debug) console.error(rp.L.readCurrent, 'errored :', error);
-      return null;
-    }
-  });
-
+  const item: T.Api.R<T.Maybe<Vo>> = useResult<T.Dict<Dto>, T.Maybe<Vo>, T.Maybe<Vo>>(result, fallback, getFromData(p));
   return { error, item, loading };
 };
 
-export const useReadCurrent = <Vo = T.Po, Dto = T.Po>(p: T.UseReadCurrentTypedP<T.Cfg, Vo, Dto>): T.UseReadCurrentR<Vo> =>
-  getUseReadCurrent({ rp, ...p });
+const getFromData = <C extends T.Orm.Cfg, Vo, Dto>(p: T.UseReadCurrentP<C, Vo, Dto>) => (data: T.Dict<Dto>): T.Maybe<Vo> => {
+  try {
+    return getValue({ ...p, data });
+  } catch (error) {
+    return manageError({ ...p, error });
+  }
+};
+
+const getValue = <C extends T.Orm.Cfg, Vo, Dto>(p: { data: T.Dict<Dto> } & T.UseReadCurrentP<C, Vo, Dto>): T.Maybe<Vo> => {
+  const { data, debug = false, fallback = null, update = (dto) => (dto as unknown) as Vo, validation } = p;
+  const rp = p.rp as T.Orm.Rp<T.Cfg>; // TO CHECK
+  const dto = data[rp.L.readCurrent];
+  if (debug) console.log(rp.L.readCurrent, 'gets dto', dto);
+  const value = dto ? update(validation ? struct(validation)(dto) : dto) : fallback;
+  if (debug) console.log(rp.L.readCurrent, 'returns item', value);
+  return value;
+};
+
+const manageError = <C extends T.Orm.Cfg, Vo, Dto>(p: { error: Error } & T.UseReadCurrentP<C, Vo, Dto>): null => {
+  const { debug = false, error } = p;
+  const rp = p.rp as T.Orm.Rp<T.Cfg>; // TO CHECK
+  if (debug) console.error(rp.L.readCurrent, 'errored :', error);
+  return null;
+};

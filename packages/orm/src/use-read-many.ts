@@ -5,25 +5,25 @@ import { struct } from 'superstruct';
 import * as T from './types';
 import { getError } from './utils';
 
+const getFromData = <C extends T.Cfg, Vo, Dto>(p: T.UseReadManyP<C, Vo, Dto>) => (data: T.Dict<Dto[]>): Vo[] => {
+  const { debug = false, rp, update = (dto) => (dto as unknown) as Vo, validation, where } = p;
+  if (data === undefined) throw getError('UnknownQuery');
+  const dtos: Dto[] = (data && data[rp.L.readMany]) || [];
+  if (debug) console.log(rp.L.readMany, 'where', where, 'gets dtos', dtos);
+  const value = dtos.map((dto) => update(validation ? struct(validation)(dto) : dto));
+  if (debug) console.log(rp.L.readMany, 'where', where, 'returns items', value);
+  return value;
+};
+
 export const useReadMany = <C extends T.Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']['Po']>(
   p: T.UseReadManyP<C, Vo, Dto>
 ): T.UseReadManyR<Vo> => {
-  const { fields, limit, rp, offset = 0, update = (dto) => (dto as unknown) as Vo, validation, where } = p;
-  const { count: getCount = true, debug = false, fetchPolicy = 'cache-first', orderBy, total: getTotal = true } = p;
-  const { L, O } = rp;
-
+  const { fetchPolicy = 'cache-first', fields, limit, rp, offset = 0, where } = p;
   const count: T.Ref<T.Maybe<number>> = ref(null);
   const total: T.Ref<T.Maybe<number>> = ref(null);
 
-  const { error, loading, refetch, result } = useQuery<T.Dict<Dto[]>>(O.readMany({ fields }), { limit, offset, where }, { fetchPolicy });
-  const items: T.Api.R<Vo[]> = useResult<T.Dict<Dto[]>, Vo[], Vo[]>(result, [], (data) => {
-    if (data === undefined) throw getError('UnknownQuery');
-    const dtos: Dto[] = (data && data[L.readMany]) || [];
-    if (debug) console.log(L.readMany, 'where', where, 'gets dtos', dtos);
-    const value = dtos.map((dto) => update(validation ? struct(validation)(dto) : dto));
-    if (debug) console.log(L.readMany, 'where', where, 'returns items', value);
-    return value;
-  });
+  const { error, loading, refetch, result } = useQuery<T.Dict<Dto[]>>(rp.O.readMany({ fields }), { limit, offset, where }, { fetchPolicy });
+  const items: T.Api.R<Vo[]> = useResult<T.Dict<Dto[]>, Vo[], Vo[]>(result, [], getFromData(p));
 
   const fetchMore = async (_index: number, done: Function) => await done();
 

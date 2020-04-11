@@ -6,11 +6,11 @@ import * as T from './types';
 export const useReadOne = <C extends T.Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']['Po']>(p: T.UseReadOneP<C, Vo, Dto>): T.UseReadOneR<Vo> => {
   const { fallback = null, fields, id, rp } = p;
   const { error, loading, result } = useQuery<T.Dict<Dto>>(rp.O.readOne({ fields }), { where: { id } });
-  const item: T.Api.R<T.Maybe<Vo>> = useResult<T.Dict<Dto>, T.Maybe<Vo>, T.Maybe<Vo>>(result, fallback, fromDto(p));
+  const item: T.Api.R<T.Maybe<Vo>> = useResult<T.Dict<Dto>, T.Maybe<Vo>, T.Maybe<Vo>>(result, fallback, getFromData(p));
   return { error, item, loading };
 };
 
-const fromDto = <C extends T.Cfg, Vo, Dto>(p: T.UseReadOneP<C, Vo, Dto>) => (data: T.Dict<Dto>): T.Maybe<Vo> => {
+const getFromData = <C extends T.Cfg, Vo, Dto>(p: T.UseReadOneP<C, Vo, Dto>) => (data: T.Dict<Dto>): T.Maybe<Vo> => {
   try {
     return getValue({ ...p, data });
   } catch (error) {
