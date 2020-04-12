@@ -21,13 +21,18 @@ export const idF: T.IdK[] = ['id'];
 export const typeF: T.TypeK[] = ['__typename'];
 export const poF: T.K[] = [...idF, ...typeF];
 
+const addComplexDefaultFields = <F extends T.F>({ defaults, fields }: T.AddDefaultFieldsP<F>): F =>
+  Array.isArray(fields)
+    ? { ...defaults, _: [...defaults['_'], ...fields] }
+    : mergeWith({}, defaults, fields, (obj, src) => addDefaultFields({ defaults: src, fields: obj }));
+
+const addSimpleDefaultFields = <F extends T.F>({ defaults, fields }: T.AddSimpleDefaultFieldsP<F>): F =>
+  Array.isArray(fields) ? ([...defaults, ...fields] as F) : { ...fields, _: [...defaults, ...fields['_']] };
+
 export const addDefaultFields = <F extends T.F>({ defaults, fields }: T.AddDefaultFieldsP<F>): F => {
   if (!defaults) return fields;
   if (!fields) return defaults;
-  if (Array.isArray(defaults))
-    return Array.isArray(fields) ? ([...defaults, ...fields] as F) : { ...fields, _: [...defaults, ...fields['_']] };
-  if (Array.isArray(fields)) return { ...defaults, _: [...defaults['_'], ...fields] };
-  return mergeWith({}, defaults, fields, (obj, src) => addDefaultFields({ defaults: src, fields: obj }));
+  return Array.isArray(defaults) ? addSimpleDefaultFields({defaults, fields}) : addComplexDefaultFields({defaults, fields});
 };
 
 // OPERATIONS ==============================================================================================================================

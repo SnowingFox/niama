@@ -68,6 +68,11 @@ export interface Po extends Vo {
 
 // PARAMS ==================================================================================================================================
 
+export interface AddSimpleDefaultFieldsP<Fi extends F> {
+  defaults: SF;
+  fields: Fi;
+}
+
 export interface AddDefaultFieldsP<Fi extends F> {
   defaults: Fi;
   fields: Fi;
