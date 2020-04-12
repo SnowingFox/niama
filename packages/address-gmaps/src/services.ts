@@ -16,9 +16,7 @@ export const initProvider = (opts: T.BootO): T.Provider => {
 
 // SAGA ====================================================================================================================================
 
-type SagaP<D, R = D, S = void, F = null> = { act: ($: T.Raw, ...src: [S]) => Promise<R>; raw: T.RawConfig } & T.SagaO<D, R, F>;
-
-const saga = <D, R = D, S = void, F = null>({ act, raw, ...sagaO }: SagaP<D, R, S, F>): T.Observabler<D | F, S> => {
+const bootSaga = <D, R = D, S = void, F = null>({ act, raw, ...sagaO }: T.BootSagaP<D, R, S, F>): T.Observabler<D | F, S> => {
   // const mapError = (err: Error) => (err.name ? getError(`gmaps.${err.name}`) : err);
   return (...src: [S]) => raw.$.pipe(switchMap(baseSaga({ act: async ($) => act($, ...src), ...sagaO })));
 };
@@ -32,7 +30,7 @@ const fromCoords = ({ raw }: T.ServiceO) => <D, F = null>(p: T.FromCoordsP<D, F>
       const cb = (r: T.GeocoderResult[], s: T.GeocoderStatus) => resolve(s === 'OK' && r.length > 0 ? fromResult(r[0]) : null);
       geocoder.geocode({ location: coords }, cb);
     });
-  return saga({ act, raw, ...p });
+  return bootSaga({ act, raw, ...p });
 };
 
 const fromValue = ({ raw }: T.ServiceO) => <D, F = null>(p: T.FromValueP<D, F>): T.FromValueR<D, F> => {
@@ -43,7 +41,7 @@ const fromValue = ({ raw }: T.ServiceO) => <D, F = null>(p: T.FromValueP<D, F>):
       const cb = (r: T.PlacesResult) => resolve(fromResult(r));
       places.getDetails({ fields: ['ALL'], placeId }, cb);
     });
-  return saga({ act, raw, ...p });
+  return bootSaga({ act, raw, ...p });
 };
 
 const init$ = ({ opts, raw }: T.ServiceO) =>
@@ -79,5 +77,5 @@ const hintsFromInput = ({ raw }: T.ServiceO) => <D = T.Hint[], F = null>(p: T.Hi
       autocomplete.getPlacePredictions({ input, ...optsToGmaps }, cb);
     });
 
-  return saga({ act, raw, ...rest });
+  return bootSaga({ act, raw, ...rest });
 };

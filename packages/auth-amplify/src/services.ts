@@ -18,7 +18,7 @@ export const initProvider = (opts: T.BootO): T.Provider => {
   return { fromPayload, opts, raw, ...(mapValues(observables, (s) => s({ opts, raw })) as Omit<T.Services, 'fromPayload'>) };
 };
 
-const initRaw = ({ config }: T.BootO): T.RawConfig => {
+const initRaw = ({ config }: T.BootO): T.RawCfg => {
   const raw = { loading: false, $: new AsyncSubject<T.Raw>() };
   Amplify.configure(config);
   raw.$.next(Auth);
@@ -28,9 +28,7 @@ const initRaw = ({ config }: T.BootO): T.RawConfig => {
 
 // SAGA ====================================================================================================================================
 
-type SagaP<D, R = D, S = void, F = null> = { act: ($: T.Raw, ...src: [S]) => Promise<R>; raw: T.RawConfig } & T.SagaO<D, R, F>;
-
-const saga = <D, R = D, S = void, F = null>({ act, raw, ...sagaO }: SagaP<D, R, S, F>): T.Observabler<D | F, S> => {
+const bootSaga = <D, R = D, S = void, F = null>({ act, raw, ...sagaO }: T.BootSagaP<D, R, S, F>): T.Observabler<D | F, S> => {
   const mapError = (err: Error) => (err.name ? getError(`amplify.${err.name}`) : err);
   return (...src: [S]) => raw.$.pipe(switchMap(baseSaga({ act: async ($) => act($, ...src), ...sagaO, mapError })));
 };
@@ -41,7 +39,7 @@ const changePassword = ({ raw }: T.ServiceO) => <D, F = null>(p: T.ChangePasswor
   const act = async ($: T.Raw, input: Omit<T.ChangePassword, 'confirmation'>): Promise<void> => {
     await $.changePassword(null, input.oldValue, input.newValue);
   };
-  return saga({ act, raw, ...p });
+  return bootSaga({ act, raw, ...p });
 };
 
 const confirmSignup = ({ opts, raw }: T.ServiceO) => <D, F = null>(p: T.ConfirmSignupP<D, F>): T.ConfirmSignupR<D, F> => {
@@ -51,13 +49,13 @@ const confirmSignup = ({ opts, raw }: T.ServiceO) => <D, F = null>(p: T.ConfirmS
   };
   const done: T.SigninR<D, D> = signin({ opts, raw })({ done: sagaDone(p) });
   const fail = sagaFail(p);
-  return saga<D, T.ConfirmSignup, T.ConfirmSignup, F>({ act, done, fail, raw });
+  return bootSaga<D, T.ConfirmSignup, T.ConfirmSignup, F>({ act, done, fail, raw });
 };
 
 const fetch = ({ raw }: T.ServiceO) => () => {
   const act = () => Auth.currentAuthenticatedUser();
   const fail = () => of(null);
-  return saga<T.Maybe<T.Payload>>({ act, fail, raw })().toPromise();
+  return bootSaga<T.Maybe<T.Payload>>({ act, fail, raw })().toPromise();
 };
 
 const fromPayload = (p: T.Maybe<T.Payload>): T.Po => ({
@@ -74,24 +72,24 @@ const resetPassword = ({ opts, raw }: T.ServiceO) => <D, F = null>(p: T.ResetPas
   };
   const done: T.SigninR<D, F> = signin({ opts, raw })({ done: sagaDone(p) });
   const fail = sagaFail(p);
-  return saga({ act, done, fail, raw });
+  return bootSaga({ act, done, fail, raw });
 };
 
 const sendConfirmSignup = ({ raw }: T.ServiceO) => <D, F = null>(p: T.SendConfirmSignupP<D, F>): T.SendConfirmSignupR<D, F> => {
   const act = async ($: T.Raw, input: T.SendConfirmSignup): Promise<void> => {
     await $.resendSignUp(input.username);
   };
-  return saga({ act, raw, ...p });
+  return bootSaga({ act, raw, ...p });
 };
 
 const sendResetPassword = ({ raw }: T.ServiceO) => <D, F = null>(p: T.SendResetPasswordP<D, F>): T.SendResetPasswordR<D, F> => {
   const act = ($: T.Raw, input: T.SendResetPassword) => $.forgotPassword(input.username);
-  return saga({ act, raw, ...p });
+  return bootSaga({ act, raw, ...p });
 };
 
 const sendVerifyEmail = ({ raw }: T.ServiceO) => <D, F = null>(p: T.SendVerifyEmailP<D, F>): T.SendVerifyEmailR<D, F> => {
   const act = ($: T.Raw) => $.verifyCurrentUserAttribute('email');
-  return saga({ act, raw, ...p });
+  return bootSaga({ act, raw, ...p });
 };
 
 const signin = ({ opts, raw }: T.ServiceO) => <D, F = null>(p: T.SigninP<D, F>): T.SigninR<D, F> => {
@@ -102,7 +100,7 @@ const signin = ({ opts, raw }: T.ServiceO) => <D, F = null>(p: T.SigninP<D, F>):
   };
   const done = () => refresh$<D>({ redirect: authenticatedRoute, switcher: refresh });
   const fail = sagaFail(p);
-  return saga<D, void, T.Signin, F>({ act, done, fail, raw });
+  return bootSaga<D, void, T.Signin, F>({ act, done, fail, raw });
 };
 
 const signout = ({ opts, raw }: T.ServiceO) => <D, F = null>(p: T.SignoutP<D, F>): T.SignoutR<D, F> => {
@@ -110,20 +108,20 @@ const signout = ({ opts, raw }: T.ServiceO) => <D, F = null>(p: T.SignoutP<D, F>
   const act = ($: T.Raw) => $.signOut();
   const done = () => refresh$<D>({ redirect: unauthenticatedRoute, switcher: refresh });
   const fail = sagaFail(p);
-  return saga({ act, done, fail, raw });
+  return bootSaga({ act, done, fail, raw });
 };
 
 const signup = ({ opts, raw }: T.ServiceO) => <D, F = null>(p: T.SignupP<D, F>): T.SignupR<D, F> => {
   const { signupToDto } = opts;
   const act = async ($: T.Raw, input: T.Signup) => (await $.signUp(signupToDto(input))).userSub;
-  return saga({ act, raw, ...p });
+  return bootSaga({ act, raw, ...p });
 };
 
 const verifyEmail = ({ raw }: T.ServiceO) => <D, F = null>(p: T.VerifyEmailP<D, F>): T.VerifyEmailR<D, F> => {
   const act = ($: T.Raw, input: string) => $.verifyCurrentUserAttributeSubmit('email', input);
   // const done = () => refresh$({ $niama, skipCache: true }).pipe(switchMap(sagaDone$(opts)))
   const fail = sagaFail(p);
-  return saga({ act, fail, raw });
+  return bootSaga({ act, fail, raw });
 };
 
 /*export async function getCurrent<C extends T.Config>(p?: T.GetCurrentP): Promise<T.Current> {

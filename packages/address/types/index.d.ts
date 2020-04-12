@@ -1,7 +1,7 @@
 export * from './boot';
 export * from './core';
 export * from './main';
-export * from './service';
+export * from './services';
 
 declare module '@niama/address/types' {
   interface BootO {}
