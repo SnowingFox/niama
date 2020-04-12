@@ -16,26 +16,3 @@ export const getAttrsFromAddress = (addr: T.Address.Po): T.Auth.PayloadAttrsAddr
     'custom:addressTypes': addr.types.join('|'),
   };
 };
-
-export function getAddressFragmentsDto(attr: string): any {
-  //T.Address.FragmentsDto {
-  const fragments = attr.split('|').reduce((r, v) => {
-    const [fragment, short, long] = v.split(':');
-    return { ...r, [fragment]: long, [`${fragment}SV`]: short };
-  }, {});
-  return addressFragments.reduce((r, f) => ({ ...r, [f]: fragments[f] || null }), {}); //as T.Address.FragmentsDto;
-}
-
-export function getAddressFragmentsDtoFromAttrs<Attrs extends T.Auth.PayloadAttrsAddress>(attrs: Attrs): any {
-  //T.Address.FragmentsDto {
-  return getAddressFragmentsDto(
-    `${attrs['custom:addressData1']}${attrs['custom:addressData2'] || ''}${attrs['custom:addressData3'] || ''}`
-  );
-}
-
-export function getAddressDtoFromAttrs<Attrs extends T.Auth.PayloadAttrsAddress>(attrs: Attrs): T.Address.Po {
-  const fragments = getAddressFragmentsDtoFromAttrs(attrs);
-  const [lat, lng] = attrs['custom:addressCoords'] === '' ? [null, null] : attrs['custom:addressCoords'].split('|').map((v) => +v);
-  const types = attrs['custom:addressTypes'].split('|');
-  return { ...fragments, lat, lng, types, __typename: 'Address', id: attrs['custom:addressId'], label: attrs.address,  };
-}
