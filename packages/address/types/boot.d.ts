@@ -1,33 +1,22 @@
-import { AsyncSubject, Maybe, Observable, Syncer } from '@niama/core/types';
+import { GetBootCfg, GetBootP, GetBootSagaP, GetRawCfg, GetServiceO, Maybe, Observable } from '@niama/core/types';
 
 import { BootO, Raw } from './';
 import { Hint, Po } from './main';
-import * as S from './service';
+import * as S from './services';
 
-// BOOT ====================================================================================================================================
+// CONFIG===================================================================================================================================
 
-export interface BootAddressP {
-  initProvider: Syncer<Provider, BootO>;
-  opts: BootO;
-}
+export type BootCfg = GetBootCfg<BootO, Provider, Raw, Services>;
+export type BootAddressP = GetBootP<BootCfg>;
+export type RawCfg = GetRawCfg<BootCfg>;
+export type ServiceO = GetServiceO<BootCfg>;
+export type BootSagaP<Done, Res, Src, Fail = null> = GetBootSagaP<BootCfg, Done, Res, Src, Fail>;
 
 // PROVIDER ================================================================================================================================
 
 export interface Provider extends Services, ServiceO {}
 
-// RAW =====================================================================================================================================
-
-export interface RawConfig {
-  $: AsyncSubject<Raw>;
-  loading: boolean;
-}
-
 // SERVICES ================================================================================================================================
-
-export interface ServiceO {
-  opts: BootO;
-  raw: RawConfig;
-}
 
 export interface Services {
   fromCoords: <Done = Maybe<Po>, Fail = null>(p: S.FromCoordsP<Done, Fail>) => S.FromCoordsR<Done, Fail>;

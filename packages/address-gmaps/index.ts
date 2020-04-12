@@ -10,5 +10,5 @@ export * from '@niama/address/src/uses';
 export * from '@niama/address/src/utils';
 
 export * from './src/boot';
+export * from './src/services';
 export * from './src/utils';
-export * from './src/service';

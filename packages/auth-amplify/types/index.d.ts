@@ -1,4 +1,4 @@
-import { AuthClass } from 'aws-amplify';
+import { AuthClass } from '@aws-amplify/auth/lib/Auth';
 
 export interface PayloadAttrsAddress {
   address: string;

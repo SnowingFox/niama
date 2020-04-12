@@ -1,33 +1,22 @@
-import { AsyncSubject, Maybe, Syncer } from '@niama/core/types';
+import { GetBootCfg, GetBootP, GetBootSagaP, GetRawCfg, GetServiceO, Maybe } from '@niama/core/types';
 
 import { BootO, Payload, Raw } from './';
 import { Po } from './main';
-import * as S from './service';
+import * as S from './services';
 
-// BOOT ====================================================================================================================================
+// CONFIG===================================================================================================================================
 
-export interface BootAuthP {
-  initProvider: Syncer<Provider, BootO>;
-  opts: BootO;
-}
+export type BootCfg = GetBootCfg<BootO, Provider, Raw, Services>;
+export type BootAuthP = GetBootP<BootCfg>;
+export type RawCfg = GetRawCfg<BootCfg>;
+export type ServiceO = GetServiceO<BootCfg>;
+export type BootSagaP<Done, Res, Src, Fail = null> = GetBootSagaP<BootCfg, Done, Res, Src, Fail>;
 
 // PROVIDER ================================================================================================================================
 
-export interface Provider extends Services, ServiceO {}
-
-// RAW =====================================================================================================================================
-
-export interface RawConfig {
-  $: AsyncSubject<Raw>;
-  loading: boolean;
-}
+export interface Provider extends Services, GetServiceO<BootCfg> {}
 
 // SERVICES ================================================================================================================================
-
-export interface ServiceO {
-  opts: BootO;
-  raw: RawConfig;
-}
 
 export interface Services {
   // refreshSession: () => any;

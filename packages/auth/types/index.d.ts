@@ -6,7 +6,7 @@ export * from './boot';
 export * from './core';
 export * from './main';
 export * from './objects';
-export * from './service';
+export * from './services';
 
 declare module '@niama/auth/types' {
   interface BootO {

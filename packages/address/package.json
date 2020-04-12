@@ -1,11 +1,11 @@
 {
   "name": "@niama/address",
-  "version": "2.19.7",
+  "version": "2.19.8",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
-    "@niama/core": "^3.0.0"
+    "@niama/core": "^3.0.1"
   },
   "devDependencies": {
     "@types/googlemaps": "^3.39.3"

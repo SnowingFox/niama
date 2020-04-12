@@ -1,4 +1,5 @@
 import { Niama } from './';
+import { GetBootCfg, GetRawCfg } from './boot';
 import { Observable, RawLocation, Ref, Subject } from './externals';
 import { Actioner, Asyncer, Syncer } from './main';
 
@@ -26,8 +27,8 @@ export interface SagaO<Done, Src, Fail = null> {
 }
 
 export interface SagaP<Done, Res, Src, Fail = null> extends SagaO<Done, Res, Fail> {
-  mapError?: (e: Error) => Error;
   act: Asyncer<Res, Src>;
+  mapError?: (e: Error) => Error;
 }
 
 export interface UseSagaDoneP<Done, Src, Fail = null> {

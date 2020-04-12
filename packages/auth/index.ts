@@ -8,7 +8,7 @@ export * from './src/i18n.fr';
 export * from './src/i18n.statuses';
 export { statuses as authStatuses, statusesEn as authStatusesEn, statusesFr as authStatusesFr } from './src/i18n.statuses';
 
-export * from './src/service';
+export * from './src/services';
 export * from './src/uses';
 
 export * from './src/utils';
