@@ -2,7 +2,7 @@ import { upperFirst, useLoadable, useSagaReturns, useSourcable } from '@niama/co
 import { useQuery, useResult } from '@vue/apollo-composable';
 
 import { rp } from './api';
-import * as T from './types';
+import * as T from './typings';
 import { header } from './utils';
 
 // BASE ====================================================================================================================================

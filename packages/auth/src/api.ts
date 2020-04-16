@@ -1,7 +1,7 @@
 import { getQuery } from '@niama/api';
 import { getProvider } from '@niama/core';
 
-import * as T from './types';
+import * as T from './typings';
 import { getError, header, isAuthenticated } from './utils';
 
 // REPOSITORY ==============================================================================================================================

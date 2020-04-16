@@ -1,4 +1,4 @@
-import * as T from './types';
+import * as T from './typings';
 
 export const statusesEn: T.I18n<T.Status> = {
   BLOCKED: 'Blocked',

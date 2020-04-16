@@ -1,7 +1,7 @@
 import { getProvider, hasProvider, setProvider } from '@niama/core';
 
 import { getSeed, queryIsAuthenticated } from './api';
-import * as T from './types';
+import * as T from './typings';
 import { getError } from './utils';
 
 export const bootAuth = async ({ initProvider, opts }: T.BootAuthP) => {

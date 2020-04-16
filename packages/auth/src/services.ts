@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { query } from './api';
-import * as T from './types';
+import * as T from './typings';
 
 export const refresh$ = <D>({ redirect, switcher = (a) => of((a as unknown) as D) }: T.Refresh$P<D>): T.Observable<D> => {
   const $api = getProvider('api');

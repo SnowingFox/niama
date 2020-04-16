@@ -1,6 +1,6 @@
+import { BootO, Payload, Raw } from '@niama/auth/types';
 import { GetBootCfg, GetBootP, GetBootSagaP, GetRawCfg, GetServiceO, Maybe } from '@niama/core/types';
 
-import { BootO, Payload, Raw } from './';
 import { Po } from './main';
 import * as S from './services';
 

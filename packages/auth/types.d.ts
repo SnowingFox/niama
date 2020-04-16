@@ -1,12 +1,15 @@
 import { Observabler, RawLocation, VueRouter } from '@niama/core/types';
 
-import { Po } from './main';
+import { Provider } from './src/types/boot';
+import { Po } from './src/types/main';
 
-export * from './boot';
-export * from './core';
-export * from './main';
-export * from './objects';
-export * from './services';
+export * from './src/types';
+
+declare module '@niama/core/types' {
+  interface Niama {
+    auth: Provider;
+  }
+}
 
 declare module '@niama/auth/types' {
   interface BootO {

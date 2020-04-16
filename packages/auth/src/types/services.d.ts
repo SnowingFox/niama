@@ -1,6 +1,6 @@
+import { SendConfirmSignup, Signin, Signup } from '@niama/auth/types';
 import { Observable, Observabler, RawLocation, SagaCfg, SagaO, UseSagaReturnsO } from '@niama/core/types';
 
-import { SendConfirmSignup, Signin, Signup } from './';
 import { Po } from './main';
 import * as O from './objects';
 
