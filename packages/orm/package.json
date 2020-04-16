@@ -1,12 +1,12 @@
 {
   "name": "@niama/orm",
-  "version": "2.17.16",
+  "version": "2.17.17",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@niama/auth": "^2.17.13",
+    "@niama/auth": "^2.17.14",
     "superstruct": "^0.8.3"
   }
 }
