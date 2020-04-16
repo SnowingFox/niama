@@ -3,7 +3,7 @@ import { getOrmRp, ormPoF } from '@niama/orm';
 import { useQuery, useResult } from '@vue/apollo-composable';
 import { struct } from 'superstruct';
 
-import * as T from './types';
+import * as T from './typings';
 import { getError } from './utils';
 
 // REPOSITORY ==============================================================================================================================

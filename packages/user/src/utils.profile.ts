@@ -1,6 +1,6 @@
 import { upperCase, upperFirst } from '@niama/core';
 
-import * as T from './types';
+import * as T from './typings';
 
 const getFirstNames = (value: T.Maybe<string | string[]>, separator = ','): string[] =>
   (typeof value === 'string' ? value.split(separator) : value || []).map((firstName) => upperFirst(firstName.trim()));

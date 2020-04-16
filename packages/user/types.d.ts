@@ -1,5 +1,7 @@
 import * as Orm from '@niama/orm/types';
 
+export * from './src/types';
+
 declare module '@niama/user/types' {
   interface Po extends Orm.Po {
     email: string;
@@ -12,5 +14,3 @@ declare module '@niama/user/types' {
     username: string;
   }*/
 }
-
-export * from './main';

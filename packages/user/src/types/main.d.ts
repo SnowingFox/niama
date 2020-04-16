@@ -2,8 +2,7 @@ import * as Api from '@niama/api/types';
 import * as Auth from '@niama/auth/types';
 import { Maybe } from '@niama/core/types';
 import * as Orm from '@niama/orm/types';
-
-import { Po } from './';
+import { Po } from '@niama/user/types';
 
 // BOOT ==================================================================================================================================
 

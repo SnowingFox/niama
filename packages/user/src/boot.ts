@@ -1,7 +1,7 @@
 import { getProvider, hasProvider } from '@niama/core';
 
 import { getSeed } from './api';
-import * as T from './types';
+import * as T from './typings';
 
 export const boot = async (p: T.BootP = {}) => {
   if (!hasProvider('api')) throw new Error('boot.UndefinedApi');
