@@ -2,7 +2,7 @@ import { useQuery, useResult } from '@vue/apollo-composable';
 import { ref } from '@vue/composition-api';
 import { struct } from 'superstruct';
 
-import * as T from './types';
+import * as T from './typings';
 import { getError } from './utils';
 
 const getFromData = <C extends T.Cfg, Vo, Dto>(p: T.UseReadManyP<C, Vo, Dto>) => (data: T.Dict<Dto[]>): Vo[] => {

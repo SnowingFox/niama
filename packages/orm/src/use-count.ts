@@ -1,7 +1,7 @@
 
 import { ref } from '@vue/composition-api';
 
-import * as T from './types';
+import * as T from './typings';
 
 export function useCount<C extends T.Cfg>(p: T.UseCountP<C>): T.UseCountR {
   const { debug = false, rp, where } = p;

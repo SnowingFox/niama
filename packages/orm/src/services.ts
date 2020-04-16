@@ -1,7 +1,7 @@
 import { getMutation, getQuery } from '@niama/api';
 import { mapValues, pluralize, upperFirst, zipObject } from '@niama/core';
 
-import * as T from './types';
+import * as T from './typings';
 import { isGetDocumentNodeP } from './utils';
 
 // LABELS ==================================================================================================================================

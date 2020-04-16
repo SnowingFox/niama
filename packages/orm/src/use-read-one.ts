@@ -1,7 +1,7 @@
 import { useQuery, useResult } from '@vue/apollo-composable';
 import { struct } from 'superstruct';
 
-import * as T from './types';
+import * as T from './typings';
 
 export const useReadOne = <C extends T.Cfg, Vo = C['ObC']['Po'], Dto = C['ObC']['Po']>(p: T.UseReadOneP<C, Vo, Dto>): T.UseReadOneR<Vo> => {
   const { fallback = null, fields, id, rp } = p;

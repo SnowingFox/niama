@@ -1,7 +1,7 @@
 import { getError as baseGetError } from '@niama/core';
 import { defer } from 'rxjs';
 
-import * as T from './types';
+import * as T from './typings';
 
 export const updateItem = async ({ $niama, data, id, rp }) =>
   await $niama.api.mutate({

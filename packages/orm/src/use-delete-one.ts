@@ -1,7 +1,7 @@
 import { useMutation } from '@niama/api';
 import { useLoadable, useSourcable } from '@niama/core';
 
-import * as T from './types';
+import * as T from './typings';
 
 export const useDeleteOne = <C extends T.Cfg, D = string, F = null>(p: T.DeleteOneC<C, D, F>['UseP']): T.DeleteOneC<C, D, F>['R'] => {
   const { rp, ...rest } = p;

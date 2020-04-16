@@ -1,7 +1,7 @@
 import { useMutation } from '@niama/api';
 import { pick, sagaDone, useLoadable, useSourcable } from '@niama/core';
 
-import * as T from './types';
+import * as T from './typings';
 
 export const useCreate = <C extends T.Cfg, D = C['ObC']['Po'], F = null>(p: T.CreateC<C, D, F>['UseP']): T.CreateC<C, D, F>['R'] => {
   const { fields, rp, ...rest } = p;

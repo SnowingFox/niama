@@ -1,4 +1,4 @@
-import * as T from './types';
+import * as T from './typings';
 
 const processWhere = <Dto>(where: T.Dict, item: Dto): boolean =>
   Object.keys(where).every((condition) => {

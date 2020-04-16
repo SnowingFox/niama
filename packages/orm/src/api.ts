@@ -2,7 +2,7 @@ import { apiPoF } from '@niama/api';
 import { getCapsD } from '@niama/auth';
 import { fill } from '@niama/core';
 
-import * as T from './types';
+import * as T from './typings';
 
 // FIELDS ==================================================================================================================================
 

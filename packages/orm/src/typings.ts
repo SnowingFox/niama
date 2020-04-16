@@ -3,4 +3,4 @@ import * as Auth from '@niama/auth/types';
 
 export { Api, Auth };
 export * from '@niama/core/types';
-export * from '../types';
+export * from '@niama/orm/types';
