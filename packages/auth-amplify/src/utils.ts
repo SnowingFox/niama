@@ -1,6 +1,6 @@
 import { addressFragmentsFromString, stringifiedAddressFragments } from '@niama/address';
 
-import * as T from './types';
+import * as T from './typings';
 
 export const addressFromPayload = ({ attributes: attrs }: T.Payload): T.Address.Po => {
   const fragments = addressFragmentsFromString(

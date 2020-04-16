@@ -1,14 +1,6 @@
-import { AuthClass } from '@aws-amplify/auth/lib/Auth';
+import { Auth } from 'aws-amplify';
 
-export interface PayloadAttrsAddress {
-  address: string;
-  'custom:addressCoords': string;
-  'custom:addressData1': string;
-  'custom:addressData2': string;
-  'custom:addressData3': string;
-  'custom:addressId': string;
-  'custom:addressTypes': string;
-}
+export * from './src/types';
 
 declare module '@niama/auth/types' {
   interface BootO {
@@ -25,7 +17,7 @@ declare module '@niama/auth/types' {
     username: string;
   }
 
-  interface Raw extends AuthClass {}
+  interface Raw extends Required<typeof Auth> {}
 
   interface SendConfirmSignup {
     username: string;
@@ -58,6 +50,3 @@ declare module '@niama/auth-amplify/types' {
 
   interface SignupDtoAttrs extends Omit<PayloadAttrs, 'email_verified' | 'sub'> {}
 }
-
-export * from '@niama/auth/types';
-export * from './externals';

@@ -5,7 +5,7 @@ import { mapValues, saga as baseSaga, sagaDone, sagaFail } from '@niama/core';
 import { AsyncSubject, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import * as T from './types';
+import * as T from './typings';
 
 // INIT ====================================================================================================================================
 
