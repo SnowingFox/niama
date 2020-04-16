@@ -1,6 +1,6 @@
 import { getLabels, getRp, ormPoMinF, ormUseReadMany } from '@niama/orm';
 
-import * as T from './types';
+import * as T from './typings';
 import { posFromMenus } from './utils';
 
 // REPOSITORY ==============================================================================================================================

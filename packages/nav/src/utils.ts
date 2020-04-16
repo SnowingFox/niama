@@ -1,7 +1,7 @@
 import { hasIntersection, upperFirst } from '@niama/core';
 import { getPoD } from '@niama/orm';
 
-import * as T from './types';
+import * as T from './typings';
 
 export const posFromMenuItem = ({ item, order, parent, roles }: T.DtosFromMenuItemP): T.Po[] => {
   roles = { all: ['PUBLIC'], current: ['PUBLIC'], ...roles } as T.RoleO;
