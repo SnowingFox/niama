@@ -1,7 +1,7 @@
 import { inject, provide } from '@vue/composition-api';
 import Vue from 'vue';
 
-import * as T from '../types';
+import * as T from './typings';
 import { getError } from './utils';
 
 // PROVIDER ================================================================================================================================

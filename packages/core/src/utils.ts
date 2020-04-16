@@ -1,6 +1,6 @@
-import * as T from '../types';
 import { endsWith, intersection, upperCase, zipObject } from './lodash';
 import { getProvider, hasProvider } from './provider';
+import * as T from './typings';
 
 export const getError = (p: T.GetErrorP | string): Error => {
   const { id, type = 'core' } = isGetErrorP(p) ? p : { id: p };

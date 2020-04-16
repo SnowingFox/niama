@@ -1,5 +1,6 @@
-import { Niama } from './';
-import { Ref, VueI18n } from './externals';
+import { Niama } from '@niama/core/types';
+
+import { I18nOptions, Ref } from './externals';
 
 // NIAMA ===================================================================================================================================
 
@@ -37,7 +38,7 @@ export type Type<T> = new (...args: unknown[]) => T;
 
 // I18N ====================================================================================================================================
 
-export interface BootI18nP extends VueI18n.I18nOptions {
+export interface BootI18nP extends I18nOptions {
   app: any;
   Vue: any;
 }

@@ -2,7 +2,7 @@ import { onBeforeUnmount, ref } from '@vue/composition-api';
 import { from, of, Subject, Subscription, throwError } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
-import * as T from '../types';
+import * as T from './typings';
 import { notifyFail } from './ui';
 
 // UTILS ===================================================================================================================================

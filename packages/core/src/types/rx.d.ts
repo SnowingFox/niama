@@ -1,9 +1,9 @@
-import { Niama } from './';
-import { GetBootCfg, GetRawCfg } from './boot';
+// UTILS ===================================================================================================================================
+
+import { Niama } from '@niama/core/types';
+
 import { Observable, RawLocation, Ref, Subject } from './externals';
 import { Actioner, Asyncer, Syncer } from './main';
-
-// UTILS ===================================================================================================================================
 
 export type Observabler<Res = void, Src = void> = (...s: [Src]) => Observable<Res>;
 

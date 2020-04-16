@@ -14,7 +14,7 @@ import random from 'lodash-es/random';
 import union from 'lodash-es/union';
 import zipObject from 'lodash-es/zipObject';
 
-import * as T from '../types';
+import * as T from './typings';
 
 export { camelCase, chunk, defaultsDeep, defaultTo, filter, isEqual, isFunction, isPlainObject, kebabCase, merge, mergeWith, orderBy };
 export { random, union, zipObject };

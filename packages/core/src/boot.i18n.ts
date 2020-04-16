@@ -1,7 +1,7 @@
 import VueI18n from 'vue-i18n';
 
-import * as T from '../types';
 import { setProvider } from './provider';
+import * as T from './typings';
 
 export const bootI18n = (p: T.BootI18nP) => {
   const { app, fallbackLocale = 'en-us', locale = 'en-us', Vue, ...rest } = p;

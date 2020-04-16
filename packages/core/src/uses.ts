@@ -2,10 +2,10 @@ import { ref } from '@vue/composition-api';
 import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
-import * as T from '../types';
 import { isFunction } from './lodash';
 import { useNiama } from './provider';
 import { notifyFail$, observabler, sagaDone, sagaFail } from './rx';
+import * as T from './typings';
 import { notifyDone } from './ui';
 import { getError } from './utils';
 

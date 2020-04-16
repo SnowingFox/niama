@@ -4,7 +4,7 @@ import { SagaO } from './rx';
 
 // CONFIG ==================================================================================================================================
 
-export interface GetBootCfg <Opts = any, Provider = any, Raw = any, Services = any> {
+export interface GetBootCfg<Opts = any, Provider = any, Raw = any, Services = any> {
   O: Opts;
   P: Provider;
   R: Raw;

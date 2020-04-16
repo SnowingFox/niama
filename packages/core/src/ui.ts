@@ -1,7 +1,7 @@
 import { Notify } from 'quasar';
 
-import * as T from '../types';
 import { getProvider } from './provider';
+import * as T from './typings';
 import { getError } from './utils';
 
 // NOTIFY ==================================================================================================================================
