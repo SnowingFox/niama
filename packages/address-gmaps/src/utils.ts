@@ -1,6 +1,6 @@
 import { camelCase } from '@niama/core';
 
-import * as T from './types';
+import * as T from './typings';
 
 // PROPOSAL TRANSFORMERS ===================================================================================================================
 

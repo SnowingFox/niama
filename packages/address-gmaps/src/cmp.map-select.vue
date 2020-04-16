@@ -14,7 +14,7 @@ import { defineComponent, ref, computed } from '@vue/composition-api';
 import { fasCheck } from '@quasar/extras/fontawesome-v5';
 
 import AddressMap from './cmp.map.vue';
-import * as T from './types';
+import * as T from './typings';
 
 // COMPONENT ===============================================================================================================================
 

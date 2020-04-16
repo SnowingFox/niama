@@ -3,7 +3,7 @@ import { mapValues, saga as baseSaga } from '@niama/core';
 import { AsyncSubject, defer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import * as T from './types';
+import * as T from './typings';
 import { fromResult, getApiUrl, hintsFromPredictions } from './utils';
 
 // INIT ====================================================================================================================================

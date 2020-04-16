@@ -10,7 +10,7 @@ import { onMountedAndInitialized } from '@niama/address';
 import { fill, isFunction } from '@niama/core';
 import { computed, defineComponent, ref, watch } from '@vue/composition-api';
 
-import * as T from './types';
+import * as T from './typings';
 import MarkerClusterer from '@google/markerclustererplus';
 
 // COMPONENT ===============================================================================================================================
@@ -131,7 +131,7 @@ export type UseInitP = { p: Props };
 
 <style lang="postcss" scoped>
 .n-address-Map { @apply relative;
-  &_container { @apply w-full h-full bg-grey-1 } }
+  &_container { @apply w-full h-full bg-grey } }
 </style>
 
 <style lang="postcss">

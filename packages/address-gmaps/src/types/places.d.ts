@@ -1,6 +1,5 @@
+import { Po } from '@niama/address/types';
 import { Maybe, Niama } from '@niama/core/types';
-
-import { Po } from './';
 
 // REQUESTS ================================================================================================================================
 
