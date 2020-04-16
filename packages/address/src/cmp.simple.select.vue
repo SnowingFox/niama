@@ -10,7 +10,7 @@ q-select(v-bind="$attrs", v-on="$listeners", :value="innerValue", :options="opti
 import { fasSearch, fasTimes } from '@quasar/extras/fontawesome-v5';
 import { computed, defineComponent, ref } from '@vue/composition-api';
 
-import * as T from './types';
+import * as T from './typings';
 import { pick, useSourcable } from '@niama/core';
 import { useHintsFromInput } from './uses';
 

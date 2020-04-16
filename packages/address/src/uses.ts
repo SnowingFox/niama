@@ -2,7 +2,7 @@ import { upperFirst, useLoadable, useNiama, useSagaReturns, useSourcable } from 
 import { onBeforeUnmount, onMounted } from '@vue/composition-api';
 import { AsyncSubject, forkJoin } from 'rxjs';
 
-import * as T from './types';
+import * as T from './typings';
 
 // BASE ====================================================================================================================================
 

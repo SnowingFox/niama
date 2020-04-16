@@ -1,6 +1,6 @@
 import { getError as baseGetError } from '@niama/core';
 
-import * as T from './types';
+import * as T from './typings';
 
 // ENUMS ===================================================================================================================================
 

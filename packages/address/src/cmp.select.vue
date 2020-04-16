@@ -9,7 +9,7 @@ import { defineComponent, ref, watch } from '@vue/composition-api';
 import { ValidationProvider } from 'vee-validate';
 
 import AddressSimpleSelect from './cmp.simple.select.vue';
-import * as T from './types';
+import * as T from './typings';
 
 // COMPONENT ===============================================================================================================================
 

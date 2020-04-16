@@ -1,4 +1,4 @@
-import * as T from './types';
+import * as T from './typings';
 import { fragments } from './utils';
 
 export const fragmentsFromString = (str: string): T.Fragments => {
