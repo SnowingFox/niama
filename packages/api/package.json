@@ -3,12 +3,12 @@
   "version": "2.15.5",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "types"
+    "src/types"
   ],
   "sideEffects": false,
   "scripts": {

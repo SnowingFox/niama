@@ -1,7 +1,7 @@
 import { RestLink } from 'apollo-link-rest';
 
 import { getUri, setApiProvider } from './boot.utils';
-import * as T from './types';
+import * as T from './typings';
 
 // BOOT ====================================================================================================================================
 

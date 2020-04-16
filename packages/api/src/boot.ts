@@ -4,7 +4,7 @@ import { getMainDefinition } from 'apollo-utilities';
 import { getHttpLink } from './boot.http';
 import { setApiProvider } from './boot.utils';
 import { getWsLink } from './boot.ws';
-import * as T from './types';
+import * as T from './typings';
 
 // BOOT ====================================================================================================================================
 

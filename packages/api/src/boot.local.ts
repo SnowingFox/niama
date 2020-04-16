@@ -1,5 +1,5 @@
 import { setApiProvider } from './boot.utils';
-import * as T from './types';
+import * as T from './typings';
 
 // BOOT ====================================================================================================================================
 

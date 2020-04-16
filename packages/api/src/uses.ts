@@ -1,7 +1,7 @@
 import { saga, useSagaReturns } from '@niama/core';
 import { useMutation as useApolloMutation } from '@vue/apollo-composable';
 
-import * as T from './types';
+import * as T from './typings';
 import { getError, getMutation } from './utils';
 
 export const useMutation = <D, S, F>(p: T.GetTypedOpP | T.UseMutationP<D, S, F>): T.Observabler<D | F, S> => {

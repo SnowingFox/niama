@@ -1,2 +1,2 @@
 export * from '@niama/core/types';
-export * from '../types';
+export * from '@niama/api/types';

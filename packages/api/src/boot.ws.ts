@@ -2,7 +2,7 @@
 import { WebSocketLink } from 'apollo-link-ws';
 
 import { getUri, setApiProvider } from './boot.utils';
-import * as T from './types';
+import * as T from './typings';
 
 // BOOT ====================================================================================================================================
 

@@ -1,7 +1,7 @@
 import { getError as baseGetError, map, mergeWith } from '@niama/core';
 import gql from 'graphql-tag';
 
-import * as T from './types';
+import * as T from './typings';
 
 const DEBUG = false;
 

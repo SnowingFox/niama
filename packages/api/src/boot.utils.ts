@@ -5,7 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { defer } from 'rxjs';
 
-import * as T from './types';
+import * as T from './typings';
 
 // PROVIDER ================================================================================================================================
 
