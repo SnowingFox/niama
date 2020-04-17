@@ -5,6 +5,9 @@
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "src/index.js",
+  "files": [
+    "src"
+  ],
   "keywords": [
     "quasar",
     "app",
@@ -13,19 +16,24 @@
     "niama",
     "typescript"
   ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "prepublishOnly": "yarn build"
+  },
   "dependencies": {
     "@types/node": "^13.9.0",
+    "@types/rimraf": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "@typescript-eslint/parser": "^2.23.0",
-    "@vue/composition-api": "^0.5.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-vue": "^6.2.2",
-    "fork-ts-checker-webpack-plugin": "^4.0.5",
-    "ts-loader": "^6.2.1",
-    "typescript": "^3.8.3",
-    "vue": "^2.6.11",
-    "vue-template-compiler": "^2.6.11"
+    "rimraf": "^3.0.2",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "quasar": "^1.9.15"
   },
   "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"
 }
