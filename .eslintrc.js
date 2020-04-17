@@ -26,7 +26,12 @@ module.exports = {
     es6: true,
   },
   rules: {
-    'max-lines-per-function': ['error', { max: 25, skipBlankLines: true, skipComments: true }],
+    complexity: ['warn', { max: 5 }],
+    'max-depth': ['warn', { max: 3 }],
+    'max-lines-per-function': ['warn', { max: 25, skipBlankLines: true, skipComments: true }],
+    'max-nested-callbacks': ['warn', { max: 2 }],
+    'max-statements': [2, { max: 7 }],
+    'max-statements-per-line': [2, { max: 1 }],
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions'] }],

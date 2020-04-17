@@ -7,7 +7,8 @@ export = async (api: T.IndexAPI) => {
   await chainWebpack(api);
 };
 
-const enforceConf = (api: T.IndexAPI) => api.extendQuasarConf((conf) => (conf.supportTS = { tsCheckerConfig: { eslint: true } }));
+const enforceConf = (api: T.IndexAPI) =>
+  api.extendQuasarConf((conf) => (conf.supportTS = conf.supportTS || { tsCheckerConfig: { eslint: true } }));
 
 const chainWebpack = async (api: T.IndexAPI) => {
   const pkg = await import(api.resolve.app('/package.json'));
