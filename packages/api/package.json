@@ -1,6 +1,6 @@
 {
   "name": "@niama/api",
-  "version": "2.15.6",
+  "version": "2.15.7",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "dist/index.js",

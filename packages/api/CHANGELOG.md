@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.7](https://github.com/niama-strategies/niama/compare/@niama/api@2.15.6...@niama/api@2.15.7) (2020-04-17)
+
+
+### Bug Fixes
+
+* include types in npm ([a125a57](https://github.com/niama-strategies/niama/commit/a125a57f4cbdae081b624eec687765441bbcec47))
+
+
+
+
+
 ## [2.15.6](https://github.com/niama-strategies/niama/compare/@niama/api@2.15.5...@niama/api@2.15.6) (2020-04-16)
 
 **Note:** Version bump only for package @niama/api

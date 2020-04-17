@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.2](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.5.1...@niama/quasar-app-extension-tailwindcss@3.5.2) (2020-04-17)
+
+
+### Bug Fixes
+
+* **quasar/tailwindcss:** add eslint exception ([056454e](https://github.com/niama-strategies/niama/commit/056454e52b487e1b6c502b82071895b3c461f737))
+
+
+
+
+
 ## [3.5.1](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-tailwindcss@3.5.0...@niama/quasar-app-extension-tailwindcss@3.5.1) (2020-04-12)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-tailwindcss
