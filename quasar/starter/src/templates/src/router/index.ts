@@ -1,16 +1,17 @@
-import Vue from 'vue';
+import { route } from 'quasar/wrappers';
 import VueRouter from 'vue-router';
 
 import routes from './routes';
 
-Vue.use(VueRouter);
+export default route(({ Vue }) => {
+  Vue.use(VueRouter);
 
-export default () => {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE,
   });
+
   return Router;
-}
+});
