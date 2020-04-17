@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.14.1...@niama/quasar-app-extension-ts@2.14.2) (2020-04-17)
+
+
+### Bug Fixes
+
+* **quasar/ts:** add quasar paths ([8d1f685](https://github.com/niama-strategies/niama/commit/8d1f68509ae5012a5f4b061ddcc51c7cb787eb4d))
+
+
+
+
+
 ## [2.14.1](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.14.0...@niama/quasar-app-extension-ts@2.14.1) (2020-04-17)
 
 
