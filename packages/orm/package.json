@@ -1,6 +1,6 @@
 {
   "name": "@niama/orm",
-  "version": "2.17.17",
+  "version": "2.17.18",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "src/index.ts",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.10](https://github.com/niama-strategies/niama/compare/@niama/address@2.19.9...@niama/address@2.19.10) (2020-04-17)
+
+
+### Bug Fixes
+
+* packages mains ([02260c1](https://github.com/niama-strategies/niama/commit/02260c19823836b0f3234a330ed25406d8b127a1))
+
+
+
+
+
 ## [2.19.9](https://github.com/niama-strategies/niama/compare/@niama/address@2.19.8...@niama/address@2.19.9) (2020-04-16)
 
 **Note:** Version bump only for package @niama/address
