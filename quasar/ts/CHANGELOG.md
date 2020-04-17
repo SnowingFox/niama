@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.1](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.14.0...@niama/quasar-app-extension-ts@2.14.1) (2020-04-17)
+
+
+### Bug Fixes
+
+* **quasar/ts:** remove declaration files ([fc62734](https://github.com/niama-strategies/niama/commit/fc627340ab25bd50594d81bfa8179957c40bd993))
+
+
+
+
+
 # [2.14.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.13.4...@niama/quasar-app-extension-ts@2.14.0) (2020-04-17)
 
 
