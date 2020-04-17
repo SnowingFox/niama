@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-starter@2.24.7...@niama/quasar-app-extension-starter@2.25.0) (2020-04-17)
+
+
+### Features
+
+* **quasar/starter:** use quasar wrapper for router ([4085dab](https://github.com/niama-strategies/niama/commit/4085dabd6ecfa92064e66f073a195534facb6dce))
+
+
+
+
+
 ## [2.24.7](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-starter@2.24.6...@niama/quasar-app-extension-starter@2.24.7) (2020-04-16)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-starter

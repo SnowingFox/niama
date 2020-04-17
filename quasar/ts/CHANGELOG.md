@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.13.4...@niama/quasar-app-extension-ts@2.14.0) (2020-04-17)
+
+
+### Features
+
+* **quasar/ts:** update to use supportTS ([36b669d](https://github.com/niama-strategies/niama/commit/36b669d82cd9f91a011cb3708287b0dd925cd7d5))
+
+
+
+
+
 ## 2.13.4 (2020-03-22)
 
 
