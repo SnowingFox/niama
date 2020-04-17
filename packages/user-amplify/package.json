@@ -3,7 +3,7 @@
   "version": "2.22.18",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "dependencies": {
     "@niama/user": "^2.20.17"
   }
