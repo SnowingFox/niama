@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.14.2...@niama/quasar-app-extension-ts@2.16.0) (2020-04-17)
+
+
+### Features
+
+* **quasar/ts:** allow supportTS to be  overridden ([e0508bc](https://github.com/niama-strategies/niama/commit/e0508bcac49bfaeec1d216dc381a5f2dbb918d57))
+
+
+
+
+
+# [2.15.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.14.2...@niama/quasar-app-extension-ts@2.15.0) (2020-04-17)
+
+
+### Features
+
+* **quasar/ts:** allow supportTS to be  overridden ([e0508bc](https://github.com/niama-strategies/niama/commit/e0508bcac49bfaeec1d216dc381a5f2dbb918d57))
+
+
+
+
+
 ## [2.14.2](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.14.1...@niama/quasar-app-extension-ts@2.14.2) (2020-04-17)
 
 
