@@ -134,4 +134,3 @@ $RECYCLE.BIN/
 src/*
 !src/templates
 temp
-!docs/.vuepress/public/
