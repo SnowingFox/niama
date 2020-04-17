@@ -3,10 +3,12 @@ const path = require('path');
 module.exports = {
   parser: 'vue-eslint-parser',
   parserOptions: {
+    ecmaVersion: 2018,
+    extraFileExtensions: ['.vue'],
     parser: '@typescript-eslint/parser',
     project: path.resolve(__dirname, './tsconfig.json'),
     sourceType: 'module',
-    extraFileExtensions: ['.vue'],
+    tsconfigRootDir: __dirname,
   },
   extends: [
     'eslint:recommended',
@@ -33,5 +35,13 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-use-before-define': ['error', { classes: false, functions: false, variables: false }],
     '@typescript-eslint/prefer-regexp-exec': 'off',
+  },
+  globals: {
+    ga: true,
+    cordova: true,
+    __statics: true,
+    process: true,
+    Capacitor: true,
+    chrome: true,
   },
 };

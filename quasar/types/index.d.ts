@@ -65,7 +65,7 @@ export class UninstallAPI extends BasisApi {
 }
 
 export type CommandHandler = (api: IndexAPI, { quasarConf }) => void | Promise<void>;
-export type Extender<Cfg> = (cfg: Cfg, opts?: { isClient: boolean; isServer: boolean }, api?: IndexAPI) => undefined;
+export type Extender<Cfg> = (cfg: Cfg, opts?: { isClient: boolean; isServer: boolean }, api?: IndexAPI) => void;
 export type QuasarConfig = Dict;
 export type Ctx = Dict;
 export type Dict<T = any> = Record<string, T>;
