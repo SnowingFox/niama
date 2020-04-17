@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const colors = require('./src/css/colors');
 const screens = require('./src/css/screens');
 
