@@ -15,7 +15,14 @@
     "noEmit": true,
     "noImplicitAny": false,
     "paths": { 
-      "@/<%= pkg.name %>/*": ["./src/*"] 
+      "@/<%= pkg.name %>/*": ["src/*"],
+      "src/*": ["src/*"],
+      "app/*": ["*"],
+      "components/*": ["src/components/*"],
+      "layouts/*": ["src/layouts/*"],
+      "pages/*": ["src/pages/*"],
+      "assets/*": ["src/assets/*"],
+      "boot/*": ["src/boot/*"]
     },
     "resolveJsonModule": true, 
     "sourceMap": true, 
