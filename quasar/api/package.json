@@ -1,6 +1,6 @@
 {
   "name": "@niama/quasar-app-extension-api",
-  "version": "2.13.20",
+  "version": "2.13.22",
   "description": "Add API to Quasar with GraphQL, Apollo, Hasura",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@niama/api": "^2.15.7",
+    "@niama/api": "^2.15.9",
     "env-cmd": "^10.1.0"
   },
   "devDependencies": {

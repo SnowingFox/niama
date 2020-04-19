@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.19](https://github.com/niama-strategies/niama/compare/@niama/auth-amplify@2.21.17...@niama/auth-amplify@2.21.19) (2020-04-19)
+
+
+### Bug Fixes
+
+* multiples updates ([ef2a6f6](https://github.com/niama-strategies/niama/commit/ef2a6f6f3a2be38cc5aeefe7ad641d61d96dabe4))
+
+
+
+
+
+## [2.21.18](https://github.com/niama-strategies/niama/compare/@niama/auth-amplify@2.21.17...@niama/auth-amplify@2.21.18) (2020-04-19)
+
+
+### Bug Fixes
+
+* multiples updates ([ef2a6f6](https://github.com/niama-strategies/niama/commit/ef2a6f6f3a2be38cc5aeefe7ad641d61d96dabe4))
+
+
+
+
+
 ## [2.21.17](https://github.com/niama-strategies/niama/compare/@niama/auth-amplify@2.21.16...@niama/auth-amplify@2.21.17) (2020-04-17)
 
 **Note:** Version bump only for package @niama/auth-amplify

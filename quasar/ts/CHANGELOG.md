@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.2](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.16.0...@niama/quasar-app-extension-ts@2.16.2) (2020-04-19)
+
+
+### Bug Fixes
+
+* multiples updates ([ef2a6f6](https://github.com/niama-strategies/niama/commit/ef2a6f6f3a2be38cc5aeefe7ad641d61d96dabe4))
+
+
+
+
+
+## [2.16.1](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.16.0...@niama/quasar-app-extension-ts@2.16.1) (2020-04-19)
+
+
+### Bug Fixes
+
+* multiples updates ([ef2a6f6](https://github.com/niama-strategies/niama/commit/ef2a6f6f3a2be38cc5aeefe7ad641d61d96dabe4))
+
+
+
+
+
 # [2.16.0](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-ts@2.14.2...@niama/quasar-app-extension-ts@2.16.0) (2020-04-17)
 
 

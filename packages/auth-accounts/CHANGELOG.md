@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.17](https://github.com/niama-strategies/niama/compare/@niama/auth-accounts@0.0.15...@niama/auth-accounts@0.0.17) (2020-04-19)
+
+**Note:** Version bump only for package @niama/auth-accounts
+
+
+
+
+
+## [0.0.16](https://github.com/niama-strategies/niama/compare/@niama/auth-accounts@0.0.15...@niama/auth-accounts@0.0.16) (2020-04-19)
+
+**Note:** Version bump only for package @niama/auth-accounts
+
+
+
+
+
 ## [0.0.15](https://github.com/niama-strategies/niama/compare/@niama/auth-accounts@0.0.14...@niama/auth-accounts@0.0.15) (2020-04-17)
 
 **Note:** Version bump only for package @niama/auth-accounts

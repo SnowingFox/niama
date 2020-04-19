@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.12](https://github.com/niama-strategies/niama/compare/@niama/address-gmaps@2.19.10...@niama/address-gmaps@2.19.12) (2020-04-19)
+
+
+### Bug Fixes
+
+* multiples updates ([ef2a6f6](https://github.com/niama-strategies/niama/commit/ef2a6f6f3a2be38cc5aeefe7ad641d61d96dabe4))
+
+
+
+
+
+## [2.19.11](https://github.com/niama-strategies/niama/compare/@niama/address-gmaps@2.19.10...@niama/address-gmaps@2.19.11) (2020-04-19)
+
+
+### Bug Fixes
+
+* multiples updates ([ef2a6f6](https://github.com/niama-strategies/niama/commit/ef2a6f6f3a2be38cc5aeefe7ad641d61d96dabe4))
+
+
+
+
+
 ## [2.19.10](https://github.com/niama-strategies/niama/compare/@niama/address-gmaps@2.19.9...@niama/address-gmaps@2.19.10) (2020-04-17)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@niama/quasar-app-extension-pug",
-  "version": "2.25.28",
+  "version": "2.25.30",
   "description": "Add pug templating to Quasar",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
