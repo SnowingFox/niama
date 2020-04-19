@@ -55,7 +55,7 @@ const init$ = ({ opts, raw }: T.ServiceO) =>
 
       if (window !== undefined)
         window['niamaLoaded'] = () => {
-          raw.$.next((window['google'].maps as any) as T.Raw);
+          raw.$.next((window['google'].maps as unknown) as T.Raw);
           raw.$.complete();
         };
     }

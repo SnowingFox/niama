@@ -52,7 +52,7 @@ const getOpItemRest = (r?: T.OpRest): string =>
 const getOpString = (p: T.GetOpP): string => {
   const { alias, name, fields, local, rest, selector, type, varTypes } = p;
   return `${type} ${name || selector}${getOpAllArgs(varTypes)} { ${
-    selector + getOpItemArgs(varTypes) + getOpItemAlias(alias) + local ? ' @client' : '' + getOpItemRest(rest) + getOpItemFields(fields)
+    selector + getOpItemArgs(varTypes) + getOpItemAlias(alias) + (local ? ' @client' : '') + getOpItemRest(rest) + getOpItemFields(fields)
   } }`;
 };
 
