@@ -7,7 +7,7 @@ export interface LoaderO {
   casingB?: Casing;
   casingE?: Casing;
   casingM?: Casing;
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
   separatorE?: string;
   separatorM?: string;
 }

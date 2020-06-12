@@ -3,6 +3,7 @@
   "private": true,
   "workspaces": {
     "packages": [
+      "docs",
       "packages/*",
       "playgrounds/*",
       "projects/*",
@@ -11,6 +12,7 @@
     ]
   },
   "scripts": {
+    "docs:generate": "typedoc",
     "release": "cross-env HUSKY_BYPASS=true lerna publish --amend"
   },
   "husky": {
@@ -24,29 +26,34 @@
     ]
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.22.0",
-    "@typescript-eslint/parser": "^2.22.0",
-    "@vue/composition-api": "^0.5.0",
+    "@typescript-eslint/eslint-plugin": "^3.0.0",
+    "@typescript-eslint/parser": "^3.0.0",
+    "@vue/composition-api": "^0.6.2",
+    "babel-preset-vue": "^2.0.2",
     "bili": "^4.8.1",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^6.2.2",
     "lerna": "^3.20.2",
     "prettier": "^2.0.1",
-    "pug": "^2.0.4",
+    "pug": "^3.0.0",
     "quasar": "^1.9.12",
     "rollup": "^2.3.2",
     "rollup-plugin-typescript2": "^0.27.0",
     "rxjs": "^6.5.4",
-    "superstruct": "^0.8.3",
+    "superstruct": "^0.10.11",
     "tsconfig-paths": "^3.9.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typedoc": "^0.17.6",
+    "typedoc-plugin-external-module-name": "^4.0.0",
     "typescript": "^3.8.3",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.11",
     "vue-i18n": "^8.16.0",
+    "vue-loader": "^15.9.1",
     "vue-router": "^3.1.6",
+    "vue-template-compiler": "^2.6.11",
     "webpack-chain": "^6.4.0"
   },
   "devDependencies": {

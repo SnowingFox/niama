@@ -5,7 +5,44 @@
     "declaration": false,
     "paths": {
       "@niama/*": ["packages/*/src/"],
-      "@/catch-front/*": ["projects/catch-front/src/*"]
-    }
+      "@/catch-front/*": ["projects/catch-front/src/*"],
+      "@/docs/*": ["docs/src/*"],
+    },
+  },
+  "typedocOptions": {
+    "categorizeByGroup": false,
+    "disableOutputCheck": true,
+    "exclude": "./node_modules/**/*",
+    "excludeNotExported": true,
+    "includeDeclarations": true,
+    "includes": "./packages/",
+    "inputFiles": [
+      "packages/address/src/index.ts",
+      "packages/address/types.d.ts",
+      "packages/address-gmaps/src/index.ts",
+      "packages/address-gmaps/types.d.ts",
+      "packages/api/src/index.ts",
+      "packages/api/types.d.ts",
+      "packages/auth/src/index.ts",
+      "packages/auth/types.d.ts",
+      "packages/auth-amplify/src/index.ts",
+      "packages/auth-amplify/types.d.ts",
+      "packages/core/src/index.ts",
+      "packages/core/types.d.ts",
+      "packages/nav/src/index.ts",
+      "packages/nav/types.d.ts",
+      "packages/orm/src/index.ts",
+      "packages/orm/types.d.ts",
+      "packages/user/src/index.ts",
+      "packages/user/types.d.ts",
+      "packages/user-amplify/src/index.ts",
+      "packages/user-amplify/types.d.ts"
+    ],
+    "json": "docs/src/modules/app/data.json",
+    "mode": "modules",
+    "name": "Niama",
+    "out": "dox",
+    "readme": "README.md",
+    "stripInternal": true
   }
 }

@@ -5,8 +5,8 @@ import * as webpack from 'webpack';
 
 import * as T from './types';
 
-export default function (this: webpack.loader.LoaderContext, source: string) {
-  const loaderO: T.LoaderO = loaderUtils.getOptions(this);
+export default function (this: webpack.loader.LoaderContext, source: string): string {
+  const loaderO: T.LoaderO = loaderUtils.getOptions(this) ?? {};
 
   const compilerO: T.CompilerO = {
     filename: this.resourcePath,
