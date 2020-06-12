@@ -1,6 +1,8 @@
 import { Configuration as WebpackConfig } from 'webpack';
 import ChainConfig from 'webpack-chain';
 
+export { PackageJson } from 'tsconfig-paths/lib/filesystem';
+
 export class ExtensionJson {
   constructor();
   get(extId: string): { __internal: Dict };
@@ -66,7 +68,7 @@ export class UninstallAPI extends BasisApi {
 
 export type CommandHandler = (api: IndexAPI, { quasarConf }) => void | Promise<void>;
 export type Extender<Cfg> = (cfg: Cfg, opts?: { isClient: boolean; isServer: boolean }, api?: IndexAPI) => void;
-export type QuasarConfig = Dict;
+export type QuasarConfig = Dict & { supportTS?: boolean | { tsLoaderConfig?: Dict; tsCheckerConfig?: Dict } };
 export type Ctx = Dict;
 export type Dict<T = any> = Record<string, T>;
 export type DirResolver = (dir: string) => string;

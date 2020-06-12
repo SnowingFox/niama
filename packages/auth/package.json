@@ -1,6 +1,6 @@
 {
   "name": "@niama/auth",
-  "version": "2.17.17",
+  "version": "2.17.19",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "dist/index.js",
@@ -17,6 +17,6 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@niama/api": "^2.15.9"
+    "@niama/api": "^2.15.11"
   }
 }

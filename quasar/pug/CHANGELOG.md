@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.32](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-pug@2.25.30...@niama/quasar-app-extension-pug@2.25.32) (2020-06-12)
+
+**Note:** Version bump only for package @niama/quasar-app-extension-pug
+
+
+
+
+
+## [2.25.31](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-pug@2.25.30...@niama/quasar-app-extension-pug@2.25.31) (2020-06-12)
+
+**Note:** Version bump only for package @niama/quasar-app-extension-pug
+
+
+
+
+
 ## [2.25.30](https://github.com/niama-strategies/niama/compare/@niama/quasar-app-extension-pug@2.25.28...@niama/quasar-app-extension-pug@2.25.30) (2020-04-19)
 
 **Note:** Version bump only for package @niama/quasar-app-extension-pug

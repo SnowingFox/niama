@@ -1,6 +1,6 @@
 {
   "name": "@niama/purgecss-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Fork of PurgeCSS plugin for webpack - Remove unused css",
   "author": "Gregory Bouteiller",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "lib"
   ],
   "dependencies": {
+    "@types/webpack-sources": "^1.4.0",
     "purgecss": "^2.1.0",
     "webpack": "^4.41.2",
     "webpack-sources": "^1.4.3"

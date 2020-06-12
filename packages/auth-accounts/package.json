@@ -1,15 +1,15 @@
 {
   "name": "@niama/auth-accounts",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@accounts/client": "^0.25.0",
-    "@accounts/client-password": "^0.25.0",
-    "@accounts/graphql-client": "^0.25.0",
-    "@niama/auth": "^2.17.17",
+    "@accounts/client": "^0.27.0",
+    "@accounts/client-password": "^0.27.0",
+    "@accounts/graphql-client": "^0.27.0",
+    "@niama/auth": "^2.17.19",
     "@types/jwt-decode": "^2.2.1",
     "jwt-decode": "^2.2.0"
   }

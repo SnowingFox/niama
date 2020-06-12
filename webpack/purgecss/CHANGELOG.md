@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/niama-strategies/niama/compare/@niama/purgecss-webpack-plugin@1.0.0...@niama/purgecss-webpack-plugin@1.0.2) (2020-06-12)
+
+**Note:** Version bump only for package @niama/purgecss-webpack-plugin
+
+
+
+
+
+## [1.0.1](https://github.com/niama-strategies/niama/compare/@niama/purgecss-webpack-plugin@1.0.0...@niama/purgecss-webpack-plugin@1.0.1) (2020-06-12)
+
+**Note:** Version bump only for package @niama/purgecss-webpack-plugin
+
+
+
+
+
 # [1.0.0](https://github.com/niama-strategies/niama/compare/@niama/purgecss-webpack-plugin@0.1.0...@niama/purgecss-webpack-plugin@1.0.0) (2020-04-02)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@niama/quasar-app-extension-tailwindcss",
-  "version": "3.5.2",
+  "version": "3.5.4",
   "description": "Add Tailwind CSS styling to Quasar",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "postinstall": "yarn patch"
   },
   "dependencies": {
-    "@niama/purgecss-webpack-plugin": "^1.0.0",
+    "@niama/purgecss-webpack-plugin": "^1.0.2",
     "@types/autoprefixer": "^9.7.1",
     "@types/cssnano": "^4.0.0",
     "@types/lodash.kebabcase": "^4.1.6",

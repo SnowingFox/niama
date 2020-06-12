@@ -1,12 +1,12 @@
 {
   "name": "@niama/auth-amplify",
-  "version": "2.21.19",
+  "version": "2.21.21",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "src/index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@niama/auth": "^2.17.17",
+    "@niama/auth": "^2.17.19",
     "aws-amplify": "^3.0.4"
   }
 }

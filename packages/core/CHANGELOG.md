@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/niama-strategies/niama/compare/@niama/core@3.0.4...@niama/core@3.0.6) (2020-06-12)
+
+**Note:** Version bump only for package @niama/core
+
+
+
+
+
+## [3.0.5](https://github.com/niama-strategies/niama/compare/@niama/core@3.0.4...@niama/core@3.0.5) (2020-06-12)
+
+**Note:** Version bump only for package @niama/core
+
+
+
+
+
 ## [3.0.4](https://github.com/niama-strategies/niama/compare/@niama/core@3.0.2...@niama/core@3.0.4) (2020-04-19)
 
 **Note:** Version bump only for package @niama/core

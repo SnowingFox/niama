@@ -1,6 +1,6 @@
 {
   "name": "@niama/api",
-  "version": "2.15.9",
+  "version": "2.15.11",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "dist/index.js",
@@ -20,17 +20,12 @@
     "vue": "^2.6.11"
   },
   "dependencies": {
-    "@niama/core": "^3.0.4",
-    "@vue/apollo-composable": "4.0.0-alpha.7",
-    "apollo-cache-inmemory": "^1.6.5",
-    "apollo-client": "^2.6.8",
-    "apollo-link": "^1.2.13",
-    "apollo-link-http": "^1.5.16",
-    "apollo-link-rest": "0.7.3",
-    "apollo-link-ws": "^1.0.19",
-    "graphql": "14.6.0",
-    "graphql-anywhere": "^4.2.6",
-    "graphql-tag": "^2.10.3",
+    "@apollo/client": "^3.0.0-beta.50",
+    "@apollo/link-ws": "^2.0.0-beta.3",
+    "@niama/core": "^3.0.6",
+    "@vue/apollo-composable": "^4.0.0-alpha.8",
+    "apollo-link-rest": "^0.8.0-beta.0",
+    "graphql": "^15.0.0",
     "qs": "^6.9.1",
     "subscriptions-transport-ws": "^0.9.16"
   },
