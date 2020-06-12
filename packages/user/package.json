@@ -1,10 +1,10 @@
 {
   "name": "@niama/user",
-  "version": "2.20.23",
+  "version": "2.20.24",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
-    "@niama/orm": "^2.17.23"
+    "@niama/orm": "^2.17.24"
   }
 }

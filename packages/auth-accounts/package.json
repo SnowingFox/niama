@@ -1,6 +1,6 @@
 {
   "name": "@niama/auth-accounts",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "index.ts",
@@ -9,7 +9,7 @@
     "@accounts/client": "^0.27.0",
     "@accounts/client-password": "^0.27.0",
     "@accounts/graphql-client": "^0.27.0",
-    "@niama/auth": "^2.17.19",
+    "@niama/auth": "^2.17.20",
     "@types/jwt-decode": "^2.2.1",
     "jwt-decode": "^2.2.0"
   }

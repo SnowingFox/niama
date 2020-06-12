@@ -1,6 +1,6 @@
 {
   "name": "@niama/api",
-  "version": "2.15.11",
+  "version": "2.15.12",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.50",
     "@apollo/link-ws": "^2.0.0-beta.3",
-    "@niama/core": "^3.0.6",
+    "@niama/core": "^3.0.7",
     "@vue/apollo-composable": "^4.0.0-alpha.8",
     "apollo-link-rest": "^0.8.0-beta.0",
     "graphql": "^15.0.0",

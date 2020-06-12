@@ -1,10 +1,10 @@
 {
   "name": "@niama/address-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "src/index.ts",
   "dependencies": {
-    "@niama/address": "^2.19.14"
+    "@niama/address": "^2.19.15"
   }
 }

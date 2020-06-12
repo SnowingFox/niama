@@ -1,11 +1,11 @@
 {
   "name": "@niama/address-gmaps",
-  "version": "2.19.14",
+  "version": "2.19.15",
   "author": "Gregory Bouteiller <gregory.bouteiller@niama.re>",
   "license": "MIT",
   "main": "src/index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@niama/address": "^2.19.14"
+    "@niama/address": "^2.19.15"
   }
 }
