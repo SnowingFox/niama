@@ -13,10 +13,14 @@
     "niama",
     "pug"
   ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "prepublishOnly": "yarn build"
+  },
   "dependencies": {
     "@niama/pug-bem-plain-loader": "^2.25.4",
     "@types/pug": "^2.0.4",
-    "pug": "^2.0.4"
+    "pug": "^3.0.0"
   },
   "gitHead": "809d8d783a305e557ecea5b39de7c3fb4cf980b0"
 }
