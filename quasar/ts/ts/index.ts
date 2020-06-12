@@ -1,3 +1,4 @@
+import { CLIEngine } from 'eslint';
 import TsconfigPathsWebpackPlugin from 'tsconfig-paths-webpack-plugin';
 
 import * as T from './typings';
@@ -11,7 +12,7 @@ const enforceConf = (api: T.IndexAPI) =>
   api.extendQuasarConf((conf) => (conf.supportTS = conf.supportTS || { tsCheckerConfig: { eslint: true } }));
 
 const chainWebpack = async (api: T.IndexAPI) => {
-  const pkg = await import(api.resolve.app('/package.json'));
+  const pkg = (await import(api.resolve.app('/package.json'))) as T.PackageJson;
   api.chainWebpack((cfg) => {
     cfg.resolve.alias.set(`@/${pkg.name}`, api.resolve.app('/src'));
     cfg.resolve.plugin('tsconfigpaths').use(TsconfigPathsWebpackPlugin);
@@ -22,6 +23,6 @@ const chainWebpack = async (api: T.IndexAPI) => {
       .pre()
       .use('eslint')
       .loader('eslint-loader')
-      .options({ formatter: require('eslint').CLIEngine.getFormatter('stylish') });
+      .options({ formatter: CLIEngine.getFormatter('stylish') });
   });
 };

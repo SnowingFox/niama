@@ -1,6 +1,6 @@
 import * as T from './types';
 
-export = (api: T.IndexAPI): void => {
+export = (api: T.IndexAPI) => {
   api.chainWebpack((cfg) =>
     cfg.module
       .rule('pug')
