@@ -1,4 +1,4 @@
-import * as T from './types';
+import * as T from './typings';
 
 export = (api: T.IndexAPI) => {
   api.chainWebpack((cfg) =>
