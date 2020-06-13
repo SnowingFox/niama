@@ -1,24 +1,49 @@
-import { endsWith, intersection, upperCase, zipObject } from './lodash';
-import { getProvider, hasProvider } from './provider';
+/**
+ * @packageDocumentation
+ * @module @niama/core
+ */
+
+import { endsWith, intersection, zipObject } from './lodash';
+import { hasProvider, provider } from './provider';
 import * as T from './typings';
 
-export const getError = (p: T.GetErrorP | string): Error => {
-  const { id, type = 'core' } = isGetErrorP(p) ? p : { id: p };
-  const $i18n = hasProvider('i18n') ? getProvider('i18n') : null;
-  const error = new Error($i18n ? ($i18n.t(`${type}.${id}`) as string) : `${type}.${id}`);
-  error.name = `NIAMA ${upperCase(type)} ERROR`;
+export const errorer = (pkg: string, prefix: string): T.Errorer => (id, scope) => {
+  const $i18n = hasProvider('i18n') ? provider('i18n') : null;
+  const error = new Error($i18n ? ($i18n.t(`${prefix}.${id}`, scope) as string) : id);
+  error.name = `[${pkg}]`;
   return error;
 };
-export const isGetErrorP = (p: T.GetErrorP | string): p is T.GetErrorP => typeof p !== 'string';
-
+/**
+ * Get internationalized error object from `id`.
+ * @param id
+ */
+export const coreError: T.Errorer = errorer('@niama/core', 'core');
+/**
+ *
+ * @param value
+ * @param keys
+ */
 export const fill = <V, K extends string = string>(value: V, ...keys: K[]): Record<K, V> =>
   zipObject<V>(keys, Array(keys.length).fill(value)) as Record<K, V>;
-
+/**
+ *
+ * @param singular
+ */
 export const pluralize = (singular: string): string =>
   endsWith(singular, 'y') ? `${singular.substr(0, singular.length - 1)}ies` : `${singular}s`;
-
+/**
+ *
+ * @param arr1
+ * @param arr2
+ */
 export const hasIntersection = <V>(arr1: V[], arr2: V[]): boolean => intersection(arr1, arr2).length > 0;
-export const i18nizeLabel = <V extends string>(labels: T.I18n<V>, value: V): string => labels[value] || value;
-
-export const i18nizeLabels = <V extends string>(labels: T.I18n<V>, values: V[], defaultValue = ''): string =>
-  values && values.length > 0 ? values.map((v) => i18nizeLabel(labels, v)).join(', ') : defaultValue;
+/**
+ * Send an internationalized warning from `id` on the console in development mode.
+ * @param id
+ * @param type
+ */
+export const warn = (id: string, type = 'core') => {
+  const $i18n = hasProvider('i18n') ? provider('i18n') : null;
+  const message = $i18n ? ($i18n.t(`${type}.${id}`) as string) : id;
+  if (process.env.DEV) console.warn(`[@niama/${type}] ${message}`);
+};

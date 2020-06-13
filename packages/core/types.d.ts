@@ -1,3 +1,11 @@
+/**
+ * # @niama/core/types
+ * Types for `@niama/core`.
+ * @packageDocumentation
+ * @module @niama/core/types
+ * @preferred
+ */
+
 import { Niama } from '@niama/core/types';
 
 import { VueI18n, VueRouter } from './src/types/externals';

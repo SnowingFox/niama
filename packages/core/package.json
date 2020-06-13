@@ -21,19 +21,19 @@
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
-    "quasar": "^1.9.12",
-    "rxjs": "^6.5.4",
+    "quasar": "^1.12.4",
+    "rxjs": "^6.5.5",
     "vue": "^2.6.11",
-    "vue-i18n": "^8.16.0",
-    "vue-router": "^3.1.6"
+    "vue-i18n": "^8.18.2",
+    "vue-router": "^3.3.3"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^0.5.0",
-    "quasar": "^1.9.12",
-    "rxjs": "^6.5.4",
+    "@vue/composition-api": "^0.6.3",
+    "quasar": "^1.12.4",
+    "rxjs": "^6.5.5",
     "vue": "^2.6.11",
-    "vue-i18n": "^8.16.0",
-    "vue-router": "^3.1.6"
+    "vue-i18n": "^8.18.2",
+    "vue-router": "^3.3.3"
   },
-  "gitHead": "f068c907ad542e942cac174943f6fe77917883b1"
+  "gitHead": "67becb5d88d7cd0487a2d03cd2b6b5006dc85f9c"
 }

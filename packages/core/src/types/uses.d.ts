@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module @niama/core/types
+ */
+
 import { Ref } from './externals';
 
 export interface UseInputR<Input> {

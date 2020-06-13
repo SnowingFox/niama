@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module @niama/core/types
+ */
+
 // UTILS ===================================================================================================================================
 
 import { Niama } from '@niama/core/types';
@@ -9,53 +14,26 @@ export type Observabler<Res = void, Src = void> = (...s: [Src]) => Observable<Re
 
 // SAGA ====================================================================================================================================
 
-export interface SagaCfg<Src = any, Res = any, Done = Res, Fail = any, Extra = {}> {
-  P: SagaO<Done, Res, Fail> & Extra;
-  R: Observabler<Done | Fail, Src>;
-  UseP: UseSagaReturnsO<Done> & SagaO<Done, Res, Fail> & Extra;
-  L$P: { src$: Observable<Src> } & UseSagaReturnsO<Done> & SagaO<Done, Res, Fail> & Extra;
-  L$R: Loadable<Done | Fail>;
-  S$R: Sourcable<Done | Fail, Src>;
-}
+export type Saga = <D, Res = D, Src = void, F = null>(act: Asyncer<Res, Src>, opts?: SagaO<D, Res, F>) => Observabler<D | F, Src>;
 
 export interface SagaO<Done, Src, Fail = null> {
   always?: Observabler<Done, Src | Error>;
   done?: Observabler<Done, Src>;
   fail?: Observabler<Done | Fail, Error>;
+  mapError?: Syncer<Error, Error>;
   onAlways?: Actioner<Done, Src | Error>;
   onDone?: Actioner<Done, Src>;
+  onFail?: Actioner<Done | Fail, Error>
 }
 
-export interface SagaP<Done, Res, Src, Fail = null> extends SagaO<Done, Res, Fail> {
-  act: Asyncer<Res, Src>;
-  mapError?: (e: Error) => Error;
-}
-
-export interface UseSagaDoneP<Done, Src, Fail = null> {
-  $niama: Niama;
-  notifyId?: string;
-  opts: SagaO<Done, Src, Fail>;
-  redirect?: RawLocation | Syncer<RawLocation, Done>;
-}
-
-export interface UseSagaFailP<Done, Src, Fail = null> {
-  $niama: Niama;
-  notify: boolean;
-  opts: SagaO<Done, Src, Fail>;
-  redirect?: RawLocation | Syncer<RawLocation, Error>;
-}
-
-export interface UseSagaReturnsO<Done> {
+export interface SagaReturnsO<Done, Src, Fail = null> extends SagaO<Done, Src, Fail> {
   notify?: boolean;
+  notifyId?: string;
   notifyOnDone?: boolean;
   notifyOnFail?: boolean;
   redirect?: RawLocation | Syncer<RawLocation, Done | Error>;
   redirectOnDone?: RawLocation | Syncer<RawLocation, Done>;
   redirectOnFail?: RawLocation | Syncer<RawLocation, Error>;
-}
-
-export interface UseSagaReturnsP<Done, Src, Fail = null> extends UseSagaReturnsO<Done>, SagaO<Done, Src, Fail> {
-  notifyId?: string;
 }
 
 export interface UseSagaReturnsR<Done, Src, Fail = null> {
@@ -71,27 +49,15 @@ export interface Loadable<Res = any> {
   loading: Ref<boolean>;
 }
 
-export interface UseLoadableP<Res = any, Src = any, SwitcherRes = Res> extends UseSourcableP<Res, Src, SwitcherRes> {
-  src$: Observable<Src>;
-}
-
 // SOURCABLE ===============================================================================================================================
 
 export interface Sourcable<Res = any, Src = any> extends Loadable<Res> {
   src$: Subject<Src>;
 }
 
-export interface UseSourcableP<Res = any, Src = any, SwitcherRes = Res> {
+export interface SourcableO<Res = any, Src = any, SwitcherRes = Res> {
   autosubscribe?: boolean;
   debug?: boolean;
   next?: (result: Res) => void;
   selector?: (source: Src, result: SwitcherRes) => Res;
-  switcher: Observabler<SwitcherRes, Src>;
-}
-
-// NOTIFY FAIL =============================================================================================================================
-
-export interface NotifyFail$P<F> {
-  error: Error;
-  value?: F;
 }

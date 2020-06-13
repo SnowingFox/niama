@@ -1,8 +1,29 @@
+/**
+ * @packageDocumentation
+ * @module @niama/core
+ */
+
+import { VueRouter } from '@niama/core/types';
 import { reactive } from '@vue/composition-api';
 
 import { setProvider } from './provider';
-import * as T from './typings';
 
-export const bootRouter = (router: T.VueRouter) => {
-  setProvider({ id: 'router', provider: reactive(router) as unknown as T.VueRouter });
+/**
+ * Register a provider for routing.
+ *
+ * #### Usage
+ *
+ * Create `src/boot/router.ts`:
+ *
+ * ```ts
+ * import { boot } from 'quasar/wrappers';
+ *
+ * boot(({ router }) => bootRouter(router));
+ * ```
+ *
+ * @category Boot
+ * @param router Vue Router instance
+ */
+export const bootRouter = (router: VueRouter) => {
+  setProvider('router', reactive(router) as VueRouter);
 };
