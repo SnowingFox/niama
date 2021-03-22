@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "@types/webpack-sources": "^1.4.0",
-    "purgecss": "^2.1.0",
+    "purgecss": "^4.0.3",
     "webpack": "^4.41.2",
     "webpack-sources": "^1.4.3"
   },
